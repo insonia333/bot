@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Prime Imóveis - Sua imobiliária de confiança com mais de 20 anos de experiência no mercado imobiliário. Compra, venda, aluguel e consultoria de imóveis.">
+<meta name="keywords" content="imóveis, imobiliária, compra, venda, aluguel, consultoria, avaliação, financiamento, São Paulo">
+<meta name="author" content="Prime Imóveis">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Prime Imóveis - Encontre o Imóvel dos Seus Sonhos">
+<meta property="og:description" content="Mais de 20 anos de experiência no mercado imobiliário. Compra, venda, aluguel e consultoria personalizada.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://primeimoveis.com.br">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Prime Imóveis - Encontre o Imóvel dos Seus Sonhos">
+<meta name="twitter:description" content="Mais de 20 anos de experiência no mercado imobiliário.">
+<title>Prime Imóveis - Encontre o Imóvel dos Seus Sonhos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Prime Imóveis",
+  "description": "Imobiliária com mais de 20 anos de experiência no mercado imobiliário.",
+  "url": "https://primeimoveis.com.br",
+  "telephone": "+5511999999999",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Paulista, 1000 - Sala 1501",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "postalCode": "01310-100",
+    "addressCountry": "BR"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "13:00"
+    }
+  ],
+  "areaServed": "São Paulo, SP",
+  "priceRange": "$$"
+}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#1e40af;--accent-light:#3b82f6;--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a28;--text:#e4e4e7;--text-muted:#9ca3af;--glass:rgba(30,64,175,0.08);--glass-border:rgba(30,64,175,0.2);--radius:16px}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;line-height:1.7}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:var(--accent-light);text-decoration:none;transition:color .3s}
+a:hover{color:#60a5fa}
+img{max-width:100%;display:block}
+
+/* Custom Cursor */
+.cursor-dot{width:8px;height:8px;background:var(--accent-light);border-radius:50%;position:fixed;pointer-events:none;z-index:99999;transition:transform .15s}
+.cursor-ring{width:40px;height:40px;border:2px solid var(--accent);border-radius:50%;position:fixed;pointer-events:none;z-index:99998;transition:transform .2s,width .3s,height .3s}
+.cursor-ring.hover{width:60px;height:60px;border-color:var(--accent-light)}
+
+/* Noise Overlay */
+.noise{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;opacity:.03}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;width:100%;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;z-index:1000;backdrop-filter:blur(20px);background:rgba(10,10,15,.7);border-bottom:1px solid rgba(30,64,175,.1);transition:all .3s}
+.nav.scrolled{padding:14px 40px;background:rgba(10,10,15,.95)}
+.nav-logo{font-size:1.5rem;font-weight:800;color:#fff;letter-spacing:-0.5px}
+.nav-logo span{color:var(--accent-light)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-muted);font-size:.875rem;font-weight:500;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent-light);transition:width .3s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:5px}
+.nav-toggle span{width:24px;height:2px;background:#fff;transition:all .3s}
+
+/* Sections */
+section{padding:120px 5%;position:relative}
+.section-label{text-transform:uppercase;font-size:.75rem;font-weight:600;letter-spacing:3px;color:var(--accent-light);margin-bottom:12px}
+.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;line-height:1.15;margin-bottom:20px;color:#fff}
+.section-subtitle{font-size:1.05rem;color:var(--text-muted);max-width:600px;margin-bottom:60px}
+.container{max-width:1200px;margin:0 auto}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.hero canvas{position:absolute;top:0;left:0;width:100%;height:100%}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.hero-badge{display:inline-block;padding:8px 20px;border:1px solid var(--glass-border);border-radius:100px;font-size:.8rem;color:var(--accent-light);margin-bottom:30px;backdrop-filter:blur(10px);background:var(--glass)}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:900;line-height:1.05;margin-bottom:24px;color:#fff;letter-spacing:-1px}
+.hero h1 em{font-style:normal;color:var(--accent-light)}
+.hero p{font-size:1.15rem;color:var(--text-muted);margin-bottom:50px;max-width:560px;margin-left:auto;margin-right:auto}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:100px;font-size:.9rem;font-weight:600;border:none;cursor:pointer;transition:all .3s;font-family:inherit}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#2563eb;transform:translateY(-2px);box-shadow:0 10px 40px rgba(30,64,175,.4)}
+.btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-outline:hover{border-color:var(--accent-light);color:var(--accent-light)}
+.hero-stats{display:flex;gap:60px;justify-content:center;margin-top:70px;padding-top:40px;border-top:1px solid rgba(255,255,255,.06)}
+.hero-stat strong{display:block;font-size:2rem;font-weight:800;color:#fff}
+.hero-stat span{font-size:.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+
+/* Glass Card */
+.glass-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius);padding:40px;transition:all .4s}
+.glass-card:hover{border-color:var(--accent-light);transform:translateY(-4px);box-shadow:0 20px 60px rgba(30,64,175,.15)}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-img{width:100%;aspect-ratio:4/3;border-radius:var(--radius);background:linear-gradient(135deg,var(--accent),#0f172a);position:relative;overflow:hidden}
+.about-img::after{content:'20+';position:absolute;bottom:30px;right:30px;font-size:5rem;font-weight:900;color:rgba(255,255,255,.1);line-height:1}
+.about-text p{margin-bottom:20px;color:var(--text-muted)}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.about-feat{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--text)}
+.about-feat::before{content:'';width:8px;height:8px;background:var(--accent-light);border-radius:50%;flex-shrink:0}
+
+/* Services */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{text-align:center;padding:48px 32px}
+.service-icon{width:64px;height:64px;margin:0 auto 24px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+.service-card h3{font-size:1.15rem;margin-bottom:12px;color:#fff}
+.service-card p{font-size:.9rem;color:var(--text-muted)}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.gallery-item{aspect-ratio:4/3;border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer}
+.gallery-item .gradient{width:100%;height:100%;transition:transform .5s}
+.gallery-item:hover .gradient{transform:scale(1.05)}
+.gallery-item .overlay{position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(transparent,rgba(0,0,0,.8));opacity:0;transition:opacity .3s}
+.gallery-item:hover .overlay{opacity:1}
+.gallery-item .overlay h4{font-size:1rem;color:#fff;margin-bottom:4px}
+.gallery-item .overlay span{font-size:.85rem;color:var(--accent-light)}
+
+/* Diferenciais */
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.diff-card{text-align:center;padding:48px 28px}
+.diff-num{font-size:3rem;font-weight:900;color:var(--accent);opacity:.3;margin-bottom:12px}
+.diff-card h3{font-size:1.05rem;margin-bottom:12px;color:#fff}
+.diff-card p{font-size:.875rem;color:var(--text-muted)}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{text-align:center;padding:36px 24px}
+.team-avatar{width:100px;height:100px;border-radius:50%;margin:0 auto 20px;background:linear-gradient(135deg,var(--accent),#6366f1);display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;color:#fff}
+.team-card h3{font-size:1.05rem;color:#fff;margin-bottom:4px}
+.team-card .role{font-size:.8rem;color:var(--accent-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+.team-card p{font-size:.85rem;color:var(--text-muted)}
+
+/* Testimonials */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.test-card{padding:40px 32px}
+.test-stars{color:#fbbf24;margin-bottom:16px;font-size:1.1rem}
+.test-card blockquote{font-size:.95rem;color:var(--text-muted);font-style:italic;margin-bottom:24px;line-height:1.8}
+.test-author{display:flex;align-items:center;gap:14px}
+.test-author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6366f1);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;color:#fff}
+.test-author-info strong{display:block;font-size:.9rem;color:#fff}
+.test-author-info span{font-size:.78rem;color:var(--text-muted)}
+
+/* Location */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.loc-map{width:100%;aspect-ratio:16/9;border-radius:var(--radius);background:linear-gradient(135deg,#0f172a,var(--accent));position:relative;overflow:hidden}
+.loc-map::after{content:'📍';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem}
+.loc-info h3{font-size:1.3rem;color:#fff;margin-bottom:20px}
+.loc-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.loc-item-icon{width:40px;height:40px;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
+.loc-item-text strong{display:block;font-size:.9rem;color:#fff;margin-bottom:2px}
+.loc-item-text span{font-size:.85rem;color:var(--text-muted)}
+
+/* Hours */
+.hours-wrapper{max-width:600px;margin:0 auto}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.hours-row:last-child{border:none}
+.hours-row .day{font-weight:600;color:#fff}
+.hours-row .time{color:var(--accent-light);font-weight:500}
+.hours-row.closed .time{color:#ef4444}
+
+/* Promos */
+.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.promo-card{overflow:hidden;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-border);transition:all .4s}
+.promo-card:hover{border-color:var(--accent-light);transform:translateY(-4px)}
+.promo-img{width:100%;aspect-ratio:16/10;position:relative}
+.promo-img .tag{position:absolute;top:16px;left:16px;background:var(--accent);color:#fff;padding:6px 14px;border-radius:100px;font-size:.75rem;font-weight:700;text-transform:uppercase}
+.promo-body{padding:28px}
+.promo-body h3{font-size:1.1rem;color:#fff;margin-bottom:8px}
+.promo-body .price{font-size:1.4rem;font-weight:800;color:var(--accent-light);margin-bottom:8px}
+.promo-body .details{font-size:.85rem;color:var(--text-muted);margin-bottom:16px}
+.promo-body .btn{width:100%;justify-content:center;padding:12px}
+
+/* FAQ */
+.faq-wrapper{max-width:800px;margin:0 auto}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.06);overflow:hidden}
+.faq-q{width:100%;background:none;border:none;color:#fff;font-size:1rem;font-weight:600;padding:24px 0;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;transition:color .3s}
+.faq-q:hover{color:var(--accent-light)}
+.faq-q .icon{font-size:1.5rem;transition:transform .3s;color:var(--accent-light)}
+.faq-q.active .icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s;padding:0 0}
+.faq-a.open{max-height:300px;padding:0 0 24px}
+.faq-a p{color:var(--text-muted);font-size:.92rem;line-height:1.8}
+
+/* Blog */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{overflow:hidden;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-border);transition:all .4s}
+.blog-card:hover{border-color:var(--accent-light);transform:translateY(-4px)}
+.blog-img{width:100%;aspect-ratio:16/9}
+.blog-body{padding:28px}
+.blog-body .date{font-size:.75rem;color:var(--accent-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.blog-body h3{font-size:1.05rem;color:#fff;margin-bottom:10px;line-height:1.4}
+.blog-body p{font-size:.875rem;color:var(--text-muted);margin-bottom:16px}
+.blog-body a{font-size:.85rem;font-weight:600}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:.85rem;font-weight:500;color:var(--text-muted)}
+.form-group input,.form-group textarea,.form-group select{background:var(--bg2);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;color:#fff;font-size:.9rem;font-family:inherit;transition:border-color .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent-light)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-group select{appearance:none}
+.contact-info-side h3{font-size:1.3rem;color:#fff;margin-bottom:20px}
+.contact-info-side p{color:var(--text-muted);margin-bottom:30px}
+.whatsapp-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:#25d366;color:#fff;border-radius:100px;font-weight:700;font-size:1rem;transition:all .3s}
+.whatsapp-btn:hover{background:#20bd5a;transform:translateY(-2px);box-shadow:0 10px 40px rgba(37,211,102,.3);color:#fff}
+.contact-details{margin-top:40px;display:flex;flex-direction:column;gap:20px}
+.contact-detail{display:flex;align-items:center;gap:14px}
+.contact-detail-icon{width:44px;height:44px;border-radius:12px;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.contact-detail-text strong{display:block;font-size:.88rem;color:#fff}
+.contact-detail-text span{font-size:.82rem;color:var(--text-muted)}
+
+/* Footer */
+.footer{background:var(--bg2);border-top:1px solid rgba(255,255,255,.05);padding:80px 5% 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto}
+.footer-brand h3{font-size:1.4rem;font-weight:800;color:#fff;margin-bottom:12px}
+.footer-brand h3 span{color:var(--accent-light)}
+.footer-brand p{font-size:.88rem;color:var(--text-muted);margin-bottom:20px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:40px;height:40px;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:.9rem}
+.footer-social a:hover{border-color:var(--accent-light);background:var(--accent)}
+.footer-col h4{font-size:.9rem;font-weight:700;color:#fff;margin-bottom:20px;text-transform:uppercase;letter-spacing:1px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:.88rem;color:var(--text-muted);transition:color .3s}
+.footer-col a:hover{color:var(--accent-light)}
+.footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--text-muted)}
+
+/* WhatsApp Float */
+.whatsapp-float{position:fixed;bottom:30px;right:30px;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:998;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;font-size:1.6rem}
+.whatsapp-float:hover{transform:scale(1.1)}
+
+/* Responsive */
+@media(max-width:1024px){
+.diff-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+.services-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+.cursor-dot,.cursor-ring{display:none}
+body{cursor:auto}
+.nav-links{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,10,15,.98);flex-direction:column;align-items:center;justify-content:center;gap:30px}
+.nav-links.open{display:flex}
+.nav-toggle{display:flex}
+.hero-stats{flex-direction:column;gap:20px}
+.about-grid,.loc-grid,.contact-grid{grid-template-columns:1fr}
+.services-grid,.gallery-grid,.test-grid,.promo-grid,.blog-grid,.diff-grid,.team-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;gap:10px;text-align:center}
+section{padding:80px 5%}
+.nav{padding:16px 20px}
+.hero h1{font-size:2.2rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Noise Overlay -->
+<svg class="noise" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+<filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter>
+<rect width="100%" height="100%" filter="url(#noise)"/>
+</svg>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20conhecer%20os%20imóveis%20disponíveis" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contato via WhatsApp">💬</a>
+
+<!-- Nav -->
+<nav class="nav" role="navigation" aria-label="Navegação principal">
+<div class="nav-logo">Prime<span>Imóveis</span></div>
+<ul class="nav-links" id="navLinks">
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#servicos">Serviços</a></li>
+<li><a href="#galeria">Galeria</a></li>
+<li><a href="#equipe">Equipe</a></li>
+<li><a href="#depoimentos">Depoimentos</a></li>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+<button class="nav-toggle" id="navToggle" aria-label="Menu">
+<span></span><span></span><span></span>
+</button>
+</nav>
+
+<!-- 1. Hero -->
+<section class="hero" id="hero">
+<canvas id="heroCanvas"></canvas>
+<div class="hero-content">
+<div class="hero-badge">🏠 Referência no mercado imobiliário há 20 anos</div>
+<h1>Encontre o Imóvel<br>dos <em>Seus Sonhos</em></h1>
+<p>Somos especialistas em transformar o sonho da casa própria em realidade. Conheça nosso portfólio exclusivo de imóveis em São Paulo e região.</p>
+<div class="hero-btns">
+<a href="#contato" class="btn btn-primary">Fale Conosco</a>
+<a href="#galeria" class="btn btn-outline">Ver Imóveis</a>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><strong>2.500+</strong><span>Imóveis Vendidos</span></div>
+<div class="hero-stat"><strong>20+</strong><span>Anos de Mercado</span></div>
+<div class="hero-stat"><strong>98%</strong><span>Clientes Satisfeitos</span></div>
+<div class="hero-stat"><strong>150+</strong><span>Imóveis Disponíveis</span></div>
+</div>
+</div>
+</section>
+
+<!-- 2. Sobre -->
+<section id="sobre">
+<div class="container">
+<div class="about-grid">
+<div class="about-img" role="img" aria-label="Escritório Prime Imóveis"></div>
+<div class="about-text">
+<span class="section-label">Sobre Nós</span>
+<h2 class="section-title">Uma Tradição de Confiança no Mercado Imobiliário</h2>
+<p>A Prime Imóveis nasceu há mais de 20 anos com um propósito claro: oferecer uma experiência diferenciada no mercado imobiliário. Desde então, nos tornamos referência em São Paulo, conectando pessoas aos imóveis perfeitos para suas vidas.</p>
+<p>Nossa equipe de corretores especializados, com profundo conhecimento do mercado local, está preparada para orientá-lo em cada etapa — da busca inicial até a assinatura do contrato.</p>
+<div class="about-features">
+<div class="about-feat">CRECI Ativo</div>
+<div class="about-feat">Atendimento Humanizado</div>
+<div class="about-feat">Portfólio Exclusivo</div>
+<div class="about-feat">Tecnologia de Ponta</div>
+<div class="about-feat">Assessoria Jurídica</div>
+<div class="about-feat">Pós-Venda Dedicado</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 3. Serviços -->
+<section id="servicos" style="background:var(--bg2)">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Nossos Serviços</span>
+<h2 class="section-title" style="margin-left:auto;margin-right:auto">Soluções Completas para o Seu Imóvel</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Oferecemos uma gama completa de serviços imobiliários para atender todas as suas necessidades.</p>
+</div>
+<div class="services-grid">
+<div class="glass-card service-card">
+<div class="service-icon">🏡</div>
+<h3>Compra de Imóveis</h3>
+<p>Encontre o imóvel ideal com nossa curadoria especializada. Acompanhamento completo desde a visita até a escritura.</p>
+</div>
+<div class="glass-card service-card">
+<div class="service-icon">💰</div>
+<h3>Venda de Imóveis</h3>
+<p>Venda seu imóvel com rapidez e segurança. Estratégias de marketing digital e avaliação precisa do mercado.</p>
+</div>
+<div class="glass-card service-card">
+<div class="service-icon">🔑</div>
+<h3>Aluguel</h3>
+<p>Gestão completa de locação, desde a captação de inquilinos até a administração do contrato.</p>
+</div>
+<div class="glass-card service-card">
+<div class="service-icon">📋</div>
+<h3>Consultoria Imobiliária</h3>
+<p>Orientação especializada para investimentos, análise de mercado e planejamento patrimonial.</p>
+</div>
+<div class="glass-card service-card">
+<div class="service-icon">📊</div>
+<h3>Avaliação de Imóveis</h3>
+<p>Laudos técnicos e avaliações precisas seguindo as normas da ABNT para fins diversos.</p>
+</div>
+<div class="glass-card service-card">
+<div class="service-icon">🏦</div>
+<h3>Financiamento</h3>
+<p>Assessoria completa para aprovação de crédito imobiliário nos principais bancos do mercado.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 4. Galeria -->
+<section id="galeria">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Galeria de Imóveis</span>
+<h2 class="section-title">Imóveis em Destaque</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Conheça alguns dos nossos imóveis selecionados nos melhores bairros de São Paulo.</p>
+</div>
+<div class="gallery-grid">
+<div class="gallery-item">
+<div class="gradient" style="background:linear-gradient(135deg,#1e3a5f,#0a0a0f)"></div>
+<div class="overlay"><h4>Cobertura Duplex</h4><span>Jardins — R$ 3.200.000</span></div>
+</div>
+<div class="gallery-item">
+<div class="gradient" style="background:linear-gradient(135deg,#1e40af,#0f172a)"></div>
+<div class="overlay"><h4>Apartamento 180m²</h4><span>Vila Olímpia — R$ 1.850.000</span></div>
+</div>
+<div class="gallery-item">
+<div class="gradient" style="background:linear-gradient(135deg,#1e3a8a,#1a1a28)"></div>
+<div class="overlay"><h4>Casa em Condomínio</h4><span>Alphaville — R$ 2.400.000</span></div>
+</div>
+<div class="gallery-item">
+<div class="gradient" style="background:linear-gradient(135deg,#0c4a6e,#0a0a0f)"></div>
+<div class="overlay"><h4>Studio Mobiliado</h4><span>Pinheiros — R$ 580.000</span></div>
+</div>
+<div class="gallery-item">
+<div class="gradient" style="background:linear-gradient(135deg,#312e81,#0f0f1a)"></div>
+<div class="overlay"><h4>Sala Comercial</h4><span>Faria Lima — R$ 1.200.000</span></div>
+</div>
+<div class="gallery-item">
+<div class="gradient" style="background:linear-gradient(135deg,#1e40af,#18181b)"></div>
+<div class="overlay"><h4>Penthouse 300m²</h4><span>Itaim Bibi — R$ 5.900.000</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 5. Diferenciais -->
+<section id="diferenciais" style="background:var(--bg2)">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Diferenciais</span>
+<h2 class="section-title">Por Que Escolher a Prime Imóveis?</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Nossos diferenciais nos fazem únicos no mercado imobiliário paulistano.</p>
+</div>
+<div class="diff-grid">
+<div class="glass-card diff-card">
+<div class="diff-num">01</div>
+<h3>Expertise de Mercado</h3>
+<p>Mais de duas décadas de atuação nos proporcionam um conhecimento profundo das tendências e oportunidades do mercado imobiliário.</p>
+</div>
+<div class="glass-card diff-card">
+<div class="diff-num">02</div>
+<h3>Portfólio Exclusivo</h3>
+<p>Imóveis selecionados e avaliados criteriosamente, garantindo as melhores opções para nossos clientes.</p>
+</div>
+<div class="glass-card diff-card">
+<div class="diff-num">03</div>
+<h3>Atendimento Personalizado</h3>
+<p>Cada cliente é único. Oferecemos consultoria sob medida, respeitando suas necessidades e preferências.</p>
+</div>
+<div class="glass-card diff-card">
+<div class="diff-num">04</div>
+<h3>Ferramentas Digitais</h3>
+<p>Tour virtual 360°, assinatura digital de contratos e plataforma online para acompanhamento em tempo real.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 6. Equipe -->
+<section id="equipe">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Nossa Equipe</span>
+<h2 class="section-title">Corretores Especializados</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Profissionais dedicados a encontrar o imóvel perfeito para você.</p>
+</div>
+<div class="team-grid">
+<div class="glass-card team-card">
+<div class="team-avatar">RM</div>
+<h3>Ricardo Mendes</h3>
+<div class="role">Diretor Comercial</div>
+<p>Especialista em imóveis de alto padrão com 15 anos de experiência no mercado de luxo.</p>
+</div>
+<div class="glass-card team-card">
+<div class="team-avatar">AS</div>
+<h3>Ana Clara Santos</h3>
+<div class="role">Corretora Sênior</div>
+<p>Referência em negociações residenciais na zona sul de São Paulo. CRECI 12345.</p>
+</div>
+<div class="glass-card team-card">
+<div class="team-avatar">FL</div>
+<h3>Fernando Lima</h3>
+<div class="role">Consultor de Investimentos</div>
+<p>Especialista em análise de mercado e consultoria para investidores imobiliários.</p>
+</div>
+<div class="glass-card team-card">
+<div class="team-avatar">CP</div>
+<h3>Camila Pereira</h3>
+<div class="role">Gestora de Locação</div>
+<p>Experiência em gestão de aluguéis comerciais e residenciais. Mais de 200 contratos ativos.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 7. Depoimentos -->
+<section id="depoimentos" style="background:var(--bg2)">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Depoimentos</span>
+<h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">A satisfação dos nossos clientes é o nosso maior patrimônio.</p>
+</div>
+<div class="test-grid">
+<div class="glass-card test-card">
+<div class="test-stars">★★★★★</div>
+<blockquote>"A Prime Imóveis superou todas as minhas expectativas. Encontraram o apartamento perfeito para minha família em tempo recorde. Atendimento impecável do início ao fim!"</blockquote>
+<div class="test-author">
+<div class="test-author-avatar">MO</div>
+<div class="test-author-info">
+<strong>Marcos Oliveira</strong>
+<span>Comprador — Jardins, SP</span>
+</div>
+</div>
+</div>
+<div class="glass-card test-card">
+<div class="test-stars">★★★★★</div>
+<blockquote>"Vendi meu imóvel em apenas 45 dias graças à estratégia de marketing da Prime. O valor obtido ficou acima da minha expectativa. Recomendo de olhos fechados!"</blockquote>
+<div class="test-author">
+<div class="test-author-avatar">JR</div>
+<div class="test-author-info">
+<strong>Juliana Rodrigues</strong>
+<span>Vendedora — Moema, SP</span>
+</div>
+</div>
+</div>
+<div class="glass-card test-card">
+<div class="test-stars">★★★★★</div>
+<blockquote>"A consultoria de investimento da Prime me ajudou a montar um portfólio imobiliário sólido. Profissionalismo e transparência em cada etapa do processo."</blockquote>
+<div class="test-author">
+<div class="test-author-avatar">CT</div>
+<div class="test-author-info">
+<strong>Carlos Torres</strong>
+<span>Investidor — Itaim Bibi, SP</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 8. Localização -->
+<section id="localizacao">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Localização</span>
+<h2 class="section-title">Nosso Escritório</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Visite-nos e conheça nosso espaço moderno no coração de São Paulo.</p>
+</div>
+<div class="loc-grid">
+<div class="loc-map" role="img" aria-label="Mapa do escritório na Av. Paulista"></div>
+<div class="loc-info">
+<h3>Como Chegar</h3>
+<div class="loc-item">
+<div class="loc-item-icon">📍</div>
+<div class="loc-item-text">
+<strong>Endereço</strong>
+<span>Av. Paulista, 1000 — Sala 1501<br>Bela Vista, São Paulo — SP<br>CEP: 01310-100</span>
+</div>
+</div>
+<div class="loc-item">
+<div class="loc-item-icon">🚇</div>
+<div class="loc-item-text">
+<strong>Metrô</strong>
+<span>Estação Trianon-MASP (Linha 2 — Verde)<br>A 200 metros do escritório</span>
+</div>
+</div>
+<div class="loc-item">
+<div class="loc-item-icon">🅿️</div>
+<div class="loc-item-text">
+<strong>Estacionamento</strong>
+<span>Estacionamento conveniado no subsolo do edifício.<br>2 horas cortesia para clientes.</span>
+</div>
+</div>
+<div class="loc-item">
+<div class="loc-item-icon">📞</div>
+<div class="loc-item-text">
+<strong>Telefone</strong>
+<span>(11) 9 9999-9999</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 9. Horários -->
+<section id="horarios" style="background:var(--bg2)">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Horários</span>
+<h2 class="section-title">Horário de Funcionamento</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Estamos à disposição para atendê-lo nos seguintes horários.</p>
+</div>
+<div class="hours-wrapper glass-card">
+<div class="hours-row"><span class="day">Segunda-feira</span><span class="time">09:00 — 18:00</span></div>
+<div class="hours-row"><span class="day">Terça-feira</span><span class="time">09:00 — 18:00</span></div>
+<div class="hours-row"><span class="day">Quarta-feira</span><span class="time">09:00 — 18:00</span></div>
+<div class="hours-row"><span class="day">Quinta-feira</span><span class="time">09:00 — 18:00</span></div>
+<div class="hours-row"><span class="day">Sexta-feira</span><span class="time">09:00 — 18:00</span></div>
+<div class="hours-row"><span class="day">Sábado</span><span class="time">09:00 — 13:00</span></div>
+<div class="hours-row closed"><span class="day">Domingo</span><span class="time">Fechado</span></div>
+</div>
+</div>
+</section>
+
+<!-- 10. Promoções -->
+<section id="promocoes">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Oportunidades</span>
+<h2 class="section-title">Imóveis em Promoção</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Oportunidades imperdíveis com condições especiais de pagamento.</p>
+</div>
+<div class="promo-grid">
+<div class="promo-card">
+<div class="promo-img" style="background:linear-gradient(135deg,#1e40af,#0f172a)">
+<span class="tag">Oportunidade</span>
+</div>
+<div class="promo-body">
+<h3>Apartamento 3 Quartos — Moema</h3>
+<div class="price">R$ 890.000</div>
+<div class="details">120m² · 3 quartos · 2 vagas · Lazer completo<br><s style="color:#ef4444;font-size:.8rem">De R$ 1.050.000</s></div>
+<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20conhecer%20os%20imóveis%20disponíveis" class="btn btn-primary" target="_blank" rel="noopener">Tenho Interesse</a>
+</div>
+</div>
+<div class="promo-card">
+<div class="promo-img" style="background:linear-gradient(135deg,#312e81,#0a0a0f)">
+<span class="tag">Exclusivo</span>
+</div>
+<div class="promo-body">
+<h3>Cobertura Linear — Vila Nova Conceição</h3>
+<div class="price">R$ 4.500.000</div>
+<div class="details">280m² · 4 suítes · 4 vagas · Vista panorâmica<br><s style="color:#ef4444;font-size:.8rem">De R$ 5.200.000</s></div>
+<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20conhecer%20os%20imóveis%20disponíveis" class="btn btn-primary" target="_blank" rel="noopener">Tenho Interesse</a>
+</div>
+</div>
+<div class="promo-card">
+<div class="promo-img" style="background:linear-gradient(135deg,#0c4a6e,#0f0f1a)">
+<span class="tag">Lançamento</span>
+</div>
+<div class="promo-body">
+<h3>Studio Design — Pinheiros</h3>
+<div class="price">R$ 420.000</div>
+<div class="details">38m² · 1 quarto · 1 vaga · Alto padrão<br><span style="color:#25d366;font-size:.8rem;font-weight:600">Condição especial de lançamento</span></div>
+<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20conhecer%20os%20imóveis%20disponíveis" class="btn btn-primary" target="_blank" rel="noopener">Tenho Interesse</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 11. FAQ -->
+<section id="faq" style="background:var(--bg2)">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Perguntas Frequentes</span>
+<h2 class="section-title">Dúvidas Comuns</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Respondemos as perguntas mais frequentes sobre o mercado imobiliário.</p>
+</div>
+<div class="faq-wrapper">
+<div class="faq-item">
+<button class="faq-q" aria-expanded="false">Quais documentos preciso para comprar um imóvel?<span class="icon">+</span></button>
+<div class="faq-a"><p>Para a compra de um imóvel, você precisará de: RG, CPF, comprovante de renda, comprovante de residência, certidão de estado civil e declaração do Imposto de Renda. Para financiamento, os bancos podem solicitar documentos adicionais como extrato do FGTS e carteira de trabalho.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" aria-expanded="false">Como funciona o financiamento imobiliário?<span class="icon">+</span></button>
+<div class="faq-a"><p>O financiamento imobiliário permite parcelar a compra do imóvel em até 35 anos, com taxas de juros que variam conforme o banco e o perfil do comprador. É possível usar o FGTS como entrada. Nossa equipe auxilia em todo o processo de aprovação de crédito junto aos principais bancos.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" aria-expanded="false">Qual é o valor da comissão da imobiliária?<span class="icon">+</span></button>
+<div class="faq-a"><p>A comissão padrão para vendas é de 6% sobre o valor do imóvel, conforme tabela do CRECI. Para locações, a comissão é equivalente ao primeiro aluguel. Todos os valores são transparentes e acordados previamente em contrato.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" aria-expanded="false">A Prime Imóveis oferece assessoria jurídica?<span class="icon">+</span></button>
+<div class="faq-a"><p>Sim! Contamos com uma equipe jurídica especializada em direito imobiliário que acompanha toda a transação, desde a análise da documentação do imóvel até a lavratura da escritura, garantindo total segurança para compradores e vendedores.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" aria-expanded="false">Posso visitar os imóveis aos finais de semana?<span class="icon">+</span></button>
+<div class="faq-a"><p>Sim, realizamos visitas agendadas aos sábados das 09h às 13h. Para domingos e feriados, é possível agendar visitas especiais com nossos corretores. Também oferecemos tours virtuais 360° para que você conheça os imóveis de onde estiver.</p></div>
+</div>
+<div class="faq-item">
+<button class="faq-q" aria-expanded="false">Como faço para anunciar meu imóvel na Prime?<span class="icon">+</span></button>
+<div class="faq-a"><p>Entre em contato conosco pelo WhatsApp ou formulário de contato. Um de nossos corretores fará uma visita ao imóvel para avaliação gratuita, registro fotográfico profissional e definição da estratégia de venda ou locação mais adequada.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 12. Blog -->
+<section id="blog">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Blog</span>
+<h2 class="section-title">Artigos e Notícias</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Fique por dentro das novidades e dicas do mercado imobiliário.</p>
+</div>
+<div class="blog-grid">
+<div class="blog-card">
+<div class="blog-img" style="background:linear-gradient(135deg,#1e40af,#0f172a)"></div>
+<div class="blog-body">
+<div class="date">10 de Março de 2026</div>
+<h3>5 Dicas Essenciais para Quem Vai Comprar o Primeiro Imóvel</h3>
+<p>Comprar o primeiro imóvel é um marco na vida de qualquer pessoa. Confira nossas dicas para fazer a melhor escolha e evitar armadilhas comuns.</p>
+<a href="#">Leia Mais →</a>
+</div>
+</div>
+<div class="blog-card">
+<div class="blog-img" style="background:linear-gradient(135deg,#312e81,#0a0a0f)"></div>
+<div class="blog-body">
+<div class="date">28 de Fevereiro de 2026</div>
+<h3>Mercado Imobiliário em 2026: Tendências e Perspectivas para São Paulo</h3>
+<p>Análise completa das tendências do mercado imobiliário paulistano para este ano, incluindo regiões mais valorizadas e oportunidades de investimento.</p>
+<a href="#">Leia Mais →</a>
+</div>
+</div>
+<div class="blog-card">
+<div class="blog-img" style="background:linear-gradient(135deg,#0c4a6e,#0f0f1a)"></div>
+<div class="blog-body">
+<div class="date">15 de Fevereiro de 2026</div>
+<h3>Como Usar o FGTS na Compra de Imóvel: Guia Completo 2026</h3>
+<p>Saiba como utilizar o saldo do FGTS para dar entrada ou amortizar seu financiamento imobiliário. Conheça as regras atualizadas e os requisitos.</p>
+<a href="#">Leia Mais →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 13. Contato -->
+<section id="contato" style="background:var(--bg2)">
+<div class="container">
+<div style="text-align:center;margin-bottom:60px">
+<span class="section-label">Contato</span>
+<h2 class="section-title">Fale Conosco</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Entre em contato e descubra o imóvel perfeito para você.</p>
+</div>
+<div class="contact-grid">
+<form class="contact-form glass-card" onsubmit="event.preventDefault();alert('Mensagem enviada com sucesso! Entraremos em contato em breve.')">
+<div class="form-group">
+<label for="nome">Nome Completo</label>
+<input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+</div>
+<div class="form-group">
+<label for="email">E-mail</label>
+<input type="email" id="email" name="email" placeholder="seu@email.com" required>
+</div>
+<div class="form-group">
+<label for="telefone">Telefone / WhatsApp</label>
+<input type="tel" id="telefone" name="telefone" placeholder="(11) 9 9999-9999" required>
+</div>
+<div class="form-group">
+<label for="interesse">Interesse</label>
+<select id="interesse" name="interesse">
+<option value="">Selecione uma opção</option>
+<option value="compra">Comprar um Imóvel</option>
+<option value="venda">Vender um Imóvel</option>
+<option value="aluguel">Alugar um Imóvel</option>
+<option value="avaliacao">Avaliar um Imóvel</option>
+<option value="consultoria">Consultoria</option>
+</select>
+</div>
+<div class="form-group">
+<label for="mensagem">Mensagem</label>
+<textarea id="mensagem" name="mensagem" placeholder="Descreva o que você procura..." rows="4"></textarea>
+</div>
+<button type="submit" class="btn btn-primary" style="justify-content:center">Enviar Mensagem</button>
+</form>
+<div class="contact-info-side">
+<h3>Prefere Falar pelo WhatsApp?</h3>
+<p>Nosso time de atendimento está pronto para ajudá-lo. Resposta rápida e atendimento humanizado.</p>
+<a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20conhecer%20os%20imóveis%20disponíveis" class="whatsapp-btn" target="_blank" rel="noopener">💬 Chamar no WhatsApp</a>
+<div class="contact-details">
+<div class="contact-detail">
+<div class="contact-detail-icon">📞</div>
+<div class="contact-detail-text">
+<strong>Telefone</strong>
+<span>(11) 9 9999-9999</span>
+</div>
+</div>
+<div class="contact-detail">
+<div class="contact-detail-icon">✉️</div>
+<div class="contact-detail-text">
+<strong>E-mail</strong>
+<span>contato@primeimoveis.com.br</span>
+</div>
+</div>
+<div class="contact-detail">
+<div class="contact-detail-icon">📍</div>
+<div class="contact-detail-text">
+<strong>Endereço</strong>
+<span>Av. Paulista, 1000 — Sala 1501<br>São Paulo — SP</span>
+</div>
+</div>
+<div class="contact-detail">
+<div class="contact-detail-icon">🕐</div>
+<div class="contact-detail-text">
+<strong>Horário</strong>
+<span>Seg a Sex: 09h — 18h<br>Sáb: 09h — 13h</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 14. Footer -->
+<footer class="footer">
+<div class="footer-grid">
+<div class="footer-brand">
+<h3>Prime<span>Imóveis</span></h3>
+<p>Há mais de 20 anos transformando sonhos em endereços. Sua imobiliária de confiança em São Paulo.</p>
+<div class="footer-social">
+<a href="#" aria-label="Instagram">IG</a>
+<a href="#" aria-label="Facebook">FB</a>
+<a href="#" aria-label="LinkedIn">IN</a>
+<a href="#" aria-label="YouTube">YT</a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Serviços</h4>
+<ul>
+<li><a href="#servicos">Compra de Imóveis</a></li>
+<li><a href="#servicos">Venda de Imóveis</a></li>
+<li><a href="#servicos">Aluguel</a></li>
+<li><a href="#servicos">Consultoria</a></li>
+<li><a href="#servicos">Avaliação</a></li>
+<li><a href="#servicos">Financiamento</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Institucional</h4>
+<ul>
+<li><a href="#sobre">Sobre Nós</a></li>
+<li><a href="#equipe">Nossa Equipe</a></li>
+<li><a href="#depoimentos">Depoimentos</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#faq">Perguntas Frequentes</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contato</h4>
+<ul>
+<li><a href="tel:+5511999999999">(11) 9 9999-9999</a></li>
+<li><a href="mailto:contato@primeimoveis.com.br">contato@primeimoveis.com.br</a></li>
+<li><a href="#localizacao">Av. Paulista, 1000</a></li>
+<li><a href="#localizacao">São Paulo — SP</a></li>
+<li><a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20conhecer%20os%20imóveis%20disponíveis" target="_blank" rel="noopener">WhatsApp</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span>&copy; 2026 Prime Imóveis. Todos os direitos reservados. CRECI-SP 00000-J</span>
+<span>Desenvolvido com excelência</span>
+</div>
+</footer>
+
+<script>
+/* ===== Custom Cursor ===== */
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+let mx = 0, my = 0, dx = 0, dy = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animateCursor() {
+  dx += (mx - dx) * 0.15;
+  dy += (my - dy) * 0.15;
+  if (dot) { dot.style.left = mx - 4 + 'px'; dot.style.top = my - 4 + 'px'; }
+  if (ring) { ring.style.left = dx - 20 + 'px'; ring.style.top = dy - 20 + 'px'; }
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+document.querySelectorAll('a, button, .gallery-item, .faq-q').forEach(el => {
+  el.addEventListener('mouseenter', () => ring && ring.classList.add('hover'));
+  el.addEventListener('mouseleave', () => ring && ring.classList.remove('hover'));
+});
+
+/* ===== Mobile Nav ===== */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  const spans = navToggle.querySelectorAll('span');
+  if (navLinks.classList.contains('open')) {
+    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+  } else {
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  }
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  const spans = navToggle.querySelectorAll('span');
+  spans[0].style.transform = 'none';
+  spans[1].style.opacity = '1';
+  spans[2].style.transform = 'none';
+}));
+
+/* ===== Nav Scroll ===== */
+window.addEventListener('scroll', () => {
+  document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ===== Particle System (Hero Canvas) ===== */
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const PARTICLE_COUNT = 80;
+
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2.5 + 0.5;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.opacity = Math.random() * 0.5 + 0.2;
+    this.angle = Math.random() * Math.PI * 2;
+    this.orbitSpeed = (Math.random() - 0.5) * 0.01;
+    this.orbitRadius = Math.random() * 50 + 20;
+    this.cx = this.x;
+    this.cy = this.y;
+  }
+  update() {
+    this.angle += this.orbitSpeed;
+    this.cx += this.speedX;
+    this.cy += this.speedY;
+    this.x = this.cx + Math.cos(this.angle) * this.orbitRadius;
+    this.y = this.cy + Math.sin(this.angle) * this.orbitRadius;
+    if (this.cx < -50 || this.cx > canvas.width + 50 || this.cy < -50 || this.cy > canvas.height + 50) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(30, 64, 175, ${0.15 * (1 - dist / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines();
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* ===== FAQ Accordion ===== */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(q => { q.classList.remove('active'); q.setAttribute('aria-expanded', 'false'); });
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+
+/* ===== GSAP ScrollTrigger Animations ===== */
+gsap.registerPlugin(ScrollTrigger);
+
+/* Hero entrance */
+gsap.from('.hero-badge', { opacity: 0, y: 30, duration: 1, delay: 0.3 });
+gsap.from('.hero h1', { opacity: 0, y: 50, duration: 1, delay: 0.5 });
+gsap.from('.hero p', { opacity: 0, y: 30, duration: 1, delay: 0.7 });
+gsap.from('.hero-btns', { opacity: 0, y: 20, duration: 1, delay: 0.9 });
+gsap.from('.hero-stat', { opacity: 0, y: 20, duration: 0.8, stagger: 0.15, delay: 1.1 });
+
+/* Section animations */
+gsap.utils.toArray('section:not(.hero)').forEach(section => {
+  const label = section.querySelector('.section-label');
+  const title = section.querySelector('.section-title');
+  const subtitle = section.querySelector('.section-subtitle');
+  if (label) gsap.from(label, { scrollTrigger: { trigger: label, start: 'top 85%' }, opacity: 0, y: 20, duration: 0.6 });
+  if (title) gsap.from(title, { scrollTrigger: { trigger: title, start: 'top 85%' }, opacity: 0, y: 30, duration: 0.8 });
+  if (subtitle) gsap.from(subtitle, { scrollTrigger: { trigger: subtitle, start: 'top 85%' }, opacity: 0, y: 20, duration: 0.6, delay: 0.2 });
+});
+
+/* Cards stagger */
+const cardSelectors = [
+  '.service-card', '.gallery-item', '.diff-card', '.team-card',
+  '.test-card', '.promo-card', '.blog-card'
+];
+cardSelectors.forEach(sel => {
+  gsap.utils.toArray(sel).forEach((card, i) => {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: 'top 88%' },
+      opacity: 0, y: 40, duration: 0.7, delay: i * 0.1
+    });
+  });
+});
+
+/* About */
+gsap.from('.about-img', { scrollTrigger: { trigger: '.about-img', start: 'top 80%' }, opacity: 0, x: -50, duration: 1 });
+gsap.from('.about-text', { scrollTrigger: { trigger: '.about-text', start: 'top 80%' }, opacity: 0, x: 50, duration: 1 });
+
+/* Location */
+gsap.from('.loc-map', { scrollTrigger: { trigger: '.loc-map', start: 'top 80%' }, opacity: 0, x: -40, duration: 0.8 });
+gsap.from('.loc-info', { scrollTrigger: { trigger: '.loc-info', start: 'top 80%' }, opacity: 0, x: 40, duration: 0.8 });
+
+/* Hours */
+gsap.utils.toArray('.hours-row').forEach((row, i) => {
+  gsap.from(row, { scrollTrigger: { trigger: row, start: 'top 90%' }, opacity: 0, x: -20, duration: 0.5, delay: i * 0.08 });
+});
+
+/* FAQ */
+gsap.utils.toArray('.faq-item').forEach((item, i) => {
+  gsap.from(item, { scrollTrigger: { trigger: item, start: 'top 90%' }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
+});
+
+/* Contact */
+gsap.from('.contact-form', { scrollTrigger: { trigger: '.contact-form', start: 'top 80%' }, opacity: 0, x: -40, duration: 0.8 });
+gsap.from('.contact-info-side', { scrollTrigger: { trigger: '.contact-info-side', start: 'top 80%' }, opacity: 0, x: 40, duration: 0.8 });
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+{
+  "organization": {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Moom Agency",
+    "alternateName": "Moom Agência Digital",
+    "url": "https://moomagencia.com",
+    "logo": "https://moomagencia.com/assets/images/logo.png",
+    "description": "Agência digital premium especializada em sites, automações inteligentes e soluções com inteligência artificial.",
+    "foundingDate": "2021",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR",
+      "postalCode": "01000-000"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+55-11-99999-9999",
+      "contactType": "sales",
+      "availableLanguage": ["Portuguese"]
+    },
+    "sameAs": [
+      "https://instagram.com/moomagency",
+      "https://linkedin.com/company/moomagency",
+      "https://github.com/moomagency"
+    ]
+  },
+  "localBusiness": {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Moom Agency",
+    "url": "https://moomagencia.com",
+    "telephone": "+55-11-99999-9999",
+    "email": "contato@moomagencia.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "São Paulo",
+      "addressRegion": "SP",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -23.5505,
+      "longitude": -46.6333
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "13:00"
+      }
+    ],
+    "priceRange": "$$"
+  },
+  "website": {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Moom Agency",
+    "url": "https://moomagencia.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://moomagencia.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  "services": [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Sites Premium",
+      "description": "Landing pages e sites institucionais com design de alto impacto, animações fluidas e performance otimizada.",
+      "provider": { "@type": "Organization", "name": "Moom Agency" },
+      "areaServed": "BR",
+      "serviceType": "Web Development"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Automações Inteligentes",
+      "description": "Chatbots WhatsApp, CRM automatizado, agendamento inteligente e workflows personalizados.",
+      "provider": { "@type": "Organization", "name": "Moom Agency" },
+      "areaServed": "BR",
+      "serviceType": "Business Process Automation"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Inteligência Artificial",
+      "description": "Assistentes virtuais, análise de dados e soluções com IA de última geração.",
+      "provider": { "@type": "Organization", "name": "Moom Agency" },
+      "areaServed": "BR",
+      "serviceType": "Artificial Intelligence"
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Marketing Digital",
+      "description": "Tráfego pago, SEO técnico, gestão de redes sociais e funis de vendas.",
+      "provider": { "@type": "Organization", "name": "Moom Agency" },
+      "areaServed": "BR",
+      "serviceType": "Digital Marketing"
+    }
+  ],
+  "faqPage": {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quanto tempo leva para desenvolver um site?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Landing pages levam de 7 a 14 dias. Sites mais complexos, de 30 a 60 dias."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como funciona o chatbot no WhatsApp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Utilizamos a Evolution API integrada com IA para criar chatbots que atendem 24/7, agendam consultas e qualificam leads."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso cancelar a qualquer momento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Nossos contratos são mensais sem fidelidade."
+        }
+      }
+    ]
+  }
+}

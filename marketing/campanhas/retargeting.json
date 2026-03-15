@@ -1,0 +1,35 @@
+{
+  "campaign": {
+    "name": "Moom Agency - Remarketing",
+    "objective": "CONVERSIONS",
+    "status": "PAUSED",
+    "budget": { "daily_budget": 5000, "currency": "BRL" },
+    "schedule": { "start_date": "2026-04-01", "end_date": "2026-04-30" }
+  },
+  "ad_sets": [
+    {
+      "name": "Remarketing - Visitantes 30 dias",
+      "targeting": {
+        "custom_audiences": ["Website Visitors 30 days"],
+        "excluded_custom_audiences": ["Converters", "Clientes atuais"]
+      },
+      "optimization_goal": "CONVERSIONS",
+      "conversion_event": "Lead",
+      "ads": [
+        { "name": "Depoimento - Dr. Carlos", "format": "VIDEO", "headline": "A Moom transformou nossa presença digital", "description": "Veja o que o Dr. Carlos diz sobre nosso trabalho", "cta": "CONTACT_US" },
+        { "name": "Lembrete - Consultoria Grátis", "format": "SINGLE_IMAGE", "headline": "Ainda pensando? Agende sua consultoria gratuita", "description": "Sem compromisso, 30 minutos que podem mudar seu negócio", "cta": "BOOK_TRAVEL" }
+      ]
+    },
+    {
+      "name": "Remarketing - Formulário Abandonado",
+      "targeting": {
+        "custom_audiences": ["Contact Form Started but not Submitted"],
+        "excluded_custom_audiences": ["Converters"]
+      },
+      "optimization_goal": "CONVERSIONS",
+      "ads": [
+        { "name": "Incentivo - Desconto", "format": "SINGLE_IMAGE", "headline": "Esqueceu de algo? Volte e ganhe 15% OFF", "cta": "GET_OFFER" }
+      ]
+    }
+  ]
+}

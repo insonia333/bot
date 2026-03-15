@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /deploy/
+Disallow: /automations/
+
+Sitemap: https://moomagencia.com/sitemap.xml

@@ -1,0 +1,220 @@
+{
+  "name": "Moom - Chatbot WhatsApp (Evolution API)",
+  "nodes": [
+    {
+      "id": "webhook-trigger",
+      "name": "Webhook - Mensagem Recebida",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "moom-whatsapp-webhook",
+      "parameters": {
+        "path": "whatsapp-webhook",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "responseCode": 200
+      }
+    },
+    {
+      "id": "parse-message",
+      "name": "Parsear Mensagem",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "parameters": {
+        "functionCode": "const body = $input.first().json.body || $input.first().json;\nconst data = body.data || body;\n\nconst remoteJid = data.key?.remoteJid || data.remoteJid || '';\nconst fromMe = data.key?.fromMe || false;\nconst messageType = data.messageType || 'conversation';\nconst pushName = data.pushName || 'Cliente';\n\nlet textMessage = '';\nif (data.message?.conversation) {\n  textMessage = data.message.conversation;\n} else if (data.message?.extendedTextMessage?.text) {\n  textMessage = data.message.extendedTextMessage.text;\n} else if (data.message?.buttonsResponseMessage?.selectedDisplayText) {\n  textMessage = data.message.buttonsResponseMessage.selectedDisplayText;\n}\n\nreturn [{\n  json: {\n    remoteJid,\n    fromMe,\n    messageType,\n    pushName,\n    textMessage: textMessage.trim().toLowerCase(),\n    originalText: textMessage.trim(),\n    timestamp: new Date().toISOString()\n  }\n}];"
+      }
+    },
+    {
+      "id": "filter-from-me",
+      "name": "Filtrar Mensagens Próprias",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [700, 300],
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.fromMe}}",
+              "value2": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "router",
+      "name": "Roteador de Intenção",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [920, 300],
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json.textMessage}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "1",
+              "operation": "contains"
+            },
+            {
+              "value2": "agendar",
+              "operation": "contains"
+            },
+            {
+              "value2": "2",
+              "operation": "contains"
+            },
+            {
+              "value2": "serviço",
+              "operation": "contains"
+            },
+            {
+              "value2": "3",
+              "operation": "contains"
+            },
+            {
+              "value2": "preço",
+              "operation": "contains"
+            },
+            {
+              "value2": "4",
+              "operation": "contains"
+            },
+            {
+              "value2": "atendente",
+              "operation": "contains"
+            }
+          ]
+        },
+        "fallbackOutput": 4
+      }
+    },
+    {
+      "id": "menu-principal",
+      "name": "Menu Principal",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 500],
+      "parameters": {
+        "functionCode": "const name = $input.first().json.pushName;\nconst message = `Olá, ${name}! 👋 Bem-vindo(a) à *Moom Agency*!\\n\\nComo posso te ajudar?\\n\\n*1* 📅 Agendar uma reunião\\n*2* 💼 Conhecer nossos serviços\\n*3* 💰 Ver planos e preços\\n*4* 👤 Falar com um atendente\\n\\n_Digite o número da opção desejada._`;\n\nreturn [{\n  json: {\n    remoteJid: $input.first().json.remoteJid,\n    message\n  }\n}];"
+      }
+    },
+    {
+      "id": "resp-agendamento",
+      "name": "Resposta Agendamento",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 100],
+      "parameters": {
+        "functionCode": "const message = `📅 *Agendamento de Reunião*\\n\\nÓtima escolha! Vamos agendar uma conversa.\\n\\nNossos horários disponíveis:\\n• Seg a Sex: 9h às 18h\\n• Sáb: 9h às 13h\\n\\n📎 Acesse nosso link de agendamento:\\nhttps://calendly.com/moomagency\\n\\nOu me diga sua preferência de data e horário que verifico a disponibilidade!`;\n\nreturn [{\n  json: {\n    remoteJid: $input.first().json.remoteJid,\n    message\n  }\n}];"
+      }
+    },
+    {
+      "id": "resp-servicos",
+      "name": "Resposta Serviços",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 220],
+      "parameters": {
+        "functionCode": "const message = `💼 *Nossos Serviços*\\n\\n🌐 *Sites Premium*\\nLanding pages e sites institucionais com design de alto impacto.\\n\\n⚡ *Automações*\\nChatbots, CRM, agendamento e workflows inteligentes.\\n\\n🤖 *Inteligência Artificial*\\nAssistentes virtuais e soluções personalizadas com IA.\\n\\n📈 *Marketing Digital*\\nTráfego pago, SEO e gestão de redes sociais.\\n\\nQuer saber mais sobre algum serviço? Digite o nome ou volte ao menu com *0*`;\n\nreturn [{\n  json: {\n    remoteJid: $input.first().json.remoteJid,\n    message\n  }\n}];"
+      }
+    },
+    {
+      "id": "resp-precos",
+      "name": "Resposta Preços",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 340],
+      "parameters": {
+        "functionCode": "const message = `💰 *Planos e Preços*\\n\\n📦 *Starter* — R$ 2.497/mês\\n• Landing page premium\\n• Chatbot WhatsApp básico\\n• 1 automação\\n\\n🚀 *Pro* — R$ 4.997/mês\\n• Site completo (até 15 páginas)\\n• Chatbot avançado + CRM\\n• 5 automações\\n• Marketing digital básico\\n\\n🏢 *Enterprise* — Sob consulta\\n• Projeto sob medida\\n• Automações ilimitadas\\n• IA personalizada\\n\\nQuer receber uma proposta personalizada? Digite *4* para falar com um consultor!`;\n\nreturn [{\n  json: {\n    remoteJid: $input.first().json.remoteJid,\n    message\n  }\n}];"
+      }
+    },
+    {
+      "id": "resp-atendente",
+      "name": "Resposta Atendente",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 420],
+      "parameters": {
+        "functionCode": "const name = $input.first().json.pushName;\nconst message = `👤 *Atendimento Humano*\\n\\nPerfeito, ${name}! Vou transferir você para um dos nossos consultores.\\n\\nEm instantes alguém da equipe vai te atender. ⏳\\n\\nNosso horário de atendimento:\\n• Seg a Sex: 9h às 18h\\n• Sáb: 9h às 13h\\n\\nSe preferir, envie um email: contato@moomagencia.com`;\n\nreturn [{\n  json: {\n    remoteJid: $input.first().json.remoteJid,\n    message\n  }\n}];"
+      }
+    },
+    {
+      "id": "send-whatsapp",
+      "name": "Enviar via Evolution API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1400, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.EVOLUTION_API_URL}}/message/sendText/{{$env.INSTANCE_NAME}}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{$json.remoteJid}}"
+            },
+            {
+              "name": "text",
+              "value": "={{$json.message}}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 10000
+        }
+      }
+    }
+  ],
+  "connections": {
+    "webhook-trigger": {
+      "main": [[{ "node": "parse-message", "type": "main", "index": 0 }]]
+    },
+    "parse-message": {
+      "main": [[{ "node": "filter-from-me", "type": "main", "index": 0 }]]
+    },
+    "filter-from-me": {
+      "main": [
+        [{ "node": "router", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "router": {
+      "main": [
+        [{ "node": "resp-agendamento", "type": "main", "index": 0 }],
+        [{ "node": "resp-agendamento", "type": "main", "index": 0 }],
+        [{ "node": "resp-servicos", "type": "main", "index": 0 }],
+        [{ "node": "resp-servicos", "type": "main", "index": 0 }],
+        [{ "node": "resp-precos", "type": "main", "index": 0 }],
+        [{ "node": "resp-precos", "type": "main", "index": 0 }],
+        [{ "node": "resp-atendente", "type": "main", "index": 0 }],
+        [{ "node": "resp-atendente", "type": "main", "index": 0 }],
+        [{ "node": "menu-principal", "type": "main", "index": 0 }]
+      ]
+    },
+    "resp-agendamento": {
+      "main": [[{ "node": "send-whatsapp", "type": "main", "index": 0 }]]
+    },
+    "resp-servicos": {
+      "main": [[{ "node": "send-whatsapp", "type": "main", "index": 0 }]]
+    },
+    "resp-precos": {
+      "main": [[{ "node": "send-whatsapp", "type": "main", "index": 0 }]]
+    },
+    "resp-atendente": {
+      "main": [[{ "node": "send-whatsapp", "type": "main", "index": 0 }]]
+    },
+    "menu-principal": {
+      "main": [[{ "node": "send-whatsapp", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [{ "name": "moom-agency" }, { "name": "whatsapp" }]
+}

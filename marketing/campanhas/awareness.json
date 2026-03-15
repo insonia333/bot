@@ -1,0 +1,43 @@
+{
+  "campaign": {
+    "name": "Moom Agency - Awareness - Marca",
+    "objective": "BRAND_AWARENESS",
+    "status": "PAUSED",
+    "budget": { "daily_budget": 5000, "currency": "BRL" },
+    "schedule": { "start_date": "2026-04-01", "end_date": "2026-04-30" }
+  },
+  "ad_sets": [
+    {
+      "name": "Empreendedores - Interesses",
+      "targeting": {
+        "age_min": 25, "age_max": 55,
+        "genders": [0],
+        "geo_locations": { "countries": ["BR"], "regions": ["São Paulo", "Rio de Janeiro", "Minas Gerais"] },
+        "interests": ["Empreendedorismo", "Marketing digital", "Negócios online", "Tecnologia"],
+        "behaviors": ["Dono de pequena empresa"]
+      },
+      "budget": { "daily_budget": 2500 },
+      "optimization_goal": "REACH",
+      "ads": [
+        { "name": "Video - Apresentação Moom", "format": "VIDEO", "headline": "Sua empresa precisa de um site premium?", "description": "Transformamos ideias em experiências digitais", "cta": "LEARN_MORE" },
+        { "name": "Carrossel - Serviços", "format": "CAROUSEL", "headline": "4 soluções para escalar seu negócio", "cta": "LEARN_MORE" },
+        { "name": "Imagem - Brand", "format": "SINGLE_IMAGE", "headline": "Moom Agency — Agência Digital Premium", "cta": "LEARN_MORE" }
+      ]
+    },
+    {
+      "name": "Profissionais Liberais",
+      "targeting": {
+        "age_min": 28, "age_max": 50,
+        "geo_locations": { "countries": ["BR"] },
+        "interests": ["Médicos", "Advogados", "Dentistas", "Arquitetos"],
+        "job_titles": ["Proprietário", "Diretor", "CEO"]
+      },
+      "budget": { "daily_budget": 2500 },
+      "optimization_goal": "REACH",
+      "ads": [
+        { "name": "Video - Case Clínica", "format": "VIDEO", "headline": "Como a Clínica VidaPlena triplicou seus agendamentos", "cta": "WATCH_MORE" },
+        { "name": "Imagem - Resultado", "format": "SINGLE_IMAGE", "headline": "340% de ROI médio nos nossos projetos", "cta": "LEARN_MORE" }
+      ]
+    }
+  ]
+}
