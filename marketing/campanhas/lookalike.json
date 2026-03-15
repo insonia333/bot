@@ -1,0 +1,41 @@
+{
+  "campaign": {
+    "name": "Moom Agency - Lookalike - Escala",
+    "objective": "CONVERSIONS",
+    "status": "PAUSED",
+    "budget": { "daily_budget": 15000, "currency": "BRL" },
+    "schedule": { "start_date": "2026-04-01", "end_date": "2026-04-30" }
+  },
+  "ad_sets": [
+    {
+      "name": "Lookalike 1% - Converters",
+      "targeting": {
+        "age_min": 25, "age_max": 55,
+        "geo_locations": { "countries": ["BR"] },
+        "custom_audiences": ["Lookalike 1% - Converters BR"],
+        "excluded_custom_audiences": ["Website Visitors 30 days", "Clientes atuais"]
+      },
+      "optimization_goal": "CONVERSIONS",
+      "conversion_event": "Lead",
+      "destination_url": "https://moomagencia.com",
+      "ads": [
+        { "name": "Video - Apresentação", "format": "VIDEO", "headline": "Sua empresa merece um site premium", "description": "Conheça a Moom Agency", "cta": "LEARN_MORE" },
+        { "name": "Carrossel - Cases", "format": "CAROUSEL", "headline": "Resultados reais para negócios reais", "cta": "SEE_MORE" },
+        { "name": "Lead Magnet", "format": "SINGLE_IMAGE", "headline": "Guia gratuito: 7 automações para seu negócio", "description": "Baixe agora e transforme sua operação", "cta": "DOWNLOAD", "destination_url": "https://moomagencia.com/marketing/lead-magnet.html" }
+      ]
+    },
+    {
+      "name": "Lookalike 2% - Engajamento",
+      "targeting": {
+        "age_min": 25, "age_max": 55,
+        "geo_locations": { "countries": ["BR"] },
+        "custom_audiences": ["Lookalike 2% - Page Engagers BR"],
+        "excluded_custom_audiences": ["Lookalike 1% - Converters BR"]
+      },
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "ads": [
+        { "name": "Brand Awareness", "format": "VIDEO", "headline": "Moom Agency — Transformamos ideias em experiências digitais", "cta": "WATCH_MORE" }
+      ]
+    }
+  ]
+}

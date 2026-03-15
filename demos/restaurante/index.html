@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sabor & Arte | Restaurante Premium em São Paulo</title>
+<meta name="description" content="Sabor & Arte - Uma experiência gastronômica inesquecível em São Paulo. Pratos autorais do chef premiado Rafael Mendes. Reservas pelo WhatsApp.">
+<meta name="keywords" content="restaurante premium, gastronomia, São Paulo, chef premiado, reservas, culinária autoral">
+<meta name="author" content="Sabor & Arte">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Sabor & Arte | Restaurante Premium">
+<meta property="og:description" content="Uma experiência gastronômica inesquecível. Culinária autoral do chef Rafael Mendes.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sabor & Arte | Restaurante Premium">
+<meta name="twitter:description" content="Uma experiência gastronômica inesquecível em São Paulo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Sabor & Arte",
+  "description": "Restaurante premium com culinária autoral do chef Rafael Mendes",
+  "url": "https://saborarte.com.br",
+  "telephone": "+5511999999999",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rua Augusta, 2340",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "postalCode": "01412-000",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -23.5613,
+    "longitude": -46.6580
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "11:30",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "18:30",
+      "closes": "23:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday"],
+      "opens": "12:00",
+      "closes": "16:00"
+    }
+  ],
+  "servesCuisine": "Contemporânea Brasileira",
+  "priceRange": "$$$$",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "387"
+  }
+}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#dc2626;--accent-glow:#dc262644;--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--text:#f0f0f5;--text-muted:#9090a0;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);--radius:16px;--radius-sm:10px}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;line-height:1.7}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:var(--accent);text-decoration:none;transition:color .3s}
+a:hover{color:#ef4444}
+img{max-width:100%;display:block}
+
+/* Custom Cursor */
+.cursor{position:fixed;width:20px;height:20px;border:2px solid var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transition:transform .15s ease,background .2s;mix-blend-mode:difference}
+.cursor-dot{position:fixed;width:5px;height:5px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:10001}
+.cursor.hover{transform:scale(2.5);background:var(--accent-glow);border-color:transparent}
+
+/* Noise Overlay */
+.noise{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03}
+
+/* Navigation */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;transition:background .4s,backdrop-filter .4s,padding .4s}
+.nav.scrolled{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);padding:.7rem 2rem;border-bottom:1px solid var(--glass-border)}
+.nav-inner{max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-muted);font-size:.85rem;font-weight:500;letter-spacing:.04em;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--accent)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+.nav-toggle span{width:25px;height:2px;background:var(--text);transition:transform .3s,opacity .3s}
+.nav-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.nav-toggle.active span:nth-child(2){opacity:0}
+.nav-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* Sections */
+section{padding:6rem 2rem;position:relative}
+.container{max-width:1200px;margin:0 auto}
+.section-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);font-weight:600;margin-bottom:.5rem;display:flex;align-items:center;gap:.75rem}
+.section-label::before{content:'';width:30px;height:1px;background:var(--accent)}
+.section-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem;line-height:1.15}
+.section-desc{color:var(--text-muted);max-width:600px;font-size:1.05rem;line-height:1.8}
+
+/* Glass Card */
+.glass-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);padding:2rem;backdrop-filter:blur(12px);transition:transform .4s ease,border-color .4s,box-shadow .4s}
+.glass-card:hover{transform:translateY(-6px);border-color:rgba(220,38,38,.3);box-shadow:0 20px 60px rgba(220,38,38,.08)}
+
+/* Hero */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+#hero-canvas{position:absolute;inset:0;z-index:0}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:900px;padding:0 1rem}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(220,38,38,.12);border:1px solid rgba(220,38,38,.25);border-radius:100px;padding:.5rem 1.2rem;font-size:.8rem;color:var(--accent);font-weight:500;margin-bottom:2rem}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-size:clamp(2.5rem,7vw,5rem);font-weight:900;letter-spacing:-.04em;line-height:1.05;margin-bottom:1.5rem}
+.hero-title em{font-style:normal;color:var(--accent);position:relative}
+.hero-sub{color:var(--text-muted);font-size:clamp(1rem,2vw,1.25rem);max-width:550px;margin:0 auto 2.5rem;line-height:1.8}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;border-radius:100px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .35s;border:none;font-family:inherit}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#ef4444;box-shadow:0 8px 30px rgba(220,38,38,.4);transform:translateY(-2px);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--glass-border);color:var(--text)}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.hero-scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scroll-line 2s infinite}
+@keyframes scroll-line{0%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(0);transform-origin:top}}
+
+/* Sobre */
+#sobre{background:var(--bg2)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
+.sobre-img{aspect-ratio:4/5;background:linear-gradient(135deg,var(--bg3),var(--accent) 120%);border-radius:var(--radius);position:relative;overflow:hidden}
+.sobre-img::after{content:'Chef Rafael Mendes';position:absolute;bottom:2rem;left:2rem;font-size:1.2rem;font-weight:700;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.sobre-stats{display:flex;gap:2rem;margin-top:2.5rem}
+.stat{text-align:center}
+.stat-num{font-size:2.5rem;font-weight:800;color:var(--accent)}
+.stat-label{font-size:.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}
+
+/* Cardápio */
+.menu-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:2.5rem 0 2rem;border-bottom:1px solid var(--glass-border);padding-bottom:1rem}
+.menu-tab{padding:.6rem 1.4rem;border-radius:100px;font-size:.85rem;font-weight:500;cursor:pointer;border:1px solid var(--glass-border);background:transparent;color:var(--text-muted);transition:all .3s;font-family:inherit}
+.menu-tab.active,.menu-tab:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.menu-category{display:none}
+.menu-category.active{display:block}
+.menu-items{display:grid;gap:1rem;margin-top:1rem}
+.menu-item{display:flex;justify-content:space-between;align-items:flex-start;padding:1.5rem;border-radius:var(--radius-sm);background:var(--glass);border:1px solid var(--glass-border);transition:border-color .3s}
+.menu-item:hover{border-color:rgba(220,38,38,.3)}
+.menu-item-info h4{font-size:1.05rem;font-weight:600;margin-bottom:.3rem}
+.menu-item-info p{font-size:.85rem;color:var(--text-muted);max-width:500px}
+.menu-item-price{font-size:1.1rem;font-weight:700;color:var(--accent);white-space:nowrap;margin-left:1.5rem}
+
+/* Galeria */
+#galeria{background:var(--bg2)}
+.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,220px);gap:1rem;margin-top:3rem}
+.galeria-item{border-radius:var(--radius-sm);overflow:hidden;position:relative;cursor:pointer;transition:transform .5s}
+.galeria-item:hover{transform:scale(1.03)}
+.galeria-item:nth-child(1){grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,#1a0505,#dc2626)}
+.galeria-item:nth-child(2){background:linear-gradient(135deg,#0f0f1a,#2d1a1a)}
+.galeria-item:nth-child(3){background:linear-gradient(135deg,#1a0a0a,#3d1515)}
+.galeria-item:nth-child(4){background:linear-gradient(135deg,#150a0a,#2a1010)}
+.galeria-item:nth-child(5){grid-column:span 2;background:linear-gradient(135deg,#0a0a14,#1a0808)}
+.galeria-overlay{position:absolute;inset:0;background:rgba(10,10,15,.5);display:flex;align-items:flex-end;padding:1.5rem;opacity:0;transition:opacity .4s}
+.galeria-item:hover .galeria-overlay{opacity:1}
+.galeria-overlay span{font-size:.9rem;font-weight:600}
+
+/* Diferenciais */
+.diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin-top:3rem}
+.diff-icon{width:50px;height:50px;border-radius:12px;background:rgba(220,38,38,.1);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem;border:1px solid rgba(220,38,38,.2)}
+.diff-card h4{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.diff-card p{font-size:.9rem;color:var(--text-muted);line-height:1.7}
+
+/* Equipe */
+#equipe{background:var(--bg2)}
+.equipe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem}
+.equipe-avatar{width:100%;aspect-ratio:1;border-radius:var(--radius-sm);margin-bottom:1.2rem;overflow:hidden}
+.equipe-avatar-inner{width:100%;height:100%;transition:transform .6s}
+.equipe-card:hover .equipe-avatar-inner{transform:scale(1.08)}
+.equipe-card h4{font-size:1.1rem;font-weight:700;margin-bottom:.2rem}
+.equipe-card .role{font-size:.8rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:.6rem}
+.equipe-card p{font-size:.88rem;color:var(--text-muted);line-height:1.7}
+
+/* Depoimentos */
+.dep-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:3rem}
+.dep-card{padding:2.5rem 2rem}
+.dep-stars{color:var(--accent);font-size:1rem;margin-bottom:1rem;letter-spacing:.15em}
+.dep-text{font-size:1rem;line-height:1.85;color:var(--text-muted);margin-bottom:1.5rem;font-style:italic}
+.dep-author{display:flex;align-items:center;gap:1rem}
+.dep-author-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff6b6b)}
+.dep-author-info h5{font-size:.9rem;font-weight:600}
+.dep-author-info span{font-size:.75rem;color:var(--text-muted)}
+
+/* Localização */
+#localizacao{background:var(--bg2)}
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start}
+.loc-map{aspect-ratio:16/10;background:linear-gradient(135deg,var(--bg3),#1a1020);border-radius:var(--radius);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;font-size:3rem}
+.loc-info-item{display:flex;gap:1rem;margin-bottom:2rem}
+.loc-info-item .icon{width:44px;height:44px;border-radius:12px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem}
+.loc-info-item h5{font-size:.95rem;font-weight:600;margin-bottom:.2rem}
+.loc-info-item p{font-size:.88rem;color:var(--text-muted)}
+
+/* Horários */
+.hor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.hor-card{text-align:center;padding:2.5rem 2rem}
+.hor-card h4{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
+.hor-time{font-size:2rem;font-weight:800;color:var(--accent);margin-bottom:.5rem}
+.hor-days{font-size:.85rem;color:var(--text-muted)}
+
+/* Promoções */
+#promocoes{background:var(--bg2)}
+.promo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:3rem}
+.promo-card{padding:2.5rem 2rem;position:relative;overflow:hidden}
+.promo-card::before{content:'';position:absolute;top:0;right:0;width:120px;height:120px;background:radial-gradient(circle,rgba(220,38,38,.15),transparent 70%);border-radius:50%}
+.promo-badge{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;padding:.3rem .8rem;border-radius:100px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.promo-card h4{font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
+.promo-card p{font-size:.9rem;color:var(--text-muted);line-height:1.7}
+
+/* FAQ */
+.faq-list{max-width:800px;margin:3rem auto 0;display:grid;gap:.8rem}
+.faq-item{border:1px solid var(--glass-border);border-radius:var(--radius-sm);overflow:hidden;background:var(--glass)}
+.faq-question{padding:1.3rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1rem;transition:color .3s;user-select:none}
+.faq-question:hover{color:var(--accent)}
+.faq-question .icon{transition:transform .3s;font-size:1.2rem;color:var(--accent)}
+.faq-item.open .faq-question .icon{transform:rotate(45deg)}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
+.faq-answer-inner{padding:0 1.5rem 1.3rem;font-size:.92rem;color:var(--text-muted);line-height:1.8}
+
+/* Blog */
+#blog{background:var(--bg2)}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;margin-top:3rem}
+.blog-thumb{aspect-ratio:16/9;border-radius:var(--radius-sm);margin-bottom:1.2rem;overflow:hidden}
+.blog-card:nth-child(1) .blog-thumb{background:linear-gradient(135deg,#1a0808,#3d1515)}
+.blog-card:nth-child(2) .blog-thumb{background:linear-gradient(135deg,#0a0a14,#1a1028)}
+.blog-card:nth-child(3) .blog-thumb{background:linear-gradient(135deg,#0f1a0a,#1a2810)}
+.blog-date{font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:.4rem}
+.blog-card h4{font-size:1.1rem;font-weight:700;margin-bottom:.5rem;transition:color .3s}
+.blog-card:hover h4{color:var(--accent)}
+.blog-card p{font-size:.88rem;color:var(--text-muted);line-height:1.7}
+
+/* Contato */
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:.5rem}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.9rem 1.2rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius-sm);color:var(--text);font-family:inherit;font-size:.95rem;transition:border-color .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-group select option{background:var(--bg);color:var(--text)}
+.whatsapp-box{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:1.5rem;padding:3rem}
+.whatsapp-icon{width:80px;height:80px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:2.5rem;margin:0 auto}
+.whatsapp-box h4{font-size:1.3rem;font-weight:700}
+.whatsapp-box p{color:var(--text-muted);font-size:.95rem;max-width:350px}
+.btn-whatsapp{background:#25d366;color:#fff;font-size:1rem}
+.btn-whatsapp:hover{background:#1ebe5d;box-shadow:0 8px 30px rgba(37,211,102,.3);transform:translateY(-2px);color:#fff}
+
+/* Footer */
+footer{background:var(--bg2);border-top:1px solid var(--glass-border);padding:4rem 2rem 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;max-width:1200px;margin:0 auto}
+.footer-brand h3{font-size:1.4rem;font-weight:800;margin-bottom:.8rem}
+.footer-brand h3 span{color:var(--accent)}
+.footer-brand p{color:var(--text-muted);font-size:.88rem;line-height:1.7;max-width:300px}
+.footer-col h5{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:600;margin-bottom:1.2rem}
+.footer-col ul{list-style:none;display:grid;gap:.6rem}
+.footer-col a{color:var(--text-muted);font-size:.88rem;transition:color .3s}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{max-width:1200px;margin:3rem auto 0;padding-top:2rem;border-top:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--text-muted);flex-wrap:wrap;gap:1rem}
+
+/* WhatsApp Float */
+.whatsapp-float{position:fixed;bottom:2rem;right:2rem;width:56px;height:56px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;z-index:999;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .3s;cursor:pointer}
+.whatsapp-float:hover{transform:scale(1.1)}
+
+/* Reveal Animations */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* Mobile */
+@media(max-width:1024px){
+  .sobre-grid,.loc-grid,.contato-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links{position:fixed;top:0;right:-100%;width:280px;height:100vh;background:rgba(10,10,15,.97);backdrop-filter:blur(20px);flex-direction:column;padding:5rem 2rem;transition:right .4s;border-left:1px solid var(--glass-border)}
+  .nav-links.open{right:0}
+  .nav-toggle{display:flex}
+  .galeria-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .galeria-item:nth-child(1){grid-column:span 2}
+  .galeria-item:nth-child(5){grid-column:span 2}
+  .footer-grid{grid-template-columns:1fr}
+  section{padding:4rem 1.2rem}
+  .cursor,.cursor-dot{display:none}
+  body{cursor:auto}
+  .hero-btns{flex-direction:column;align-items:center}
+  .dep-grid,.promo-grid,.blog-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .galeria-grid{grid-template-columns:1fr}
+  .galeria-item:nth-child(1){grid-column:span 1}
+  .galeria-item:nth-child(5){grid-column:span 1}
+  .sobre-stats{flex-direction:column;gap:1.5rem}
+}
+.navbar.pill {
+  top: 12px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: auto;
+  min-width: 500px;
+  max-width: 90vw;
+  border-radius: 100px;
+  padding: 0.6rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+@media (max-width: 768px) {
+  .navbar.pill { min-width: unset; width: calc(100% - 24px); left: 12px; right: 12px; transform: none; }
+}
+.perspective-container { perspective: 1200px; }
+.card-3d { transform-style: preserve-3d; will-change: transform; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+
+<!-- Noise Overlay -->
+<svg class="noise" viewBox="0 0 1024 1024" preserveAspectRatio="none">
+  <filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/></filter>
+  <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
+</svg>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Sabor <span>&</span> Arte</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/site/index.html#portfolio">&larr; Portfolio</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#equipe">Equipe</a></li>
+      <li><a href="#depoimentos">Avaliações</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva" target="_blank" class="btn btn-primary" style="padding:.55rem 1.3rem;font-size:.8rem">Reservar</a></li>
+    </ul>
+    <div class="nav-toggle" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- 1. Hero -->
+<section id="hero">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge">Reservas Abertas 2026</div>
+    <h1 class="hero-title">Uma Experiência<br>Gastronômica <em>Inesquecível</em></h1>
+    <p class="hero-sub">Culinária contemporânea brasileira com ingredientes selecionados e técnicas refinadas pelo chef premiado Rafael Mendes.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva" target="_blank" class="btn btn-primary">Fazer Reserva</a>
+      <a href="#cardapio" class="btn btn-outline">Ver Cardápio</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-line"></div></div>
+</section>
+
+<!-- 2. Sobre -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-img reveal"></div>
+      <div class="reveal">
+        <div class="section-label">Sobre Nós</div>
+        <h2 class="section-title">Onde a Paixão Encontra o Paladar</h2>
+        <p class="section-desc">Fundado em 2017 pelo chef Rafael Mendes, o Sabor & Arte nasceu do desejo de criar uma experiência que vai além da refeição. Cada prato é uma obra de arte que combina ingredientes brasileiros premium com técnicas da alta gastronomia internacional.</p>
+        <p class="section-desc" style="margin-top:1rem">Nossa filosofia é simples: respeitar o ingrediente, surpreender o paladar e criar memórias. Com mais de 8 anos de história, nos orgulhamos de cada detalhe — do aroma que recebe nossos convidados ao último gole de café.</p>
+        <div class="sobre-stats">
+          <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Anos de História</div></div>
+          <div class="stat"><div class="stat-num">12k+</div><div class="stat-label">Clientes Satisfeitos</div></div>
+          <div class="stat"><div class="stat-num">4.9</div><div class="stat-label">Avaliação Média</div></div>
+          <div class="stat"><div class="stat-num">3</div><div class="stat-label">Prêmios Nacionais</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Cardápio -->
+<section id="cardapio">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Cardápio</div>
+      <h2 class="section-title">Sabores Que Contam Histórias</h2>
+      <p class="section-desc">Cada prato é cuidadosamente elaborado com ingredientes selecionados das melhores fazendas e produtores artesanais do Brasil.</p>
+    </div>
+    <div class="menu-tabs reveal">
+      <button class="menu-tab active" data-tab="entradas">Entradas</button>
+      <button class="menu-tab" data-tab="principais">Pratos Principais</button>
+      <button class="menu-tab" data-tab="sobremesas">Sobremesas</button>
+      <button class="menu-tab" data-tab="drinks">Drinks</button>
+      <button class="menu-tab" data-tab="vinhos">Vinhos</button>
+      <button class="menu-tab" data-tab="executivo">Executivo</button>
+    </div>
+    <div class="menu-category active" id="entradas">
+      <div class="menu-items reveal">
+        <div class="menu-item"><div class="menu-item-info"><h4>Tartar de Atum com Abacate</h4><p>Atum fresco, abacate cremoso, gergelim negro, molho ponzu e chips de wonton</p></div><div class="menu-item-price">R$ 68</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Burrata com Tomates Confitados</h4><p>Burrata artesanal, tomates heirloom confitados, pesto de manjericão e redução de balsâmico</p></div><div class="menu-item-price">R$ 62</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Ceviche de Peixe Branco</h4><p>Peixe do dia marinado em leche de tigre, milho crocante, cebola roxa e coentro</p></div><div class="menu-item-price">R$ 58</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Carpaccio de Wagyu</h4><p>Wagyu A5 laminado, alcaparras, parmesão e azeite trufado</p></div><div class="menu-item-price">R$ 89</div></div>
+      </div>
+    </div>
+    <div class="menu-category" id="principais">
+      <div class="menu-items reveal">
+        <div class="menu-item"><div class="menu-item-info"><h4>Filé Mignon ao Molho de Vinho</h4><p>Filé mignon grelhado, redução de Malbec, risoto de parmesão e legumes da estação</p></div><div class="menu-item-price">R$ 128</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Risoto de Camarão e Açafrão</h4><p>Arroz arbório, camarões rosa, açafrão espanhol, limão siciliano e chips de alho-poró</p></div><div class="menu-item-price">R$ 112</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Pato Confitado com Laranja</h4><p>Coxa de pato confitada, purê de batata doce, molho de laranja e farofa crocante</p></div><div class="menu-item-price">R$ 118</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Robalo Grelhado</h4><p>Filé de robalo, crosta de ervas finas, espuma de limão e vegetais grelhados</p></div><div class="menu-item-price">R$ 108</div></div>
+      </div>
+    </div>
+    <div class="menu-category" id="sobremesas">
+      <div class="menu-items reveal">
+        <div class="menu-item"><div class="menu-item-info"><h4>Petit Gâteau de Chocolate Belga</h4><p>Bolinho quente com centro cremoso, sorvete de baunilha de Madagascar e calda de frutas vermelhas</p></div><div class="menu-item-price">R$ 48</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Cheesecake de Frutas Vermelhas</h4><p>Base crocante de biscoito, creme de cream cheese, coulis de framboesa e merengue maçaricado</p></div><div class="menu-item-price">R$ 42</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Crème Brûlée de Baunilha</h4><p>Creme aveludado de baunilha Bourbon, crosta de açúcar caramelizado e frutas frescas</p></div><div class="menu-item-price">R$ 38</div></div>
+      </div>
+    </div>
+    <div class="menu-category" id="drinks">
+      <div class="menu-items reveal">
+        <div class="menu-item"><div class="menu-item-info"><h4>Negroni do Chef</h4><p>Gin artesanal, Campari infusionado com hibisco, vermute rosso e casca de laranja</p></div><div class="menu-item-price">R$ 42</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Caipirinha Molecular</h4><p>Cachaça envelhecida, limão siciliano, esferas de maracujá e espuma de gengibre</p></div><div class="menu-item-price">R$ 38</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Espresso Martini</h4><p>Vodka premium, licor de café, espresso duplo e baunilha</p></div><div class="menu-item-price">R$ 44</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Spritz Tropical</h4><p>Aperol, prosecco, soda, maracujá fresco e hortelã</p></div><div class="menu-item-price">R$ 36</div></div>
+      </div>
+    </div>
+    <div class="menu-category" id="vinhos">
+      <div class="menu-items reveal">
+        <div class="menu-item"><div class="menu-item-info"><h4>Malbec Catena Zapata 2019</h4><p>Argentina — Notas de ameixa, chocolate e especiarias, taninos aveludados</p></div><div class="menu-item-price">R$ 320</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Chardonnay Chablis Premier Cru</h4><p>França — Mineralidade, cítricos e floral, acidez elegante</p></div><div class="menu-item-price">R$ 410</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Pinot Noir Errazuriz 2020</h4><p>Chile — Frutas vermelhas, carvalho sutil, final longo e sedoso</p></div><div class="menu-item-price">R$ 280</div></div>
+      </div>
+    </div>
+    <div class="menu-category" id="executivo">
+      <div class="menu-items reveal">
+        <div class="menu-item"><div class="menu-item-info"><h4>Menu Executivo — Opção 1</h4><p>Entrada + Filé grelhado com guarnições + Sobremesa do dia + Café</p></div><div class="menu-item-price">R$ 79</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Menu Executivo — Opção 2</h4><p>Entrada + Peixe do dia com legumes + Sobremesa do dia + Suco natural</p></div><div class="menu-item-price">R$ 72</div></div>
+        <div class="menu-item"><div class="menu-item-info"><h4>Menu Executivo — Opção 3</h4><p>Salada especial + Risoto do dia + Sobremesa do dia + Café ou chá</p></div><div class="menu-item-price">R$ 65</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Galeria -->
+<section id="galeria">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Galeria</div>
+      <h2 class="section-title">Momentos & Ambientes</h2>
+      <p class="section-desc">Cada detalhe do nosso espaço foi pensado para criar a atmosfera perfeita.</p>
+    </div>
+    <div class="galeria-grid reveal">
+      <div class="galeria-item"><div class="galeria-overlay"><span>Salão Principal</span></div></div>
+      <div class="galeria-item"><div class="galeria-overlay"><span>Pratos Autorais</span></div></div>
+      <div class="galeria-item"><div class="galeria-overlay"><span>Ambiente Intimista</span></div></div>
+      <div class="galeria-item"><div class="galeria-overlay"><span>Bar & Lounge</span></div></div>
+      <div class="galeria-item"><div class="galeria-overlay"><span>Área Gourmet</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Diferenciais -->
+<section id="diferenciais">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Por Que Nos Escolher</div>
+      <h2 class="section-title">Nossos Diferenciais</h2>
+      <p class="section-desc">O que torna a experiência no Sabor & Arte verdadeiramente única.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="glass-card diff-card reveal">
+        <div class="diff-icon">&#9733;</div>
+        <h4>Ingredientes Premium</h4>
+        <p>Selecionamos os melhores produtores artesanais e fazendas orgânicas do Brasil para garantir frescor e qualidade incomparáveis em cada prato.</p>
+      </div>
+      <div class="glass-card diff-card reveal">
+        <div class="diff-icon">&#9826;</div>
+        <h4>Chef Premiado</h4>
+        <p>Chef Rafael Mendes, 3x vencedor do Prêmio Gastronômico Nacional, traz sua visão autoral com técnicas aprendidas nos melhores restaurantes do mundo.</p>
+      </div>
+      <div class="glass-card diff-card reveal">
+        <div class="diff-icon">&#9830;</div>
+        <h4>Ambiente Exclusivo</h4>
+        <p>Design assinado por arquitetos renomados, iluminação intimista e acústica pensada para criar o cenário perfeito para cada ocasião.</p>
+      </div>
+      <div class="glass-card diff-card reveal">
+        <div class="diff-icon">&#9829;</div>
+        <h4>Eventos Personalizados</h4>
+        <p>Espaço privativo para até 40 pessoas, menus exclusivos e atendimento personalizado para aniversários, corporativos e celebrações especiais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Equipe -->
+<section id="equipe">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Nossa Equipe</div>
+      <h2 class="section-title">Os Artistas Por Trás dos Sabores</h2>
+      <p class="section-desc">Profissionais apaixonados que transformam ingredientes em obras de arte.</p>
+    </div>
+    <div class="equipe-grid">
+      <div class="glass-card equipe-card reveal">
+        <div class="equipe-avatar"><div class="equipe-avatar-inner" style="background:linear-gradient(135deg,#2a0808,#dc2626)"></div></div>
+        <h4>Rafael Mendes</h4>
+        <div class="role">Chef Executivo & Fundador</div>
+        <p>Formado pelo Le Cordon Bleu Paris, com passagens pelo Noma e Eleven Madison Park. 15 anos de experiência em alta gastronomia.</p>
+      </div>
+      <div class="glass-card equipe-card reveal">
+        <div class="equipe-avatar"><div class="equipe-avatar-inner" style="background:linear-gradient(135deg,#0a0a2a,#4a2a6a)"></div></div>
+        <h4>Camila Torres</h4>
+        <div class="role">Sous Chef</div>
+        <p>Especialista em cozinha contemporânea brasileira, responsável pela criação dos pratos sazonais e pelo treinamento da brigada.</p>
+      </div>
+      <div class="glass-card equipe-card reveal">
+        <div class="equipe-avatar"><div class="equipe-avatar-inner" style="background:linear-gradient(135deg,#1a1a08,#6a5a2a)"></div></div>
+        <h4>André Vieira</h4>
+        <div class="role">Sommelier</div>
+        <p>Certificado pela Court of Master Sommeliers, curador de nossa carta de vinhos com mais de 200 rótulos nacionais e internacionais.</p>
+      </div>
+      <div class="glass-card equipe-card reveal">
+        <div class="equipe-avatar"><div class="equipe-avatar-inner" style="background:linear-gradient(135deg,#0a1a0a,#2a6a3a)"></div></div>
+        <h4>Juliana Peixoto</h4>
+        <div class="role">Chef Pâtissière</div>
+        <p>Formada em confeitaria artística na França, cria sobremesas que são verdadeiras obras de arte — tão bonitas quanto deliciosas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Depoimentos -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Avaliações</div>
+      <h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+      <p class="section-desc">Mais de 12.000 experiências memoráveis e uma avaliação média de 4.9 estrelas.</p>
+    </div>
+    <div class="dep-grid">
+      <div class="glass-card dep-card reveal">
+        <div class="dep-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="dep-text">"Uma experiência gastronômica que transcende a refeição. Cada prato é uma surpresa, cada detalhe pensado com carinho. O risoto de camarão é simplesmente o melhor que já provei na vida."</p>
+        <div class="dep-author">
+          <div class="dep-author-avatar"></div>
+          <div class="dep-author-info"><h5>Marina Albuquerque</h5><span>Empresária — São Paulo</span></div>
+        </div>
+      </div>
+      <div class="glass-card dep-card reveal">
+        <div class="dep-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="dep-text">"Comemorei meu aniversário de casamento no Sabor & Arte e foi absolutamente perfeito. O atendimento impecável, o ambiente intimista e a comida divina fizeram da noite inesquecível."</p>
+        <div class="dep-author">
+          <div class="dep-author-avatar"></div>
+          <div class="dep-author-info"><h5>Carlos Eduardo</h5><span>Médico — Campinas</span></div>
+        </div>
+      </div>
+      <div class="glass-card dep-card reveal">
+        <div class="dep-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="dep-text">"O menu executivo tem uma relação custo-benefício incrível para a qualidade entregue. Venho toda semana no almoço e sempre me surpreendo com as novidades. Recomendo de olhos fechados!"</p>
+        <div class="dep-author">
+          <div class="dep-author-avatar"></div>
+          <div class="dep-author-info"><h5>Fernanda Costa</h5><span>Advogada — São Paulo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Localização -->
+<section id="localizacao">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Localização</div>
+      <h2 class="section-title">Como Chegar</h2>
+      <p class="section-desc">Estamos no coração de São Paulo, com fácil acesso por metrô e estacionamento conveniado.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-map reveal">&#9906;</div>
+      <div class="reveal">
+        <div class="loc-info-item">
+          <div class="icon">&#9906;</div>
+          <div><h5>Endereço</h5><p>Rua Augusta, 2340 — Jardins<br>São Paulo, SP — CEP 01412-000</p></div>
+        </div>
+        <div class="loc-info-item">
+          <div class="icon">&#9742;</div>
+          <div><h5>Telefone & WhatsApp</h5><p>(11) 99999-9999<br>(11) 3456-7890</p></div>
+        </div>
+        <div class="loc-info-item">
+          <div class="icon">&#9993;</div>
+          <div><h5>E-mail</h5><p>reservas@saborarte.com.br<br>contato@saborarte.com.br</p></div>
+        </div>
+        <div class="loc-info-item">
+          <div class="icon">&#9413;</div>
+          <div><h5>Estacionamento</h5><p>Estacionamento conveniado ao lado do restaurante<br>Manobrista disponível</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Horários -->
+<section id="horarios">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Horários</div>
+      <h2 class="section-title">Quando Nos Visitar</h2>
+      <p class="section-desc">Planeje sua visita e garanta a melhor experiência. Recomendamos reserva antecipada.</p>
+    </div>
+    <div class="hor-grid">
+      <div class="glass-card hor-card reveal">
+        <h4>Almoço</h4>
+        <div class="hor-time">11:30 — 15:00</div>
+        <p class="hor-days">Segunda a Sexta-feira</p>
+        <p style="color:var(--text-muted);font-size:.85rem;margin-top:.5rem">Menu executivo disponível</p>
+      </div>
+      <div class="glass-card hor-card reveal">
+        <h4>Jantar</h4>
+        <div class="hor-time">18:30 — 23:00</div>
+        <p class="hor-days">Segunda a Sábado</p>
+        <p style="color:var(--text-muted);font-size:.85rem;margin-top:.5rem">Reservas recomendadas</p>
+      </div>
+      <div class="glass-card hor-card reveal">
+        <h4>Brunch Dominical</h4>
+        <div class="hor-time">12:00 — 16:00</div>
+        <p class="hor-days">Domingos e Feriados</p>
+        <p style="color:var(--text-muted);font-size:.85rem;margin-top:.5rem">Buffet completo + carta à la carte</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Promoções -->
+<section id="promocoes">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Promoções</div>
+      <h2 class="section-title">Ofertas Especiais</h2>
+      <p class="section-desc">Aproveite condições exclusivas para tornar sua experiência ainda mais especial.</p>
+    </div>
+    <div class="promo-grid">
+      <div class="glass-card promo-card reveal">
+        <span class="promo-badge">Happy Hour</span>
+        <h4>Hora Dourada</h4>
+        <p>De segunda a quinta, das 17h às 19h, todos os drinks autorais com 30% de desconto. Acompanha tábua de petiscos cortesia da casa.</p>
+      </div>
+      <div class="glass-card promo-card reveal">
+        <span class="promo-badge">Menu Degustação</span>
+        <h4>Experiência Completa</h4>
+        <p>Menu degustação de 7 tempos com harmonização de vinhos por R$ 320 por pessoa. Disponível às sextas e sábados, mediante reserva.</p>
+      </div>
+      <div class="glass-card promo-card reveal">
+        <span class="promo-badge">Aniversariantes</span>
+        <h4>Seu Dia Especial</h4>
+        <p>Aniversariantes ganham sobremesa especial do chef e 15% de desconto na conta. Válido no dia do aniversário com apresentação de documento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label" style="justify-content:center"><span></span>Perguntas Frequentes</div>
+      <h2 class="section-title">Dúvidas? Temos Respostas</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-question"><span>É necessário fazer reserva?</span><span class="icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Recomendamos fortemente a reserva, especialmente para jantares e finais de semana. Você pode reservar pelo WhatsApp, telefone ou diretamente pelo nosso formulário de contato. Para almoços executivos durante a semana, atendemos por ordem de chegada, mas a reserva garante sua mesa.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question"><span>Vocês atendem restrições alimentares?</span><span class="icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Sim! Temos opções para celíacos, intolerantes à lactose, vegetarianos e veganos. Basta informar suas restrições no momento da reserva e nosso chef preparará pratos especiais para garantir que sua experiência seja tão incrível quanto a de qualquer outro convidado.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question"><span>Como funciona o espaço para eventos?</span><span class="icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Nosso espaço privativo comporta até 40 pessoas sentadas. Oferecemos menus personalizados, decoração temática, som ambiente e atendimento exclusivo. Ideal para aniversários, jantares corporativos, despedidas e celebrações. Entre em contato para um orçamento personalizado.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question"><span>Quais formas de pagamento são aceitas?</span><span class="icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Aceitamos todas as bandeiras de cartão de crédito e débito, Pix, dinheiro e vale-refeição (Alelo, Sodexo, VR). Para eventos, oferecemos opções de pagamento parcelado em até 6x sem juros.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question"><span>O restaurante possui estacionamento?</span><span class="icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Temos estacionamento conveniado ao lado do restaurante com desconto especial para clientes (R$ 15 pelo período). Além disso, disponibilizamos serviço de manobrista gratuito nas sextas e sábados à noite.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-question"><span>Crianças são bem-vindas?</span><span class="icon">+</span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Absolutamente! Temos menu kids com opções saudáveis e saborosas, cadeirões e trocador no banheiro. Aos domingos, nosso brunch conta com espaço kids monitorado para que os pais possam aproveitar a refeição com tranquilidade.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. Blog -->
+<section id="blog">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Blog</div>
+      <h2 class="section-title">Do Nosso Blog</h2>
+      <p class="section-desc">Histórias, receitas e bastidores da nossa cozinha.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="glass-card blog-card reveal" style="padding:0;overflow:hidden">
+        <div class="blog-thumb"></div>
+        <div style="padding:1.5rem 2rem 2rem">
+          <div class="blog-date">12 Mar 2026</div>
+          <h4>A Arte da Fermentação Natural na Cozinha Contemporânea</h4>
+          <p>Exploramos como técnicas ancestrais de fermentação estão revolucionando pratos da alta gastronomia e criando sabores impossíveis de replicar.</p>
+        </div>
+      </div>
+      <div class="glass-card blog-card reveal" style="padding:0;overflow:hidden">
+        <div class="blog-thumb"></div>
+        <div style="padding:1.5rem 2rem 2rem">
+          <div class="blog-date">28 Fev 2026</div>
+          <h4>Ingredientes Brasileiros Subestimados Que Merecem Destaque</h4>
+          <p>Do baru ao cambuci, conheça superingredientes nativos que estão ganhando espaço nos menus dos melhores restaurantes do país.</p>
+        </div>
+      </div>
+      <div class="glass-card blog-card reveal" style="padding:0;overflow:hidden">
+        <div class="blog-thumb"></div>
+        <div style="padding:1.5rem 2rem 2rem">
+          <div class="blog-date">15 Fev 2026</div>
+          <h4>Harmonização: Como Escolher o Vinho Perfeito Para Cada Prato</h4>
+          <p>Nosso sommelier André Vieira compartilha dicas práticas para transformar qualquer refeição em uma experiência sensorial completa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13. Contato -->
+<section id="contato">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Contato</div>
+      <h2 class="section-title">Faça Sua Reserva</h2>
+      <p class="section-desc">Preencha o formulário ou fale diretamente conosco pelo WhatsApp.</p>
+    </div>
+    <div class="contato-grid">
+      <form class="reveal" onsubmit="event.preventDefault();alert('Reserva enviada com sucesso! Entraremos em contato em breve.')">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group"><label>Nome Completo</label><input type="text" placeholder="Seu nome" required></div>
+          <div class="form-group"><label>Telefone</label><input type="tel" placeholder="(11) 99999-9999" required></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group"><label>Data</label><input type="date" required></div>
+          <div class="form-group"><label>Horário</label>
+            <select required>
+              <option value="">Selecione</option>
+              <option>11:30</option><option>12:00</option><option>12:30</option><option>13:00</option>
+              <option>18:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group"><label>Número de Pessoas</label>
+            <select required>
+              <option value="">Selecione</option>
+              <option>1 pessoa</option><option>2 pessoas</option><option>3 pessoas</option><option>4 pessoas</option><option>5 pessoas</option><option>6+ pessoas</option>
+            </select>
+          </div>
+          <div class="form-group"><label>E-mail</label><input type="email" placeholder="seu@email.com"></div>
+        </div>
+        <div class="form-group"><label>Observações</label><textarea placeholder="Restrições alimentares, ocasião especial, preferência de mesa..."></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Enviar Reserva</button>
+      </form>
+      <div class="glass-card whatsapp-box reveal">
+        <div class="whatsapp-icon">&#9742;</div>
+        <h4>Prefere pelo WhatsApp?</h4>
+        <p>Fale diretamente com nossa equipe de reservas de forma rápida e prática.</p>
+        <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva" target="_blank" class="btn btn-whatsapp">Chamar no WhatsApp</a>
+        <p style="font-size:.8rem;color:var(--text-muted);margin-top:.5rem">Atendimento: Seg-Sáb, 9h às 22h</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14. Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Sabor <span>&</span> Arte</h3>
+      <p>Uma experiência gastronômica inesquecível no coração de São Paulo. Culinária autoral, ingredientes premium e momentos que ficam na memória.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Navegação</h5>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#cardapio">Cardápio</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#equipe">Equipe</a></li>
+        <li><a href="#depoimentos">Avaliações</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Informações</h5>
+      <ul>
+        <li><a href="#horarios">Horários</a></li>
+        <li><a href="#localizacao">Localização</a></li>
+        <li><a href="#promocoes">Promoções</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#blog">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contato</h5>
+      <ul>
+        <li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+        <li><a href="mailto:reservas@saborarte.com.br">reservas@saborarte.com.br</a></li>
+        <li><a href="#contato">Formulário de Reserva</a></li>
+        <li><a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Sabor & Arte. Todos os direitos reservados.</span>
+    <span>Desenvolvido com paixão pela gastronomia</span>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva" target="_blank" class="whatsapp-float" aria-label="WhatsApp">&#9742;</a>
+
+<!-- Lenis Smooth Scroll -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+
+<script>
+/* ========== Custom Cursor ========== */
+const cursor = document.getElementById('cursor');
+const cursorDot = document.getElementById('cursor-dot');
+let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursorDot.style.left = mouseX - 2.5 + 'px';
+  cursorDot.style.top = mouseY - 2.5 + 'px';
+});
+
+function animateCursor() {
+  curX += (mouseX - curX) * 0.15;
+  curY += (mouseY - curY) * 0.15;
+  cursor.style.left = curX - 10 + 'px';
+  cursor.style.top = curY - 10 + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.querySelectorAll('a, button, .menu-tab, .faq-question, .galeria-item').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+
+/* ========== Navigation ========== */
+const nav = document.getElementById('nav');
+const navToggle = document.getElementById('nav-toggle');
+const navLinks = document.getElementById('nav-links');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ========== Hero Canvas Particles ========== */
+const canvas = document.getElementById('hero-canvas');
+const ctx = canvas.getContext('2d');
+let particles = [];
+const PARTICLE_COUNT = 60;
+
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+class Particle {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = canvas.width / 2;
+    this.y = canvas.height / 2;
+    this.angle = Math.random() * Math.PI * 2;
+    this.radius = 80 + Math.random() * 300;
+    this.speed = 0.002 + Math.random() * 0.008;
+    this.size = 1 + Math.random() * 3;
+    this.opacity = 0.2 + Math.random() * 0.5;
+    this.drift = (Math.random() - 0.5) * 0.3;
+    this.pulseSpeed = 0.01 + Math.random() * 0.03;
+    this.pulsePhase = Math.random() * Math.PI * 2;
+  }
+  update(t) {
+    this.angle += this.speed;
+    this.radius += this.drift * 0.1;
+    const pulse = Math.sin(t * this.pulseSpeed + this.pulsePhase) * 0.3 + 0.7;
+    this.currentOpacity = this.opacity * pulse;
+    this.px = this.x + Math.cos(this.angle) * this.radius;
+    this.py = this.y + Math.sin(this.angle) * this.radius * 0.6;
+    if (this.px < -20 || this.px > canvas.width + 20 || this.py < -20 || this.py > canvas.height + 20) {
+      this.reset();
+    }
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.px, this.py, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(220, 38, 38, ${this.currentOpacity})`;
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(this.px, this.py, this.size * 3, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(220, 38, 38, ${this.currentOpacity * 0.15})`;
+    ctx.fill();
+  }
+}
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  particles.push(new Particle());
+}
+
+let t = 0;
+function animateParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  t++;
+  particles.forEach(p => {
+    p.update(t);
+    p.draw();
+  });
+
+  // Draw subtle connecting lines
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].px - particles[j].px;
+      const dy = particles[i].py - particles[j].py;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].px, particles[i].py);
+        ctx.lineTo(particles[j].px, particles[j].py);
+        ctx.strokeStyle = `rgba(220, 38, 38, ${0.06 * (1 - dist / 120)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+/* ========== Menu Tabs ========== */
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-category').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ========== FAQ Accordion ========== */
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+
+    document.querySelectorAll('.faq-item').forEach(fi => {
+      fi.classList.remove('open');
+      fi.querySelector('.faq-answer').style.maxHeight = '0';
+    });
+
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ========== GSAP ScrollTrigger Animations ========== */
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+gsap.from('.hero-badge', { opacity: 0, y: 30, duration: 1, delay: 0.3 });
+gsap.from('.hero-title', { opacity: 0, y: 50, duration: 1.2, delay: 0.5 });
+gsap.from('.hero-sub', { opacity: 0, y: 30, duration: 1, delay: 0.8 });
+gsap.from('.hero-btns', { opacity: 0, y: 30, duration: 1, delay: 1 });
+
+// Reveal animations on scroll
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 40 },
+    {
+      opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+    }
+  );
+});
+
+// Parallax hero
+gsap.to('.hero-content', {
+  yPercent: 30,
+  ease: 'none',
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+});
+
+// Section label line animations
+document.querySelectorAll('.section-label').forEach(label => {
+  gsap.from(label, {
+    x: -30, opacity: 0, duration: 0.8,
+    scrollTrigger: { trigger: label, start: 'top 90%' }
+  });
+});
+
+// Stagger cards
+document.querySelectorAll('.diff-grid, .equipe-grid, .dep-grid, .promo-grid, .blog-grid, .hor-grid').forEach(grid => {
+  gsap.from(grid.children, {
+    opacity: 0, y: 50, stagger: 0.15, duration: 0.8, ease: 'power3.out',
+    scrollTrigger: { trigger: grid, start: 'top 85%' }
+  });
+});
+
+// Gallery items
+gsap.from('.galeria-item', {
+  scale: 0.9, opacity: 0, stagger: 0.1, duration: 0.8,
+  scrollTrigger: { trigger: '.galeria-grid', start: 'top 80%' }
+});
+
+// Stats counter animation
+document.querySelectorAll('.stat-num').forEach(stat => {
+  const text = stat.textContent;
+  const isDecimal = text.includes('.');
+  const numericVal = parseFloat(text);
+  const suffix = text.replace(/[\d.]/g, '');
+
+  ScrollTrigger.create({
+    trigger: stat,
+    start: 'top 90%',
+    once: true,
+    onEnter: () => {
+      gsap.from(stat, {
+        textContent: 0,
+        duration: 2,
+        ease: 'power2.out',
+        snap: isDecimal ? { textContent: 0.1 } : { textContent: 1 },
+        onUpdate: function() {
+          const val = parseFloat(stat.textContent);
+          stat.textContent = (isDecimal ? val.toFixed(1) : Math.round(val)) + suffix;
+        }
+      });
+    }
+  });
+});
+
+// Menu items stagger
+document.querySelectorAll('.menu-items').forEach(items => {
+  gsap.from(items.children, {
+    opacity: 0, x: -20, stagger: 0.1, duration: 0.6,
+    scrollTrigger: { trigger: items, start: 'top 85%' }
+  });
+});
+</script>
+
+<script>
+// 3D Scroll-Driven Animations
+(function() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Lenis smooth scroll
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Navbar pill morphing
+  const nav = document.querySelector('.navbar, nav');
+  if (nav) {
+    ScrollTrigger.create({
+      start: 'top -100',
+      onUpdate: (self) => {
+        nav.classList.toggle('pill', self.scroll() > 100);
+      }
+    });
+  }
+
+  // Hero parallax
+  const hero = document.querySelector('.hero, [class*="hero"]');
+  if (hero) {
+    const heroContent = hero.querySelector('h1, .hero-content');
+    if (heroContent) {
+      gsap.to(heroContent.parentElement || heroContent, {
+        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 1 },
+        scale: 0.85, opacity: 0, filter: 'blur(8px)', y: -60, ease: 'none'
+      });
+    }
+  }
+
+  // 3D card entries
+  document.querySelectorAll('.cards-grid, .services-grid, [class*="grid"]').forEach(function(grid) {
+    if (!grid.children.length) return;
+    gsap.set(grid, { perspective: 1200 });
+    gsap.from(grid.children, {
+      scrollTrigger: { trigger: grid, start: 'top 85%', toggleActions: 'play none none none' },
+      rotateY: 35, rotateX: 8, opacity: 0, z: -150, scale: 0.9,
+      stagger: 0.1, duration: 0.9, ease: 'power3.out', clearProps: 'all'
+    });
+  });
+
+  // 3D hover on cards
+  document.querySelectorAll('.card, .service-card, [class*="-card"]').forEach(function(card) {
+    card.style.transformStyle = 'preserve-3d';
+    card.style.transition = 'transform 0.4s ease';
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = 'perspective(800px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) translateZ(10px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+    });
+  });
+
+  // Text reveal animations
+  document.querySelectorAll('h2, h3, .section-title').forEach(function(el) {
+    if (el.closest('.hero, [class*="hero"]')) return;
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
+      y: 40, opacity: 0, duration: 0.8, ease: 'power3.out'
+    });
+  });
+
+  // Scroll-driven counters
+  document.querySelectorAll('[data-target]').forEach(function(el) {
+    var target = parseInt(el.dataset.target);
+    if (isNaN(target)) return;
+    gsap.fromTo(el, { innerText: 0 }, {
+      innerText: target, snap: { innerText: 1 }, ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 40%', scrub: 1 }
+    });
+  });
+
+  // Stagger children in sections
+  document.querySelectorAll('.section, section').forEach(function(section) {
+    var children = section.querySelectorAll('.card, .service-card, .team-member, .faq-item, [class*="-card"]');
+    if (children.length < 2) return;
+    gsap.from(children, {
+      scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' },
+      y: 50, opacity: 0, scale: 0.95, stagger: 0.1, duration: 0.7, ease: 'power2.out', clearProps: 'all'
+    });
+  });
+
+  window.addEventListener('load', function() { ScrollTrigger.refresh(); });
+})();
+</script>
+</body>
+</html>

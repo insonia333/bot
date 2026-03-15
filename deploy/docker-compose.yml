@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: moom-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../site:/usr/share/nginx/html/site:ro
+      - ../demos:/usr/share/nginx/html/demos:ro
+      - ../marketing:/usr/share/nginx/html/marketing:ro
+      - ../legal:/usr/share/nginx/html/legal:ro
+      - ../sitemap.xml:/usr/share/nginx/html/sitemap.xml:ro
+      - ../robots.txt:/usr/share/nginx/html/robots.txt:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    restart: unless-stopped
+    networks:
+      - moom-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: moom-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    depends_on:
+      - nginx
+    networks:
+      - moom-network
+
+networks:
+  moom-network:
+    driver: bridge

@@ -1,0 +1,28 @@
+{
+  "campaign": {
+    "name": "Moom Agency - Conversão - Leads",
+    "objective": "CONVERSIONS",
+    "status": "PAUSED",
+    "budget": { "daily_budget": 10000, "currency": "BRL" },
+    "schedule": { "start_date": "2026-04-01", "end_date": "2026-04-30" }
+  },
+  "ad_sets": [
+    {
+      "name": "Visitantes do Site - Conversão",
+      "targeting": {
+        "age_min": 25, "age_max": 55,
+        "geo_locations": { "countries": ["BR"] },
+        "custom_audiences": ["Website Visitors 30 days", "Pricing Page Visitors"],
+        "excluded_custom_audiences": ["Converters"]
+      },
+      "optimization_goal": "CONVERSIONS",
+      "conversion_event": "Lead",
+      "destination_url": "https://moomagencia.com/#contato",
+      "ads": [
+        { "name": "Urgência - Vagas Limitadas", "format": "SINGLE_IMAGE", "headline": "Últimas 3 vagas para projetos em abril", "description": "Garanta seu horário antes que acabe", "cta": "SIGN_UP" },
+        { "name": "Social Proof - Resultados", "format": "VIDEO", "headline": "150+ projetos entregues, 98% de satisfação", "description": "Veja os resultados que geramos", "cta": "CONTACT_US" },
+        { "name": "Oferta Direta", "format": "SINGLE_IMAGE", "headline": "Consultoria gratuita + 20% OFF no primeiro mês", "cta": "GET_OFFER" }
+      ]
+    }
+  ]
+}

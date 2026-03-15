@@ -1,0 +1,200 @@
+{
+  "name": "Moom - Agendamento Automático",
+  "nodes": [
+    {
+      "id": "webhook-agendamento",
+      "name": "Webhook - Pedido de Agendamento",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "path": "agendamento",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "authentication": "headerAuth",
+        "headerAuth": {
+          "name": "X-Webhook-Secret",
+          "value": "={{$env.WEBHOOK_SECRET}}"
+        }
+      }
+    },
+    {
+      "id": "parse-request",
+      "name": "Parsear Pedido",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "parameters": {
+        "functionCode": "const data = $input.first().json;\nconst name = data.name || data.pushName || 'Cliente';\nconst phone = data.phone || data.remoteJid || '';\nconst preferredDate = data.date || '';\nconst preferredTime = data.time || '';\nconst service = data.service || 'Consulta geral';\n\nreturn [{\n  json: {\n    name,\n    phone,\n    preferredDate,\n    preferredTime,\n    service,\n    status: 'pendente',\n    createdAt: new Date().toISOString()\n  }\n}];"
+      }
+    },
+    {
+      "id": "check-availability",
+      "name": "Verificar Disponibilidade",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [700, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "={{$env.CALENDAR_API_URL}}/availability",
+        "queryParameters": {
+          "parameters": [
+            { "name": "date", "value": "={{$json.preferredDate}}" },
+            { "name": "time", "value": "={{$json.preferredTime}}" }
+          ]
+        },
+        "options": { "timeout": 10000 },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "check-available",
+      "name": "Horário Disponível?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [920, 300],
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.available}}",
+              "value2": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "create-appointment",
+      "name": "Criar Agendamento",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1140, 200],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.CALENDAR_API_URL}}/appointments",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "clientName", "value": "={{$json.name}}" },
+            { "name": "clientPhone", "value": "={{$json.phone}}" },
+            { "name": "date", "value": "={{$json.preferredDate}}" },
+            { "name": "time", "value": "={{$json.preferredTime}}" },
+            { "name": "service", "value": "={{$json.service}}" }
+          ]
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "confirm-message",
+      "name": "Mensagem de Confirmação",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1360, 200],
+      "parameters": {
+        "functionCode": "const data = $input.first().json;\nconst message = `✅ *Agendamento Confirmado!*\\n\\n📋 Serviço: ${data.service}\\n📅 Data: ${data.preferredDate}\\n⏰ Horário: ${data.preferredTime}\\n👤 Nome: ${data.name}\\n\\nVocê receberá um lembrete 24h antes.\\nPara cancelar ou reagendar, responda esta mensagem.\\n\\n_Moom Agency — Transformando negócios_`;\n\nreturn [{ json: { remoteJid: data.phone, message } }];"
+      }
+    },
+    {
+      "id": "unavailable-message",
+      "name": "Horário Indisponível",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 420],
+      "parameters": {
+        "functionCode": "const data = $input.first().json;\nconst message = `⚠️ *Horário Indisponível*\\n\\nInfelizmente o horário ${data.preferredTime} do dia ${data.preferredDate} não está disponível.\\n\\n📅 Horários disponíveis mais próximos:\\n• ${data.preferredDate} às 10:00\\n• ${data.preferredDate} às 14:00\\n• ${data.preferredDate} às 16:00\\n\\nDeseja agendar em outro horário? Responda com a opção desejada.`;\n\nreturn [{ json: { remoteJid: data.phone, message } }];"
+      }
+    },
+    {
+      "id": "send-confirmation",
+      "name": "Enviar via WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1580, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.EVOLUTION_API_URL}}/message/sendText/{{$env.INSTANCE_NAME}}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{$json.remoteJid}}" },
+            { "name": "text", "value": "={{$json.message}}" }
+          ]
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "log-error-check-availability",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [700, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-create-appointment",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 350],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-send-confirmation",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1580, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    }
+  ],
+  "connections": {
+    "webhook-agendamento": {
+      "main": [[{ "node": "parse-request", "type": "main", "index": 0 }]]
+    },
+    "parse-request": {
+      "main": [[{ "node": "check-availability", "type": "main", "index": 0 }]]
+    },
+    "check-availability": {
+      "main": [
+        [{ "node": "check-available", "type": "main", "index": 0 }],
+        [{ "node": "log-error-check-availability", "type": "main", "index": 0 }]
+      ]
+    },
+    "check-available": {
+      "main": [
+        [{ "node": "create-appointment", "type": "main", "index": 0 }],
+        [{ "node": "unavailable-message", "type": "main", "index": 0 }]
+      ]
+    },
+    "create-appointment": {
+      "main": [
+        [{ "node": "confirm-message", "type": "main", "index": 0 }],
+        [{ "node": "log-error-create-appointment", "type": "main", "index": 0 }]
+      ]
+    },
+    "confirm-message": {
+      "main": [[{ "node": "send-confirmation", "type": "main", "index": 0 }]]
+    },
+    "unavailable-message": {
+      "main": [[{ "node": "send-confirmation", "type": "main", "index": 0 }]]
+    },
+    "send-confirmation": {
+      "main": [
+        [],
+        [{ "node": "log-error-send-confirmation", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "moom-agency" }, { "name": "agendamento" }]
+}

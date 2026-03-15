@@ -1,0 +1,182 @@
+{
+  "name": "Moom - CRM Pipeline",
+  "nodes": [
+    {
+      "id": "webhook-lead",
+      "name": "Webhook - Novo Lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "path": "novo-lead",
+        "httpMethod": "POST",
+        "responseMode": "onReceived",
+        "authentication": "headerAuth",
+        "headerAuth": {
+          "name": "X-Webhook-Secret",
+          "value": "={{$env.WEBHOOK_SECRET}}"
+        }
+      }
+    },
+    {
+      "id": "validate-lead",
+      "name": "Validar Dados do Lead",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "parameters": {
+        "functionCode": "const data = $input.first().json;\n\nconst lead = {\n  name: data.name || '',\n  email: data.email || '',\n  phone: data.phone || data.remoteJid || '',\n  service: data.service || 'Não especificado',\n  source: data.source || 'website',\n  message: data.message || '',\n  stage: 'novo',\n  score: 0,\n  createdAt: new Date().toISOString(),\n  updatedAt: new Date().toISOString()\n};\n\n// Lead scoring\nif (lead.email) lead.score += 20;\nif (lead.phone) lead.score += 30;\nif (lead.message.length > 50) lead.score += 20;\nif (lead.service !== 'Não especificado') lead.score += 30;\n\n// Classify stage\nif (lead.score >= 80) lead.stage = 'qualificado';\nelse if (lead.score >= 50) lead.stage = 'contato';\nelse lead.stage = 'novo';\n\nreturn [{ json: lead }];"
+      }
+    },
+    {
+      "id": "save-to-crm",
+      "name": "Salvar no CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [700, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.CRM_API_URL}}/contacts",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "name", "value": "={{$json.name}}" },
+            { "name": "email", "value": "={{$json.email}}" },
+            { "name": "phone", "value": "={{$json.phone}}" },
+            { "name": "service", "value": "={{$json.service}}" },
+            { "name": "source", "value": "={{$json.source}}" },
+            { "name": "stage", "value": "={{$json.stage}}" },
+            { "name": "score", "value": "={{$json.score}}" }
+          ]
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "notify-team",
+      "name": "Notificar Equipe",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [920, 300],
+      "parameters": {
+        "functionCode": "const lead = $input.first().json;\nconst stageEmoji = { 'novo': '🆕', 'contato': '📞', 'qualificado': '🔥' };\nconst emoji = stageEmoji[lead.stage] || '📋';\n\nconst message = `${emoji} *Novo Lead no Pipeline!*\\n\\n👤 Nome: ${lead.name}\\n📧 Email: ${lead.email}\\n📱 Telefone: ${lead.phone}\\n💼 Serviço: ${lead.service}\\n📊 Score: ${lead.score}/100\\n🏷️ Estágio: ${lead.stage.toUpperCase()}\\n📝 Mensagem: ${lead.message || 'Sem mensagem'}\\n🌐 Origem: ${lead.source}\\n\\n⏰ ${new Date().toLocaleString('pt-BR')}`;\n\nreturn [{ json: { remoteJid: '{{$env.TEAM_GROUP_JID}}', message } }];"
+      }
+    },
+    {
+      "id": "send-team-notification",
+      "name": "Enviar Notificação (WhatsApp)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1140, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.EVOLUTION_API_URL}}/message/sendText/{{$env.INSTANCE_NAME}}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{$json.remoteJid}}" },
+            { "name": "text", "value": "={{$json.message}}" }
+          ]
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "auto-reply-lead",
+      "name": "Resposta Automática ao Lead",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [920, 500],
+      "parameters": {
+        "functionCode": "const lead = $input.first().json;\nconst message = `Olá, ${lead.name}! 👋\\n\\nRecebemos sua mensagem e ficamos muito felizes com seu interesse!\\n\\nUm dos nossos consultores entrará em contato em até *2 horas úteis* para entender melhor suas necessidades.\\n\\nEnquanto isso, conheça nosso portfolio:\\n🌐 https://moomagencia.com\\n\\n_Moom Agency — Transformando ideias em experiências digitais_`;\n\nreturn [{ json: { remoteJid: lead.phone, message } }];"
+      }
+    },
+    {
+      "id": "send-auto-reply",
+      "name": "Enviar Auto-Reply",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1140, 500],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.EVOLUTION_API_URL}}/message/sendText/{{$env.INSTANCE_NAME}}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{$json.remoteJid}}" },
+            { "name": "text", "value": "={{$json.message}}" }
+          ]
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "log-error-save-to-crm",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [700, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-send-team-notification",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 450],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-send-auto-reply",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 650],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    }
+  ],
+  "connections": {
+    "webhook-lead": {
+      "main": [[{ "node": "validate-lead", "type": "main", "index": 0 }]]
+    },
+    "validate-lead": {
+      "main": [[{ "node": "save-to-crm", "type": "main", "index": 0 }]]
+    },
+    "save-to-crm": {
+      "main": [
+        [
+          { "node": "notify-team", "type": "main", "index": 0 },
+          { "node": "auto-reply-lead", "type": "main", "index": 0 }
+        ],
+        [{ "node": "log-error-save-to-crm", "type": "main", "index": 0 }]
+      ]
+    },
+    "notify-team": {
+      "main": [[{ "node": "send-team-notification", "type": "main", "index": 0 }]]
+    },
+    "auto-reply-lead": {
+      "main": [[{ "node": "send-auto-reply", "type": "main", "index": 0 }]]
+    },
+    "send-team-notification": {
+      "main": [
+        [],
+        [{ "node": "log-error-send-team-notification", "type": "main", "index": 0 }]
+      ]
+    },
+    "send-auto-reply": {
+      "main": [
+        [],
+        [{ "node": "log-error-send-auto-reply", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "moom-agency" }, { "name": "crm" }]
+}

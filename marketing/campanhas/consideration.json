@@ -1,0 +1,27 @@
+{
+  "campaign": {
+    "name": "Moom Agency - Tráfego - Site",
+    "objective": "TRAFFIC",
+    "status": "PAUSED",
+    "budget": { "daily_budget": 8000, "currency": "BRL" },
+    "schedule": { "start_date": "2026-04-01", "end_date": "2026-04-30" }
+  },
+  "ad_sets": [
+    {
+      "name": "Interesse em Sites e Automação",
+      "targeting": {
+        "age_min": 25, "age_max": 55,
+        "geo_locations": { "countries": ["BR"] },
+        "interests": ["Web design", "Criação de sites", "Automação comercial", "CRM"],
+        "excluded_custom_audiences": ["Clientes atuais"]
+      },
+      "optimization_goal": "LINK_CLICKS",
+      "destination_url": "https://moomagencia.com",
+      "ads": [
+        { "name": "Carrossel - Portfolio", "format": "CAROUSEL", "headline": "Veja nossos projetos premium", "description": "6 nichos, 6 cases de sucesso", "cta": "SEE_MORE" },
+        { "name": "Video - Processo", "format": "VIDEO", "headline": "Do briefing ao lançamento em 14 dias", "cta": "LEARN_MORE" },
+        { "name": "Imagem - Oferta", "format": "SINGLE_IMAGE", "headline": "Sites premium a partir de R$ 2.497/mês", "cta": "SHOP_NOW" }
+      ]
+    }
+  ]
+}

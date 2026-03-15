@@ -1,0 +1,174 @@
+{
+  "name": "Moom - Faturamento Mensal",
+  "nodes": [
+    {
+      "id": "schedule-trigger",
+      "name": "Trigger Mensal (Dia 1)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 9 1 * *"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fetch-clients",
+      "name": "Buscar Clientes Ativos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [480, 300],
+      "parameters": {
+        "method": "GET",
+        "url": "={{$env.CRM_API_URL}}/clients?status=active",
+        "options": { "timeout": 15000 },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "split-clients",
+      "name": "Separar Clientes",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [700, 300],
+      "parameters": {
+        "batchSize": 1
+      }
+    },
+    {
+      "id": "generate-invoice",
+      "name": "Gerar Fatura",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [920, 300],
+      "parameters": {
+        "functionCode": "const client = $input.first().json;\nconst now = new Date();\nconst dueDate = new Date(now.getFullYear(), now.getMonth(), 10);\n\nconst invoice = {\n  invoiceNumber: 'INV-' + 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }),\n  clientName: client.name,\n  clientEmail: client.email,\n  clientPhone: client.phone,\n  plan: client.plan || 'Pro',\n  amount: client.monthlyAmount || 4997,\n  currency: 'BRL',\n  issueDate: now.toISOString().split('T')[0],\n  dueDate: dueDate.toISOString().split('T')[0],\n  status: 'pendente',\n  items: [\n    {\n      description: `Plano ${client.plan || 'Pro'} - ${now.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}`,\n      quantity: 1,\n      unitPrice: client.monthlyAmount || 4997,\n      total: client.monthlyAmount || 4997\n    }\n  ]\n};\n\nreturn [{ json: invoice }];"
+      }
+    },
+    {
+      "id": "create-invoice-api",
+      "name": "Registrar Fatura na API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1140, 300],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.BILLING_API_URL}}/invoices",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{$json.invoiceNumber}}" },
+            { "name": "client", "value": "={{$json.clientName}}" },
+            { "name": "email", "value": "={{$json.clientEmail}}" },
+            { "name": "amount", "value": "={{$json.amount}}" },
+            { "name": "dueDate", "value": "={{$json.dueDate}}" }
+          ]
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "send-invoice-email",
+      "name": "Enviar Fatura por Email",
+      "type": "n8n-nodes-base.sendEmail",
+      "typeVersion": 1,
+      "position": [1360, 200],
+      "parameters": {
+        "fromEmail": "financeiro@moomagencia.com",
+        "toEmail": "={{$json.clientEmail}}",
+        "subject": "Fatura Moom Agency - {{$json.invoiceNumber}}",
+        "text": "Olá, {{$json.clientName}}!\n\nSegue sua fatura referente ao mês atual:\n\n📋 Fatura: {{$json.invoiceNumber}}\n💼 Plano: {{$json.plan}}\n💰 Valor: R$ {{$json.amount}}\n📅 Vencimento: {{$json.dueDate}}\n\nPara pagamento via PIX ou boleto, acesse:\n{{$env.BILLING_PORTAL_URL}}/invoices/{{$json.invoiceNumber}}\n\nDúvidas? Responda este email ou fale conosco no WhatsApp.\n\nAtenciosamente,\nFinanceiro — Moom Agency"
+      }
+    },
+    {
+      "id": "notify-whatsapp",
+      "name": "Notificar via WhatsApp",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [1360, 420],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.EVOLUTION_API_URL}}/message/sendText/{{$env.INSTANCE_NAME}}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{$json.clientPhone}}" },
+            { "name": "text", "value": "💰 *Fatura Disponível*\n\nOlá, {{$json.clientName}}!\n\nSua fatura de {{$json.plan}} está disponível:\n\n📋 {{$json.invoiceNumber}}\n💵 R$ {{$json.amount}}\n📅 Vencimento: {{$json.dueDate}}\n\nLink para pagamento:\n{{$env.BILLING_PORTAL_URL}}/invoices/{{$json.invoiceNumber}}\n\nDúvidas? Responda aqui!" }
+          ]
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "log-error-fetch-clients",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-create-invoice-api",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-notify-whatsapp",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1360, 600],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    }
+  ],
+  "connections": {
+    "schedule-trigger": {
+      "main": [[{ "node": "fetch-clients", "type": "main", "index": 0 }]]
+    },
+    "fetch-clients": {
+      "main": [
+        [{ "node": "split-clients", "type": "main", "index": 0 }],
+        [{ "node": "log-error-fetch-clients", "type": "main", "index": 0 }]
+      ]
+    },
+    "split-clients": {
+      "main": [[{ "node": "generate-invoice", "type": "main", "index": 0 }]]
+    },
+    "generate-invoice": {
+      "main": [[{ "node": "create-invoice-api", "type": "main", "index": 0 }]]
+    },
+    "create-invoice-api": {
+      "main": [
+        [
+          { "node": "send-invoice-email", "type": "main", "index": 0 },
+          { "node": "notify-whatsapp", "type": "main", "index": 0 }
+        ],
+        [{ "node": "log-error-create-invoice-api", "type": "main", "index": 0 }]
+      ]
+    },
+    "notify-whatsapp": {
+      "main": [
+        [],
+        [{ "node": "log-error-notify-whatsapp", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "moom-agency" }, { "name": "billing" }]
+}
