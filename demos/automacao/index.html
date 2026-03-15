@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoTech Solutions | Automação Empresarial & IA em São Paulo</title>
+<meta name="description" content="AutoTech Solutions — especialistas em automação de processos, chatbots com IA, integração de sistemas e Business Intelligence. Transforme sua empresa com tecnologia de ponta.">
+<meta name="keywords" content="automação empresarial, RPA, chatbot IA, integração de sistemas, CRM automatizado, marketing automation, business intelligence, N8N, APIs, São Paulo">
+<meta name="author" content="AutoTech Solutions">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="AutoTech Solutions | Automação Empresarial & IA">
+<meta property="og:description" content="Automatize processos, reduza custos e escale sua operação com soluções inteligentes de tecnologia.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://autotechsolutions.com.br",
+  "name": "AutoTech Solutions",
+  "description": "Empresa especializada em automação empresarial, inteligência artificial e integração de sistemas em São Paulo.",
+  "url": "https://autotechsolutions.com.br",
+  "telephone": "+55-11-99999-9999",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Paulista, 1106 - 7º Andar - Bela Vista",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "postalCode": "01310-100",
+    "addressCountry": "BR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -23.5632,
+    "longitude": -46.6542
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "13:00" }
+  ],
+  "priceRange": "$$$",
+  "image": "https://autotechsolutions.com.br/og-image.jpg",
+  "sameAs": [
+    "https://linkedin.com/company/autotechsolutions",
+    "https://instagram.com/autotechsolutions"
+  ]
+}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#7c3aed;--accent-glow:rgba(124,58,237,.35);--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a24;--text:#e8e8ef;--text-dim:#8a8a9a;--glass:rgba(255,255,255,.04);--glass-border:rgba(255,255,255,.08);--radius:16px;--max-w:1200px}
+html{scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--accent) var(--bg)}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none;line-height:1.7}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+a{color:var(--accent);text-decoration:none;transition:color .3s}
+a:hover{color:#a78bfa}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{line-height:1.2}
+
+/* Cursor */
+.cursor{position:fixed;width:20px;height:20px;border:2px solid var(--accent);border-radius:50%;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s,background .25s}
+.cursor.hover{width:50px;height:50px;background:var(--accent-glow);border-color:transparent}
+
+/* Noise overlay */
+.noise{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.03}
+.noise svg{width:100%;height:100%}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;transition:background .4s,backdrop-filter .4s}
+.nav.scrolled{background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:-.02em;color:#fff}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-dim);font-size:.875rem;font-weight:500;transition:color .3s;position:relative;cursor:none}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+.hamburger span{width:28px;height:2px;background:#fff;transition:transform .3s,opacity .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,15,.97);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:#fff;font-size:1.25rem;font-weight:600}
+
+/* Section base */
+section{padding:6rem 2rem;position:relative}
+.section-inner{max-width:var(--max-w);margin:0 auto}
+.section-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--accent);margin-bottom:.75rem}
+.section-title{font-size:clamp(2rem,5vw,3rem);font-weight:800;margin-bottom:1rem;letter-spacing:-.03em}
+.section-subtitle{color:var(--text-dim);font-size:1.1rem;max-width:600px;margin-bottom:3rem}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hero canvas{position:absolute;inset:0;z-index:0}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:800px;padding:0 1rem}
+.hero-badge{display:inline-block;padding:.4rem 1.2rem;border:1px solid var(--accent);border-radius:999px;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:2rem}
+.hero h1{font-size:clamp(2.5rem,8vw,5.5rem);font-weight:900;letter-spacing:-.04em;line-height:1;margin-bottom:1.5rem;background:linear-gradient(135deg,#fff 0%,#7c3aed 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);color:var(--text-dim);max-width:500px;margin:0 auto 2.5rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2.2rem;border-radius:999px;font-size:.9rem;font-weight:600;border:none;cursor:none;transition:transform .3s,box-shadow .3s}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 30px var(--accent-glow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px var(--accent-glow);color:#fff}
+.btn-outline{border:1px solid var(--glass-border);color:#fff;background:transparent;margin-left:.75rem}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--text-dim);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+.hero-scroll .line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollLine 2s infinite}
+@keyframes scrollLine{0%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(0);transform-origin:bottom}}
+
+/* Glass card */
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius);transition:transform .4s,border-color .4s,box-shadow .4s}
+.glass:hover{border-color:rgba(124,58,237,.25);box-shadow:0 8px 40px rgba(124,58,237,.08);transform:translateY(-4px)}
+
+/* Sobre */
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.sobre-img{aspect-ratio:4/3;background:linear-gradient(135deg,var(--bg3),var(--accent));border-radius:var(--radius);position:relative;overflow:hidden}
+.sobre-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,10,15,.6),transparent)}
+.sobre-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.stat{text-align:center;padding:1.5rem;border-radius:var(--radius);background:var(--glass);border:1px solid var(--glass-border)}
+.stat-num{font-size:2rem;font-weight:800;color:var(--accent)}
+.stat-label{font-size:.75rem;color:var(--text-dim);margin-top:.25rem;text-transform:uppercase;letter-spacing:.05em}
+
+/* Servicos */
+.servicos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.servico-card{padding:2rem;position:relative;overflow:hidden}
+.servico-icon{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#a78bfa);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem}
+.servico-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.servico-card p{color:var(--text-dim);font-size:.875rem;line-height:1.6}
+.servico-price{display:inline-block;margin-top:1rem;padding:.3rem .8rem;border-radius:999px;background:rgba(124,58,237,.12);color:var(--accent);font-size:.8rem;font-weight:600}
+
+/* Galeria */
+.galeria-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,220px);gap:1rem}
+.galeria-item{border-radius:var(--radius);overflow:hidden;position:relative;cursor:none}
+.galeria-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.galeria-item .placeholder{width:100%;height:100%;transition:transform .6s}
+.galeria-item:hover .placeholder{transform:scale(1.05)}
+.galeria-item .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,.7),transparent);display:flex;align-items:flex-end;padding:1.5rem;opacity:0;transition:opacity .4s}
+.galeria-item:hover .overlay{opacity:1}
+.galeria-item .overlay span{color:#fff;font-weight:600;font-size:.9rem}
+
+/* Diferenciais */
+.diferenciais-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.diferencial{padding:2.5rem 1.5rem;text-align:center}
+.diferencial-icon{font-size:2.5rem;margin-bottom:1rem}
+.diferencial h3{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.diferencial p{color:var(--text-dim);font-size:.85rem}
+
+/* Equipe */
+.equipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.membro{text-align:center;padding:2rem 1.5rem}
+.membro-avatar{width:100px;height:100px;border-radius:50%;margin:0 auto 1.25rem;background:linear-gradient(135deg,var(--bg3),var(--accent));position:relative;display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:800;color:rgba(255,255,255,.6);border:3px solid var(--glass-border)}
+.membro h3{font-size:1.1rem;font-weight:700;margin-bottom:.15rem}
+.membro .cargo{color:var(--accent);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.75rem}
+.membro p{color:var(--text-dim);font-size:.85rem}
+
+/* Depoimentos */
+.depoimentos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.depoimento{padding:2rem;position:relative}
+.depoimento::before{content:'\201C';position:absolute;top:1rem;right:1.5rem;font-size:4rem;color:rgba(124,58,237,.15);font-family:serif;line-height:1}
+.depoimento p{color:var(--text-dim);font-size:.95rem;font-style:italic;margin-bottom:1.5rem;position:relative;z-index:1}
+.depoimento-author{display:flex;align-items:center;gap:.75rem}
+.depoimento-author .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#a78bfa);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.8rem;color:#fff}
+.depoimento-author .name{font-weight:600;font-size:.9rem}
+.depoimento-author .date{font-size:.75rem;color:var(--text-dim)}
+.stars{color:var(--accent);font-size:.85rem;margin-bottom:1rem;letter-spacing:2px}
+
+/* Localizacao */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.map-placeholder{aspect-ratio:16/10;border-radius:var(--radius);background:var(--bg3);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:.9rem;position:relative;overflow:hidden}
+.map-placeholder::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 30px,var(--glass-border) 30px,var(--glass-border) 31px),repeating-linear-gradient(90deg,transparent,transparent 30px,var(--glass-border) 30px,var(--glass-border) 31px)}
+.loc-info{display:flex;flex-direction:column;gap:1.5rem}
+.loc-item{display:flex;gap:1rem;align-items:flex-start}
+.loc-item .icon{width:44px;height:44px;border-radius:12px;background:rgba(124,58,237,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent);font-size:1.1rem}
+.loc-item h4{font-size:.95rem;font-weight:600;margin-bottom:.15rem}
+.loc-item p{color:var(--text-dim);font-size:.85rem}
+
+/* Horarios */
+.horarios-table{width:100%;max-width:600px;margin:0 auto;border-collapse:collapse}
+.horarios-table tr{border-bottom:1px solid var(--glass-border)}
+.horarios-table td{padding:1rem 1.5rem;font-size:.95rem}
+.horarios-table td:first-child{font-weight:600}
+.horarios-table td:last-child{text-align:right;color:var(--text-dim)}
+.horarios-table tr.today{background:rgba(124,58,237,.08);border-radius:8px}
+.horarios-table tr.today td{color:var(--accent);font-weight:600}
+
+/* Promocoes */
+.promos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.promo{padding:2rem;position:relative;overflow:hidden}
+.promo-badge{position:absolute;top:1rem;right:1rem;background:var(--accent);color:#fff;padding:.25rem .75rem;border-radius:999px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.promo h3{font-size:1.2rem;font-weight:700;margin-bottom:.5rem}
+.promo p{color:var(--text-dim);font-size:.85rem;margin-bottom:1rem}
+.promo .price{font-size:1.5rem;font-weight:800;color:var(--accent)}
+.promo .price-old{text-decoration:line-through;color:var(--text-dim);font-size:.9rem;font-weight:400;margin-right:.5rem}
+
+/* FAQ */
+.faq-list{max-width:750px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem}
+.faq-item{border-radius:var(--radius);overflow:hidden}
+.faq-q{padding:1.25rem 1.5rem;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:.95rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:var(--radius);transition:background .3s}
+.faq-q:hover{background:rgba(255,255,255,.06)}
+.faq-q .arrow{transition:transform .3s;color:var(--accent);font-size:1.2rem}
+.faq-q.active .arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease;padding:0 1.5rem;color:var(--text-dim);font-size:.9rem;line-height:1.7}
+.faq-a.open{max-height:300px;padding:1rem 1.5rem 1.25rem}
+
+/* Blog */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.blog-card{overflow:hidden}
+.blog-img{height:200px;background:linear-gradient(135deg,var(--bg3),var(--accent));position:relative}
+.blog-img .tag{position:absolute;bottom:1rem;left:1rem;background:var(--accent);color:#fff;padding:.2rem .6rem;border-radius:999px;font-size:.7rem;font-weight:600;text-transform:uppercase}
+.blog-body{padding:1.5rem}
+.blog-body .date{font-size:.75rem;color:var(--text-dim);margin-bottom:.5rem}
+.blog-body h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;line-height:1.4}
+.blog-body p{color:var(--text-dim);font-size:.85rem;margin-bottom:1rem}
+.blog-body .read-more{color:var(--accent);font-weight:600;font-size:.85rem}
+
+/* Contato */
+.contato-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:3rem}
+.form-group{margin-bottom:1.25rem}
+.form-group label{display:block;font-size:.8rem;font-weight:600;margin-bottom:.4rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:.85rem 1rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;color:#fff;font-family:'Inter',sans-serif;font-size:.9rem;transition:border-color .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-group select option{background:var(--bg2);color:#fff}
+.contato-info{display:flex;flex-direction:column;gap:1.5rem}
+.contato-info-card{padding:1.5rem}
+.contato-info-card h4{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.contato-info-card p{color:var(--text-dim);font-size:.85rem}
+.contato-info-card a{color:var(--accent)}
+
+/* WhatsApp float */
+.whatsapp-float{position:fixed;bottom:2rem;right:2rem;z-index:998;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s;cursor:none}
+.whatsapp-float:hover{transform:scale(1.1)}
+.whatsapp-float svg{width:30px;height:30px;fill:#fff}
+
+/* Footer */
+.footer{background:var(--bg2);padding:4rem 2rem 2rem;border-top:1px solid var(--glass-border)}
+.footer-grid{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-col h4{font-size:.9rem;font-weight:700;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.05em}
+.footer-col p{color:var(--text-dim);font-size:.85rem;line-height:1.7}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul a{color:var(--text-dim);font-size:.85rem;transition:color .3s}
+.footer-col ul a:hover{color:var(--accent)}
+.footer-social{display:flex;gap:.75rem;margin-top:1rem}
+.footer-social a{width:40px;height:40px;border-radius:10px;background:var(--glass);border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;color:var(--text-dim);transition:color .3s,border-color .3s}
+.footer-social a:hover{color:var(--accent);border-color:var(--accent)}
+.footer-bottom{max-width:var(--max-w);margin:0 auto;padding-top:2rem;border-top:1px solid var(--glass-border);display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--text-dim)}
+
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
+
+/* Responsive */
+@media(max-width:1024px){
+.servicos-grid,.diferenciais-grid,.equipe-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:repeat(2,1fr)}
+.sobre-grid,.loc-grid,.contato-grid{grid-template-columns:1fr}
+.galeria-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
+.galeria-item:nth-child(1){grid-column:span 2}
+}
+@media(max-width:768px){
+body{cursor:auto}
+.cursor{display:none}
+.nav-links{display:none}
+.hamburger{display:flex}
+section{padding:4rem 1rem}
+.servicos-grid,.depoimentos-grid,.promos-grid,.blog-grid,.diferenciais-grid,.equipe-grid{grid-template-columns:1fr}
+.galeria-grid{grid-template-columns:1fr;grid-template-rows:auto}
+.galeria-item:nth-child(1){grid-column:span 1;grid-row:span 1}
+.footer-grid{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;gap:.5rem;text-align:center}
+.hero-scroll{display:none}
+.sobre-stats{grid-template-columns:repeat(3,1fr);gap:.75rem}
+.stat{padding:1rem}
+.stat-num{font-size:1.4rem}
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Noise Overlay -->
+<div class="noise"><svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#noise)" opacity="1" fill="white"/></svg></div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+<div class="nav-inner">
+<a href="#" class="logo">Auto<span>Tech</span></a>
+<ul class="nav-links">
+<li><a href="#sobre">Sobre</a></li>
+<li><a href="#servicos">Serviços</a></li>
+<li><a href="#galeria">Galeria</a></li>
+<li><a href="#equipe">Equipe</a></li>
+<li><a href="#depoimentos">Depoimentos</a></li>
+<li><a href="#horarios">Horários</a></li>
+<li><a href="#contato">Contato</a></li>
+</ul>
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!" class="btn btn-primary" style="padding:.6rem 1.5rem;font-size:.8rem" target="_blank" rel="noopener">Falar com Especialista</a>
+<div class="hamburger" id="hamburger" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
+</div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<a href="#sobre" onclick="toggleMenu()">Sobre</a>
+<a href="#servicos" onclick="toggleMenu()">Serviços</a>
+<a href="#galeria" onclick="toggleMenu()">Galeria</a>
+<a href="#equipe" onclick="toggleMenu()">Equipe</a>
+<a href="#depoimentos" onclick="toggleMenu()">Depoimentos</a>
+<a href="#horarios" onclick="toggleMenu()">Horários</a>
+<a href="#contato" onclick="toggleMenu()">Contato</a>
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!" class="btn btn-primary" target="_blank" rel="noopener">Falar pelo WhatsApp</a>
+</div>
+
+<!-- 1. Hero -->
+<section class="hero" id="hero">
+<canvas id="heroCanvas"></canvas>
+<div class="hero-content">
+<div class="hero-badge">Automação Inteligente em São Paulo</div>
+<h1>Automatize. Escale. Domine.</h1>
+<p>Eliminamos tarefas repetitivas, integramos sistemas e implementamos IA para que sua empresa opere no máximo desempenho — 24 horas por dia.</p>
+<div>
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!" class="btn btn-primary" target="_blank" rel="noopener">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.96 11.96 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.352 0-4.55-.682-6.413-1.854l-.448-.292-3.091 1.036 1.036-3.091-.292-.448A9.96 9.96 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+Solicitar Diagnóstico Grátis
+</a>
+<a href="#servicos" class="btn btn-outline">Nossos Serviços</a>
+</div>
+</div>
+<div class="hero-scroll"><span>Role para baixo</span><div class="line"></div></div>
+</section>
+
+<!-- 2. Sobre -->
+<section id="sobre">
+<div class="section-inner">
+<div class="sobre-grid">
+<div class="reveal">
+<div class="section-label">Sobre Nós</div>
+<h2 class="section-title">Tecnologia Que Transforma Negócios</h2>
+<p style="color:var(--text-dim);margin-bottom:1.5rem">Fundada em 2018, a AutoTech Solutions nasceu com a missão de democratizar a automação empresarial. Ajudamos empresas de todos os portes a eliminar processos manuais, reduzir custos operacionais e escalar suas operações com inteligência artificial e integrações sob medida.</p>
+<p style="color:var(--text-dim);margin-bottom:1.5rem">Nossa equipe combina expertise em desenvolvimento de software, ciência de dados e consultoria de negócios para entregar soluções que geram ROI mensurável desde o primeiro mês. Cada projeto começa com um diagnóstico aprofundado e termina com uma operação mais eficiente.</p>
+<div class="sobre-stats">
+<div class="stat"><div class="stat-num">200+</div><div class="stat-label">Projetos entregues</div></div>
+<div class="stat"><div class="stat-num">8M+</div><div class="stat-label">Horas automatizadas</div></div>
+<div class="stat"><div class="stat-num">97%</div><div class="stat-label">Retenção de clientes</div></div>
+</div>
+</div>
+<div class="sobre-img reveal" style="transition-delay:.2s"></div>
+</div>
+</div>
+</section>
+
+<!-- 3. Serviços -->
+<section id="servicos" style="background:var(--bg2)">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Nossos Serviços</div>
+<h2 class="section-title">Soluções Para Cada Desafio</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Da automação de tarefas simples à implementação de IA conversacional — temos a solução exata para o seu negócio.</p>
+</div>
+<div class="servicos-grid">
+<div class="glass servico-card reveal">
+<div class="servico-icon">🤖</div>
+<h3>Automação de Processos (RPA)</h3>
+<p>Robôs de software que executam tarefas repetitivas como entrada de dados, geração de relatórios e reconciliação financeira — sem erros, 24/7.</p>
+<span class="servico-price">A partir de R$ 5.000/mês</span>
+</div>
+<div class="glass servico-card reveal">
+<div class="servico-icon">💬</div>
+<h3>Chatbots com IA</h3>
+<p>Assistentes virtuais inteligentes que atendem seus clientes, qualificam leads e agendam reuniões automaticamente via WhatsApp, site e redes sociais.</p>
+<span class="servico-price">A partir de R$ 3.500/mês</span>
+</div>
+<div class="glass servico-card reveal">
+<div class="servico-icon">🔗</div>
+<h3>Integração de Sistemas</h3>
+<p>Conectamos seu ERP, CRM, e-commerce e ferramentas de marketing em um ecossistema unificado que elimina retrabalho e silos de dados.</p>
+<span class="servico-price">A partir de R$ 8.000</span>
+</div>
+<div class="glass servico-card reveal">
+<div class="servico-icon">📊</div>
+<h3>CRM Automatizado</h3>
+<p>Implementação e customização de CRM com automações de follow-up, lead scoring inteligente e pipelines que vendem enquanto você dorme.</p>
+<span class="servico-price">A partir de R$ 4.000/mês</span>
+</div>
+<div class="glass servico-card reveal">
+<div class="servico-icon">📧</div>
+<h3>Marketing Automation</h3>
+<p>Fluxos automatizados de e-mail, nutrição de leads, segmentação dinâmica e campanhas multicanal que convertem com precisão cirúrgica.</p>
+<span class="servico-price">A partir de R$ 3.000/mês</span>
+</div>
+<div class="glass servico-card reveal">
+<div class="servico-icon">📈</div>
+<h3>Business Intelligence</h3>
+<p>Dashboards em tempo real, relatórios automatizados e análises preditivas que transformam dados brutos em decisões estratégicas.</p>
+<span class="servico-price">A partir de R$ 6.000/mês</span>
+</div>
+<div class="glass servico-card reveal">
+<div class="servico-icon">⚡</div>
+<h3>Workflows N8N</h3>
+<p>Automações visuais e poderosas com N8N: conecte centenas de aplicações, crie lógicas complexas e elimine processos manuais sem código.</p>
+<span class="servico-price">A partir de R$ 2.500/mês</span>
+</div>
+<div class="glass servico-card reveal">
+<div class="servico-icon">🛠️</div>
+<h3>APIs Personalizadas</h3>
+<p>Desenvolvimento de APIs robustas e escaláveis que conectam seus sistemas internos a parceiros, marketplaces e plataformas de terceiros.</p>
+<span class="servico-price">A partir de R$ 12.000</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 4. Galeria -->
+<section id="galeria">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Galeria</div>
+<h2 class="section-title">Nosso Escritório &amp; Projetos</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Conheça o ambiente onde inovação e tecnologia se encontram todos os dias.</p>
+</div>
+<div class="galeria-grid">
+<div class="galeria-item reveal">
+<div class="placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#7c3aed 50%,#0a0a0f)"></div>
+<div class="overlay"><span>War Room de Projetos</span></div>
+</div>
+<div class="galeria-item reveal">
+<div class="placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#16213e,#7c3aed)"></div>
+<div class="overlay"><span>Área de Desenvolvimento</span></div>
+</div>
+<div class="galeria-item reveal">
+<div class="placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#0f3460,#a78bfa)"></div>
+<div class="overlay"><span>Sala de Reuniões</span></div>
+</div>
+<div class="galeria-item reveal">
+<div class="placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#a78bfa)"></div>
+<div class="overlay"><span>Centro de Monitoramento</span></div>
+</div>
+<div class="galeria-item reveal">
+<div class="placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a1a,#7c3aed)"></div>
+<div class="overlay"><span>Lounge Criativo</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 5. Diferenciais -->
+<section id="diferenciais" style="background:var(--bg2)">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Diferenciais</div>
+<h2 class="section-title">Por Que Escolher a AutoTech</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Combinamos tecnologia de ponta com visão estratégica de negócios.</p>
+</div>
+<div class="diferenciais-grid">
+<div class="glass diferencial reveal">
+<div class="diferencial-icon">🎯</div>
+<h3>ROI Garantido</h3>
+<p>Cada projeto é desenhado para gerar retorno mensurável. Se não houver ROI positivo em 90 dias, devolvemos seu investimento.</p>
+</div>
+<div class="glass diferencial reveal">
+<div class="diferencial-icon">🧠</div>
+<h3>IA de Verdade</h3>
+<p>Implementamos modelos de linguagem, visão computacional e machine learning — não apenas regras simples disfarçadas de inteligência artificial.</p>
+</div>
+<div class="glass diferencial reveal">
+<div class="diferencial-icon">🔒</div>
+<h3>Segurança &amp; LGPD</h3>
+<p>Todas as nossas soluções seguem as melhores práticas de segurança e estão em total conformidade com a Lei Geral de Proteção de Dados.</p>
+</div>
+<div class="glass diferencial reveal">
+<div class="diferencial-icon">🚀</div>
+<h3>Suporte 24/7</h3>
+<p>Equipe dedicada de monitoramento e suporte técnico disponível a qualquer hora para garantir que suas automações nunca parem.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 6. Equipe -->
+<section id="equipe">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Nossa Equipe</div>
+<h2 class="section-title">Especialistas em Automação</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Profissionais com experiência em grandes empresas de tecnologia, prontos para resolver seus desafios.</p>
+</div>
+<div class="equipe-grid">
+<div class="glass membro reveal">
+<div class="membro-avatar">RF</div>
+<h3>Rafael Ferreira</h3>
+<div class="cargo">CEO &amp; Co-Founder</div>
+<p>Ex-engenheiro de software do Google. 12 anos de experiência em arquitetura de sistemas e IA.</p>
+</div>
+<div class="glass membro reveal">
+<div class="membro-avatar">AM</div>
+<h3>Ana Monteiro</h3>
+<div class="cargo">CTO</div>
+<p>Mestra em Ciência da Computação pela USP. Especialista em RPA e integrações enterprise.</p>
+</div>
+<div class="glass membro reveal">
+<div class="membro-avatar">TS</div>
+<h3>Thiago Santos</h3>
+<div class="cargo">Head de IA</div>
+<p>PhD em Machine Learning. Liderou projetos de NLP para empresas Fortune 500.</p>
+</div>
+<div class="glass membro reveal">
+<div class="membro-avatar">CM</div>
+<h3>Carla Mendes</h3>
+<div class="cargo">Head de Sucesso do Cliente</div>
+<p>10 anos em consultoria de processos. Garante que cada cliente alcance o máximo resultado.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 7. Depoimentos -->
+<section id="depoimentos" style="background:var(--bg2)">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Depoimentos</div>
+<h2 class="section-title">O Que Nossos Clientes Dizem</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Resultados reais de empresas que transformaram suas operações com a AutoTech.</p>
+</div>
+<div class="depoimentos-grid">
+<div class="glass depoimento reveal">
+<div class="stars">★★★★★</div>
+<p>A AutoTech automatizou todo o nosso processo de onboarding de clientes. O que levava 3 dias agora leva 15 minutos. Reduzimos custos operacionais em 62% e a equipe pode focar no que realmente importa: vender.</p>
+<div class="depoimento-author">
+<div class="avatar">ML</div>
+<div><div class="name">Marcos Lima</div><div class="date">CEO — LogiTech Express</div></div>
+</div>
+</div>
+<div class="glass depoimento reveal">
+<div class="stars">★★★★★</div>
+<p>O chatbot com IA que implementaram no nosso e-commerce atende 89% das dúvidas sem intervenção humana. Nosso NPS subiu 34 pontos e o time de suporte foi realocado para tarefas estratégicas.</p>
+<div class="depoimento-author">
+<div class="avatar">PS</div>
+<div><div class="name">Patricia Souza</div><div class="date">Diretora de Operações — ModaViva</div></div>
+</div>
+</div>
+<div class="glass depoimento reveal">
+<div class="stars">★★★★★</div>
+<p>Os dashboards de BI transformaram nossa tomada de decisão. Antes, levávamos uma semana para consolidar relatórios. Agora temos dados em tempo real e previsões que nos permitem agir antes da concorrência.</p>
+<div class="depoimento-author">
+<div class="avatar">RO</div>
+<div><div class="name">Ricardo Oliveira</div><div class="date">CFO — Grupo Vértice</div></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 8. Localização -->
+<section id="localizacao">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Localização</div>
+<h2 class="section-title">Nosso Escritório</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Estamos no coração de São Paulo, na Avenida Paulista, com fácil acesso por metrô.</p>
+</div>
+<div class="loc-grid">
+<div class="map-placeholder reveal">
+<span style="position:relative;z-index:1;padding:2rem;text-align:center"><strong style="color:#fff;display:block;margin-bottom:.5rem">Mapa Interativo</strong>Av. Paulista, 1106 — 7º Andar — Bela Vista, São Paulo - SP</span>
+</div>
+<div class="loc-info reveal">
+<div class="loc-item">
+<div class="icon">📍</div>
+<div><h4>Endereço</h4><p>Av. Paulista, 1106 — 7º Andar — Bela Vista<br>São Paulo - SP, 01310-100</p></div>
+</div>
+<div class="loc-item">
+<div class="icon">📞</div>
+<div><h4>Telefone</h4><p>(11) 99999-9999</p></div>
+</div>
+<div class="loc-item">
+<div class="icon">📧</div>
+<div><h4>E-mail</h4><p>contato@autotechsolutions.com.br</p></div>
+</div>
+<div class="loc-item">
+<div class="icon">🚇</div>
+<div><h4>Como Chegar</h4><p>Estação Trianon-MASP do Metrô (Linha 2 - Verde).<br>Saída pela Av. Paulista, 2 minutos a pé.</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 9. Horários -->
+<section id="horarios" style="background:var(--bg2)">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Horários</div>
+<h2 class="section-title">Horário de Atendimento</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Atendimento presencial e remoto nos horários abaixo. Suporte técnico disponível 24/7.</p>
+</div>
+<div class="reveal">
+<table class="horarios-table glass" style="padding:1rem">
+<tr><td>Segunda-feira</td><td>09:00 — 18:00</td></tr>
+<tr><td>Terça-feira</td><td>09:00 — 18:00</td></tr>
+<tr><td>Quarta-feira</td><td>09:00 — 18:00</td></tr>
+<tr><td>Quinta-feira</td><td>09:00 — 18:00</td></tr>
+<tr><td>Sexta-feira</td><td>09:00 — 18:00</td></tr>
+<tr><td>Sábado</td><td>09:00 — 13:00</td></tr>
+<tr><td>Domingo</td><td>Fechado</td></tr>
+</table>
+<p style="text-align:center;color:var(--text-dim);font-size:.8rem;margin-top:1.5rem">* Suporte técnico e monitoramento de automações funcionam 24 horas por dia, 7 dias por semana.</p>
+</div>
+</div>
+</section>
+
+<!-- 10. Promoções -->
+<section id="promocoes">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Promoções</div>
+<h2 class="section-title">Pacotes Especiais</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Soluções completas com condições exclusivas para empresas que querem começar agora.</p>
+</div>
+<div class="promos-grid">
+<div class="glass promo reveal">
+<div class="promo-badge">Mais vendido</div>
+<h3>Starter Pack — Automação</h3>
+<p>Diagnóstico completo + 3 automações de processos + integração com CRM + 3 meses de suporte inclusos. Ideal para PMEs que querem resultados rápidos.</p>
+<div class="price"><span class="price-old">R$ 25.000</span>R$ 17.900</div>
+</div>
+<div class="glass promo reveal">
+<div class="promo-badge">Novidade</div>
+<h3>Chatbot IA Completo</h3>
+<p>Chatbot com inteligência artificial para WhatsApp + site + Instagram. Treinado com seus dados, integrado ao CRM e com painel de analytics em tempo real.</p>
+<div class="price"><span class="price-old">R$ 18.000</span>R$ 12.500</div>
+</div>
+<div class="glass promo reveal">
+<div class="promo-badge">Enterprise</div>
+<h3>Transformação Digital 360°</h3>
+<p>Pacote completo: RPA + BI + CRM + Chatbot + Integrações + N8N. Consultoria estratégica dedicada e 12 meses de suporte premium.</p>
+<div class="price"><span class="price-old">R$ 120.000</span>R$ 89.000</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 11. FAQ -->
+<section id="faq" style="background:var(--bg2)">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Perguntas Frequentes</div>
+<h2 class="section-title">Tire Suas Dúvidas</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Respondemos as dúvidas mais comuns sobre automação empresarial.</p>
+</div>
+<div class="faq-list reveal">
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Quanto tempo leva para implementar uma automação? <span class="arrow">▾</span></div>
+<div class="faq-a">Depende da complexidade do projeto. Automações simples com N8N podem ser entregues em 1-2 semanas. Projetos de RPA mais complexos levam de 4 a 8 semanas. Chatbots com IA customizados são entregues em 3-6 semanas. Fazemos um cronograma detalhado após o diagnóstico inicial gratuito.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Preciso ter conhecimento técnico para usar as soluções? <span class="arrow">▾</span></div>
+<div class="faq-a">Não. Todas as nossas soluções são desenhadas para serem operadas por pessoas sem conhecimento técnico. Entregamos painéis intuitivos, documentação completa e treinamento para sua equipe. Além disso, nosso suporte está sempre disponível para ajudar.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">As automações funcionam com os sistemas que já uso? <span class="arrow">▾</span></div>
+<div class="faq-a">Sim. Trabalhamos com mais de 500 integrações nativas e podemos criar conectores personalizados via API para qualquer sistema. Integramos com ERPs (SAP, TOTVS, Omie), CRMs (Salesforce, HubSpot, Pipedrive), e-commerces, marketplaces, bancos e muito mais.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Qual o investimento mínimo para começar? <span class="arrow">▾</span></div>
+<div class="faq-a">Nossos planos começam a partir de R$ 2.500/mês para automações com N8N. O diagnóstico inicial é gratuito e sem compromisso — analisamos seus processos e apresentamos uma proposta com ROI estimado antes de qualquer investimento.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Os dados da minha empresa ficam seguros? <span class="arrow">▾</span></div>
+<div class="faq-a">Absolutamente. Seguimos rigorosamente a LGPD e as melhores práticas de segurança da informação. Utilizamos criptografia de ponta a ponta, servidores com certificação ISO 27001 e realizamos auditorias de segurança trimestrais. Seus dados nunca são compartilhados com terceiros.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q" onclick="toggleFaq(this)">Vocês oferecem suporte após a implementação? <span class="arrow">▾</span></div>
+<div class="faq-a">Sim. Todos os nossos planos incluem suporte técnico. O plano básico inclui suporte em horário comercial; planos avançados incluem suporte 24/7 com SLA de até 15 minutos. Também fazemos monitoramento proativo das automações para prevenir problemas antes que aconteçam.</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 12. Blog -->
+<section id="blog">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Blog</div>
+<h2 class="section-title">Insights &amp; Tendências</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Conteúdo estratégico sobre automação, IA e transformação digital para o seu negócio.</p>
+</div>
+<div class="blog-grid">
+<div class="glass blog-card reveal">
+<div class="blog-img" style="background:linear-gradient(135deg,#1a1a2e,#7c3aed)">
+<div class="tag">IA</div>
+</div>
+<div class="blog-body">
+<div class="date">10 de Março, 2026</div>
+<h3>Como a IA Generativa Está Revolucionando o Atendimento ao Cliente</h3>
+<p>Descubra como empresas estão usando LLMs para reduzir em 70% o tempo de resposta e aumentar a satisfação do cliente.</p>
+<a href="#" class="read-more">Ler mais →</a>
+</div>
+</div>
+<div class="glass blog-card reveal">
+<div class="blog-img" style="background:linear-gradient(135deg,#0f3460,#a78bfa)">
+<div class="tag">RPA</div>
+</div>
+<div class="blog-body">
+<div class="date">25 de Fevereiro, 2026</div>
+<h3>5 Processos Que Toda Empresa Deveria Automatizar em 2026</h3>
+<p>Da emissão de notas fiscais ao follow-up de vendas: os processos com maior ROI em automação.</p>
+<a href="#" class="read-more">Ler mais →</a>
+</div>
+</div>
+<div class="glass blog-card reveal">
+<div class="blog-img" style="background:linear-gradient(135deg,#16213e,#7c3aed)">
+<div class="tag">N8N</div>
+</div>
+<div class="blog-body">
+<div class="date">12 de Fevereiro, 2026</div>
+<h3>N8N vs Zapier vs Make: Qual a Melhor Plataforma de Automação?</h3>
+<p>Comparamos custo, flexibilidade e escalabilidade das principais ferramentas de workflow automation do mercado.</p>
+<a href="#" class="read-more">Ler mais →</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 13. Contato -->
+<section id="contato" style="background:var(--bg2)">
+<div class="section-inner">
+<div style="text-align:center" class="reveal">
+<div class="section-label">Contato</div>
+<h2 class="section-title">Fale Com a Nossa Equipe</h2>
+<p class="section-subtitle" style="margin-left:auto;margin-right:auto">Solicite um diagnóstico gratuito ou tire suas dúvidas sobre nossas soluções.</p>
+</div>
+<div class="contato-grid">
+<form class="reveal" onsubmit="event.preventDefault();alert('Mensagem enviada com sucesso! Nossa equipe entrará em contato em até 2 horas.')">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+<div class="form-group">
+<label for="nome">Nome completo</label>
+<input type="text" id="nome" placeholder="Seu nome" required>
+</div>
+<div class="form-group">
+<label for="email">E-mail corporativo</label>
+<input type="email" id="email" placeholder="seu@empresa.com" required>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+<div class="form-group">
+<label for="telefone">Telefone / WhatsApp</label>
+<input type="tel" id="telefone" placeholder="(11) 99999-9999">
+</div>
+<div class="form-group">
+<label for="servico-select">Serviço de interesse</label>
+<select id="servico-select">
+<option value="">Selecione um serviço</option>
+<option>Automação de Processos (RPA)</option>
+<option>Chatbots com IA</option>
+<option>Integração de Sistemas</option>
+<option>CRM Automatizado</option>
+<option>Marketing Automation</option>
+<option>Business Intelligence</option>
+<option>Workflows N8N</option>
+<option>APIs Personalizadas</option>
+<option>Diagnóstico Gratuito</option>
+<option>Outro</option>
+</select>
+</div>
+</div>
+<div class="form-group">
+<label for="mensagem">Conte sobre seu desafio</label>
+<textarea id="mensagem" placeholder="Descreva os processos que gostaria de automatizar, os sistemas que utiliza e seus objetivos..." required></textarea>
+</div>
+<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Solicitar Diagnóstico Gratuito</button>
+</form>
+<div class="contato-info reveal">
+<div class="glass contato-info-card">
+<h4>📱 WhatsApp</h4>
+<p>Fale diretamente com um especialista em automação. Respondemos em até 15 minutos durante o horário comercial.</p>
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:1rem;font-size:.85rem;padding:.7rem 1.5rem">
+Chamar no WhatsApp
+</a>
+</div>
+<div class="glass contato-info-card">
+<h4>📞 Telefone</h4>
+<p><a href="tel:+5511999999999">(11) 99999-9999</a></p>
+</div>
+<div class="glass contato-info-card">
+<h4>📧 E-mail</h4>
+<p><a href="mailto:contato@autotechsolutions.com.br">contato@autotechsolutions.com.br</a></p>
+</div>
+<div class="glass contato-info-card">
+<h4>💼 LinkedIn</h4>
+<p><a href="https://linkedin.com/company/autotechsolutions" target="_blank" rel="noopener">AutoTech Solutions</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 14. Footer -->
+<footer class="footer">
+<div class="footer-grid">
+<div class="footer-col">
+<a href="#" class="logo" style="font-size:1.3rem;display:inline-block;margin-bottom:1rem">Auto<span>Tech</span></a>
+<p>Desde 2018 transformando empresas com automação inteligente, inteligência artificial e integração de sistemas. Seu negócio no piloto automático.</p>
+<div class="footer-social">
+<a href="https://linkedin.com/company/autotechsolutions" target="_blank" rel="noopener" aria-label="LinkedIn">💼</a>
+<a href="https://instagram.com/autotechsolutions" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+<a href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<a href="https://github.com/autotechsolutions" target="_blank" rel="noopener" aria-label="GitHub">🖥️</a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Serviços</h4>
+<ul>
+<li><a href="#servicos">Automação de Processos</a></li>
+<li><a href="#servicos">Chatbots com IA</a></li>
+<li><a href="#servicos">Integração de Sistemas</a></li>
+<li><a href="#servicos">CRM Automatizado</a></li>
+<li><a href="#servicos">Marketing Automation</a></li>
+<li><a href="#servicos">Business Intelligence</a></li>
+<li><a href="#servicos">Workflows N8N</a></li>
+<li><a href="#servicos">APIs Personalizadas</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Institucional</h4>
+<ul>
+<li><a href="#sobre">Sobre Nós</a></li>
+<li><a href="#equipe">Nossa Equipe</a></li>
+<li><a href="#galeria">Escritório</a></li>
+<li><a href="#blog">Blog</a></li>
+<li><a href="#faq">Perguntas Frequentes</a></li>
+<li><a href="#">Política de Privacidade</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Contato</h4>
+<ul>
+<li><a href="tel:+5511999999999">(11) 99999-9999</a></li>
+<li><a href="mailto:contato@autotechsolutions.com.br">contato@autotechsolutions.com.br</a></li>
+<li><a href="#localizacao">Av. Paulista, 1106 — 7º Andar</a></li>
+<li><a href="#localizacao">Bela Vista, São Paulo - SP</a></li>
+<li><a href="#horarios">Seg a Sex: 09h — 18h</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span>&copy; 2026 AutoTech Solutions. Todos os direitos reservados.</span>
+<span>Feito com ⚡ em São Paulo</span>
+</div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Fale conosco pelo WhatsApp">
+<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741 .981.998-3.648-.235-.374A9.86 9.86 0 012.07 12.07C2.07 6.54 6.54 2.07 12.07 2.07c2.67 0 5.18 1.04 7.07 2.929a9.93 9.93 0 012.928 7.072c-.003 5.53-4.503 10.03-10.018 10.03zm8.532-18.546A11.93 11.93 0 0012.05 0C5.495 0 .16 5.335.157 11.892a11.86 11.86 0 001.588 5.945L0 24l6.305-1.654a11.88 11.88 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.82 11.82 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- GSAP -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+
+<script>
+/* ======= Custom Cursor ======= */
+const cursor = document.getElementById('cursor');
+const isMobile = window.innerWidth <= 768;
+
+if (!isMobile) {
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .faq-q, .hamburger, .galeria-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  });
+}
+
+/* ======= Mobile Menu ======= */
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('active');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+
+/* ======= Nav Scroll ======= */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ======= FAQ Toggle ======= */
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('active'));
+  if (!isOpen) {
+    answer.classList.add('open');
+    el.classList.add('active');
+  }
+}
+
+/* ======= GSAP Scroll Animations ======= */
+gsap.registerPlugin(ScrollTrigger);
+
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 50 },
+    {
+      opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+    }
+  );
+});
+
+/* Hero entrance animation */
+gsap.from('.hero-badge', { opacity: 0, y: 30, duration: 1, delay: 0.3, ease: 'power3.out' });
+gsap.from('.hero h1', { opacity: 0, y: 50, duration: 1.2, delay: 0.5, ease: 'power3.out' });
+gsap.from('.hero p', { opacity: 0, y: 30, duration: 1, delay: 0.8, ease: 'power3.out' });
+gsap.from('.hero .btn', { opacity: 0, y: 20, duration: 0.8, delay: 1.1, ease: 'power3.out', stagger: 0.15 });
+
+/* ======= Particle System (Hero Canvas) ======= */
+(function() {
+  if (isMobile) return;
+
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mouse = { x: null, y: null };
+
+  function resize() {
+    w = canvas.width = canvas.parentElement.offsetWidth;
+    h = canvas.height = canvas.parentElement.offsetHeight;
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.cx = w / 2 + (Math.random() - 0.5) * w * 0.4;
+      this.cy = h / 2 + (Math.random() - 0.5) * h * 0.4;
+      this.radius = 40 + Math.random() * 160;
+      this.angle = Math.random() * Math.PI * 2;
+      this.speed = 0.002 + Math.random() * 0.006;
+      this.size = 1 + Math.random() * 2.5;
+      this.opacity = 0.15 + Math.random() * 0.5;
+      this.hue = Math.random() > 0.5 ? 263 : 270;
+    }
+    update() {
+      this.angle += this.speed;
+      this.x = this.cx + Math.cos(this.angle) * this.radius;
+      this.y = this.cy + Math.sin(this.angle) * this.radius;
+
+      if (mouse.x !== null) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          this.x -= dx * 0.03;
+          this.y -= dy * 0.03;
+        }
+      }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${this.hue}, 80%, 55%, ${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  const count = 100;
+  for (let i = 0; i < count; i++) particles.push(new Particle());
+
+  function connectParticles() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(124, 58, 237, ${0.06 * (1 - dist / 100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+    connectParticles();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+</script>
+</body>
+</html>
