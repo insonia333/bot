@@ -1,213 +1,200 @@
-// ============================================
-// MOOM AGENCY — GSAP ScrollTrigger Animations
-// ============================================
+/**
+ * Moom Agency — GSAP Animations
+ * ScrollTrigger + Custom Cursor + Loading Screen
+ */
 
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
 
-  // === Fade In Up — All Sections ===
+  // Loading Screen
+  const loader = document.getElementById('loader');
+  if (loader) {
+    const tl = gsap.timeline();
+    tl.to('.loader-progress', { width: '100%', duration: 1.5, ease: 'power2.inOut' })
+      .to(loader, { opacity: 0, duration: 0.5, onComplete: () => {
+        loader.style.display = 'none';
+        document.body.classList.add('loaded');
+        initAnimations();
+      }});
+  } else {
+    initAnimations();
+  }
+});
+
+function initAnimations() {
+  // Navbar hide/show on scroll
+  const nav = document.querySelector('.navbar');
+  if (nav) {
+    let lastScroll = 0;
+    ScrollTrigger.create({
+      onUpdate: (self) => {
+        const scroll = self.scroll();
+        nav.classList.toggle('navbar--hidden', scroll > lastScroll && scroll > 100);
+        nav.classList.toggle('navbar--solid', scroll > 50);
+        lastScroll = scroll;
+      }
+    });
+  }
+
+  // Fade-in sections
   gsap.utils.toArray('.section').forEach(section => {
-    const elements = section.querySelectorAll('.section-label, .section-title, .section-desc');
-    gsap.from(elements, {
+    gsap.from(section, {
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
       y: 60,
       opacity: 0,
       duration: 1,
-      stagger: 0.15,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      }
+      ease: 'power3.out'
     });
   });
 
-  // === Hero Parallax ===
-  gsap.to('.hero-content', {
-    y: 100,
-    opacity: 0.3,
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.hero',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true
-    }
+  // Stagger cards
+  gsap.utils.toArray('.cards-grid').forEach(grid => {
+    gsap.from(grid.children, {
+      scrollTrigger: {
+        trigger: grid,
+        start: 'top 80%'
+      },
+      y: 40,
+      opacity: 0,
+      stagger: 0.15,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
   });
 
-  // === Service Cards Stagger ===
-  gsap.from('.service-card', {
-    y: 80,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.services-grid',
-      start: 'top 80%'
-    }
-  });
-
-  // === Portfolio Items ===
-  gsap.from('.portfolio-item', {
-    scale: 0.9,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.portfolio-grid',
-      start: 'top 80%'
-    }
-  });
-
-  // === Process Steps ===
-  gsap.from('.process-step', {
-    x: -50,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.process-timeline',
-      start: 'top 80%'
-    }
-  });
-
-  // === Tech Items ===
-  gsap.from('.tech-item', {
-    scale: 0,
-    opacity: 0,
-    duration: 0.5,
-    stagger: 0.05,
-    ease: 'back.out(1.7)',
-    scrollTrigger: {
-      trigger: '.tech-grid',
-      start: 'top 85%'
-    }
-  });
-
-  // === Case Numbers Counter ===
-  gsap.utils.toArray('.case-number').forEach(el => {
-    const target = parseInt(el.getAttribute('data-target')) || 0;
-    const suffix = el.getAttribute('data-suffix') || '';
-
+  // Counter animation
+  gsap.utils.toArray('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
     ScrollTrigger.create({
       trigger: el,
       start: 'top 85%',
       onEnter: () => {
-        gsap.to({ val: 0 }, {
-          val: target,
+        gsap.to(el, {
+          innerText: target,
           duration: 2,
-          ease: 'power2.out',
-          onUpdate: function () {
-            el.textContent = Math.round(this.targets()[0].val) + suffix;
-          }
+          snap: { innerText: 1 },
+          ease: 'power2.out'
         });
       },
       once: true
     });
   });
 
-  // === Testimonial Cards ===
-  gsap.from('.testimonial-card', {
-    y: 60,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.testimonials-carousel',
-      start: 'top 80%'
-    }
+  // Parallax hero
+  const hero = document.querySelector('.hero');
+  if (hero) {
+    gsap.to('.hero-content', {
+      scrollTrigger: {
+        trigger: hero,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+      },
+      y: -100,
+      opacity: 0
+    });
+  }
+
+  // Timeline process steps
+  gsap.utils.toArray('.process-step').forEach((step, i) => {
+    gsap.from(step, {
+      scrollTrigger: {
+        trigger: step,
+        start: 'top 85%'
+      },
+      x: i % 2 === 0 ? -60 : 60,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
   });
 
-  // === Pricing Cards ===
-  gsap.from('.pricing-card', {
-    y: 80,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.pricing-grid',
-      start: 'top 80%'
-    }
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('faq-item--open');
+      document.querySelectorAll('.faq-item--open').forEach(el => el.classList.remove('faq-item--open'));
+      if (!isOpen) item.classList.add('faq-item--open');
+    });
   });
 
-  // === FAQ Items ===
-  gsap.from('.faq-item', {
-    x: -30,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.faq-list',
-      start: 'top 80%'
-    }
+  // Testimonial carousel
+  initCarousel();
+
+  // Custom cursor
+  initCustomCursor();
+
+  // Mobile menu
+  initMobileMenu();
+}
+
+function initCarousel() {
+  const track = document.querySelector('.testimonial-track');
+  if (!track) return;
+  const slides = track.querySelectorAll('.testimonial-card');
+  const dots = document.querySelectorAll('.carousel-dot');
+  let current = 0;
+
+  function goTo(index) {
+    current = index;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+  setInterval(() => {
+    goTo((current + 1) % slides.length);
+  }, 5000);
+}
+
+function initCustomCursor() {
+  if (window.innerWidth < 768 || 'ontouchstart' in window) return;
+
+  const cursor = document.createElement('div');
+  cursor.className = 'custom-cursor';
+  document.body.appendChild(cursor);
+
+  const follower = document.createElement('div');
+  follower.className = 'custom-cursor-follower';
+  document.body.appendChild(follower);
+
+  document.addEventListener('mousemove', (e) => {
+    gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+    gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.3 });
   });
 
-  // === Blog Cards ===
-  gsap.from('.blog-card', {
-    y: 60,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.15,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.blog-grid',
-      start: 'top 80%'
-    }
+  document.querySelectorAll('a, button, .card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('cursor--active');
+      follower.classList.add('cursor--active');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('cursor--active');
+      follower.classList.remove('cursor--active');
+    });
+  });
+}
+
+function initMobileMenu() {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('.nav-menu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('nav-menu--open');
+    toggle.classList.toggle('menu-toggle--open');
   });
 
-  // === CTA Section ===
-  gsap.from('.cta-section', {
-    scale: 0.95,
-    opacity: 0,
-    duration: 1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.cta-section',
-      start: 'top 85%'
-    }
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('nav-menu--open');
+      toggle.classList.remove('menu-toggle--open');
+    });
   });
-
-  // === Contact Form ===
-  gsap.from('.contact-form .form-group', {
-    x: -40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.contact-grid',
-      start: 'top 80%'
-    }
-  });
-
-  gsap.from('.contact-info-item', {
-    x: 40,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.contact-grid',
-      start: 'top 80%'
-    }
-  });
-
-  // === Footer ===
-  gsap.from('.footer-grid > *', {
-    y: 30,
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out',
-    scrollTrigger: {
-      trigger: '.footer',
-      start: 'top 90%'
-    }
-  });
-});
+}
