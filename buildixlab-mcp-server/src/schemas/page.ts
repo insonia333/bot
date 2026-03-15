@@ -3,7 +3,7 @@ import { CHARACTER_LIMIT, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE } from '../constants'
 
 export const CreatePageSchema = z.object({
   title: z.string().min(1).describe('Título da página'),
-  content: z.string().max(CHARACTER_LIMIT).describe('Conteúdo da página (máximo 100.000 caracteres)'),
+  content: z.string().max(CHARACTER_LIMIT).refine(val => !/<script/i.test(val), { message: 'Conteúdo não pode conter tags <script>. Remova scripts maliciosos.' }).describe('Conteúdo da página (máximo 100.000 caracteres)'),
   language: z.string().default('pt-BR').describe('Idioma da página'),
   template_id: z.string().optional().describe('ID do template a ser utilizado'),
 }).strict();
@@ -11,7 +11,7 @@ export const CreatePageSchema = z.object({
 export const UpdatePageSchema = z.object({
   id: z.string().min(1).describe('ID da página'),
   title: z.string().min(1).optional().describe('Novo título da página'),
-  content: z.string().max(CHARACTER_LIMIT).optional().describe('Novo conteúdo da página'),
+  content: z.string().max(CHARACTER_LIMIT).refine(val => !/<script/i.test(val), { message: 'Conteúdo não pode conter tags <script>. Remova scripts maliciosos.' }).optional().describe('Novo conteúdo da página'),
   language: z.string().optional().describe('Novo idioma da página'),
 }).strict();
 

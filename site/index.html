@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="canonical" href="https://moomagencia.com/">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
@@ -35,8 +36,81 @@
     ]
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quanto tempo leva para desenvolver um site?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nossos projetos de landing page levam de 7 a 14 dias. Sites mais complexos, com múltiplas páginas e funcionalidades, podem levar de 30 a 60 dias, dependendo do escopo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês fazem manutenção após a entrega?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! Todos os nossos planos incluem manutenção e suporte. Também oferecemos planos de manutenção avulsos para projetos pontuais."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como funciona o chatbot no WhatsApp?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Utilizamos a Evolution API integrada com inteligência artificial para criar chatbots que atendem seus clientes 24/7, agendam consultas, enviam lembretes e qualificam leads automaticamente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso cancelar a qualquer momento?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Nossos contratos são mensais sem fidelidade. Você pode cancelar quando quiser, sem multa ou burocracia."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês trabalham com qual região?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Atendemos clientes de todo o Brasil. Todo o processo é feito online, com reuniões por videochamada e comunicação por WhatsApp."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O que são automações e como podem ajudar meu negócio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Automações são fluxos inteligentes que executam tarefas repetitivas sem intervenção humana: agendamento, envio de mensagens, gestão de leads, cobrança e muito mais. Isso economiza tempo e reduz erros."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vocês oferecem hospedagem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim! Oferecemos hospedagem em servidores VPS de alta performance com SSL, backup diário e monitoramento 24/7 inclusos em todos os planos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Como posso acompanhar o andamento do projeto?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Utilizamos ferramentas de gestão de projetos com dashboards em tempo real. Você acompanha cada etapa, aprova designs e recebe atualizações semanais."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a href="#main-content" class="skip-link" style="position:absolute;top:-40px;left:0;background:#6c5ce7;color:#fff;padding:8px;z-index:10000;transition:top 0.3s">&rarr; Pular para o conte&uacute;do</a>
 
   <!-- Loading Screen -->
   <div class="loading-screen">
@@ -63,7 +137,7 @@
       <a href="#planos">Planos</a>
       <a href="#contato" class="nav-cta">Fale Conosco</a>
     </div>
-    <button class="hamburger" aria-label="Menu">
+    <button class="hamburger" aria-label="Menu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -71,7 +145,7 @@
   </nav>
 
   <!-- Hero -->
-  <section class="hero" id="hero">
+  <section class="hero" id="main-content">
     <div class="hero-canvas"></div>
     <div class="hero-content">
       <h1>Transformamos Ideias em <span>Experiências Digitais</span></h1>
@@ -540,8 +614,11 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="js/three-particles.js"></script>
   <script src="js/animations.js"></script>
+  <script src="js/scroll-3d.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

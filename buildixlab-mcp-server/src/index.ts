@@ -10,6 +10,24 @@ import { registerTemplateTools } from './tools/template-tools';
 import { registerProjectTools } from './tools/project-tools';
 
 async function main(): Promise<void> {
+  console.error('[BuildixLab MCP] Servidor iniciado. Versão 1.0.0');
+  // Validate environment variables
+  const authToken = process.env.BUILDIXLAB_AUTH_TOKEN;
+  const authEmail = process.env.BUILDIXLAB_EMAIL;
+  if (!authToken && !authEmail) {
+    console.error('⚠️  Nenhuma credencial configurada. Use buildixlab_login ou defina BUILDIXLAB_AUTH_TOKEN.');
+  }
+
+  const apiBaseUrl = process.env.BUILDIXLAB_API_BASE_URL;
+  if (apiBaseUrl) {
+    console.error(`API Base URL: ${apiBaseUrl}`);
+  }
+
+  const transportEnv = process.env.TRANSPORT;
+  if (transportEnv && transportEnv !== 'http' && transportEnv !== 'stdio') {
+    console.error(`⚠️  Valor desconhecido para TRANSPORT: "${transportEnv}". Valores aceitos: "http", "stdio".`);
+  }
+
   const server = new McpServer({
     name: 'buildixlab-mcp-server',
     version: '1.0.0',

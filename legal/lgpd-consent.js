@@ -28,7 +28,11 @@
       timestamp: new Date().toISOString(),
       updated: new Date().toISOString()
     };
-    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+    try {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+    } catch (e) {
+      console.warn('[LGPD] Não foi possível salvar consentimento no localStorage:', e.message);
+    }
     window.dispatchEvent(new CustomEvent('lgpd-consent-updated', { detail: consent }));
     applyConsent(consent);
   }

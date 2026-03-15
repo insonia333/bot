@@ -1,141 +1,135 @@
 /**
- * Moom Agency — Three.js Orbital Particles
- * Partículas orbitais interativas no hero
+ * Moom Agency — Orbital Particles (Canvas 2D)
+ * Partículas orbitais interativas no hero — sem dependência de Three.js
  */
 
 class OrbitalParticles {
   constructor(container) {
-    this.container = container;
-    this.mouse = { x: 0, y: 0 };
-    this.particles = null;
-    this.clock = new THREE.Clock();
-
     if (window.innerWidth < 768) return;
 
-    this.init();
+    this.canvas = container.querySelector('canvas') || document.createElement('canvas');
+    if (!this.canvas.parentElement) container.appendChild(this.canvas);
+
+    this.ctx = this.canvas.getContext('2d');
+    this.mouse = { x: null, y: null };
+    this.particles = [];
+    this.time = 0;
+
+    this.resize();
     this.createParticles();
     this.addEvents();
     this.animate();
   }
 
-  init() {
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    this.camera.position.z = 50;
-
-    this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.setClearColor(0x000000, 0);
-    this.container.appendChild(this.renderer.domElement);
-
-    this.renderer.domElement.style.position = 'absolute';
-    this.renderer.domElement.style.top = '0';
-    this.renderer.domElement.style.left = '0';
-    this.renderer.domElement.style.pointerEvents = 'none';
+  resize() {
+    this.w = window.innerWidth;
+    this.h = window.innerHeight;
+    this.canvas.width = this.w;
+    this.canvas.height = this.h;
+    this.canvas.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;';
+    this.cx = this.w / 2;
+    this.cy = this.h / 2;
   }
 
   createParticles() {
-    const count = 800;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
-    const sizes = new Float32Array(count);
-    const speeds = new Float32Array(count);
-    const orbits = new Float32Array(count);
-
-    const accentPurple = new THREE.Color(0x6c5ce7);
-    const accentTeal = new THREE.Color(0x00cec9);
-    const white = new THREE.Color(0xffffff);
+    const count = 300;
+    const colors = [
+      { r: 108, g: 92, b: 231 },   // accent purple #6c5ce7
+      { r: 0, g: 206, b: 201 },     // accent teal #00cec9
+      { r: 255, g: 255, b: 255 }    // white
+    ];
 
     for (let i = 0; i < count; i++) {
-      const i3 = i * 3;
-      const radius = 5 + Math.random() * 40;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.random() * Math.PI;
+      const radius = 50 + Math.random() * 300;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 0.0003 + Math.random() * 0.001;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const size = 0.5 + Math.random() * 2;
+      const opacity = 0.3 + Math.random() * 0.5;
+      const yOffset = (Math.random() - 0.5) * this.h * 0.6;
 
-      positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
-      positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      positions[i3 + 2] = radius * Math.cos(phi);
-
-      const colorChoice = Math.random();
-      const color = colorChoice < 0.4 ? accentPurple : colorChoice < 0.7 ? accentTeal : white;
-      colors[i3] = color.r;
-      colors[i3 + 1] = color.g;
-      colors[i3 + 2] = color.b;
-
-      sizes[i] = 0.5 + Math.random() * 2;
-      speeds[i] = 0.2 + Math.random() * 0.8;
-      orbits[i] = radius;
+      this.particles.push({
+        radius, angle, speed, color, size, opacity, yOffset,
+        x: 0, y: 0,
+        orbitTilt: (Math.random() - 0.5) * 0.5
+      });
     }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
-    this.speeds = speeds;
-    this.orbits = orbits;
-    this.originalPositions = new Float32Array(positions);
-
-    const material = new THREE.PointsMaterial({
-      size: 1.5,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending,
-      sizeAttenuation: true
-    });
-
-    this.particles = new THREE.Points(geometry, material);
-    this.scene.add(this.particles);
   }
 
   addEvents() {
     window.addEventListener('mousemove', (e) => {
-      this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-      this.mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
     });
 
     window.addEventListener('resize', () => {
       if (window.innerWidth < 768) {
-        this.renderer.domElement.style.display = 'none';
+        this.canvas.style.display = 'none';
         return;
       }
-      this.renderer.domElement.style.display = 'block';
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.canvas.style.display = 'block';
+      this.resize();
     });
   }
 
   animate() {
     requestAnimationFrame(() => this.animate());
-
     if (window.innerWidth < 768) return;
 
-    const time = this.clock.getElapsedTime();
-    const positions = this.particles.geometry.attributes.position.array;
+    this.time++;
+    const ctx = this.ctx;
+    ctx.clearRect(0, 0, this.w, this.h);
 
-    for (let i = 0; i < positions.length / 3; i++) {
-      const i3 = i * 3;
-      const speed = this.speeds[i];
-      const orbit = this.orbits[i];
-      const offset = i * 0.1;
-
-      positions[i3] = this.originalPositions[i3] * Math.cos(time * speed * 0.3 + offset)
-                     - this.originalPositions[i3 + 2] * Math.sin(time * speed * 0.3 + offset);
-      positions[i3 + 2] = this.originalPositions[i3] * Math.sin(time * speed * 0.3 + offset)
-                         + this.originalPositions[i3 + 2] * Math.cos(time * speed * 0.3 + offset);
-      positions[i3 + 1] = this.originalPositions[i3 + 1] + Math.sin(time * speed * 0.5 + offset) * 2;
+    // Draw connections first (behind particles)
+    for (let i = 0; i < this.particles.length; i++) {
+      for (let j = i + 1; j < this.particles.length; j++) {
+        const dx = this.particles[i].x - this.particles[j].x;
+        const dy = this.particles[i].y - this.particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 80) {
+          ctx.beginPath();
+          ctx.moveTo(this.particles[i].x, this.particles[i].y);
+          ctx.lineTo(this.particles[j].x, this.particles[j].y);
+          ctx.strokeStyle = `rgba(108, 92, 231, ${0.08 * (1 - dist / 80)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
     }
 
-    this.particles.geometry.attributes.position.needsUpdate = true;
+    // Draw particles
+    for (const p of this.particles) {
+      p.angle += p.speed;
+      p.x = this.cx + Math.cos(p.angle) * p.radius;
+      p.y = this.cy + Math.sin(p.angle + p.orbitTilt) * (p.radius * 0.4) + p.yOffset;
 
-    this.particles.rotation.y += 0.001;
-    this.particles.rotation.x = this.mouse.y * 0.3;
-    this.particles.rotation.y += this.mouse.x * 0.001;
+      // Mouse repulsion
+      if (this.mouse.x !== null) {
+        const dx = this.mouse.x - p.x;
+        const dy = this.mouse.y - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          p.x -= dx * 0.03;
+          p.y -= dy * 0.03;
+        }
+      }
 
-    this.renderer.render(this.scene, this.camera);
+      // Glow effect
+      const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 4);
+      gradient.addColorStop(0, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity})`);
+      gradient.addColorStop(1, `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, 0)`);
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * 4, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.opacity + 0.2})`;
+      ctx.fill();
+    }
   }
 }
 

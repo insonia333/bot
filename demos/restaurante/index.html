@@ -305,6 +305,25 @@ footer{background:var(--bg2);border-top:1px solid var(--glass-border);padding:4r
   .galeria-item:nth-child(5){grid-column:span 1}
   .sobre-stats{flex-direction:column;gap:1.5rem}
 }
+.navbar.pill {
+  top: 12px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: auto;
+  min-width: 500px;
+  max-width: 90vw;
+  border-radius: 100px;
+  padding: 0.6rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+@media (max-width: 768px) {
+  .navbar.pill { min-width: unset; width: calc(100% - 24px); left: 12px; right: 12px; transform: none; }
+}
+.perspective-container { perspective: 1200px; }
+.card-3d { transform-style: preserve-3d; will-change: transform; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
 </style>
 </head>
 <body>
@@ -324,6 +343,7 @@ footer{background:var(--bg2);border-top:1px solid var(--glass-border);padding:4r
   <div class="nav-inner">
     <a href="#" class="nav-logo">Sabor <span>&</span> Arte</a>
     <ul class="nav-links" id="nav-links">
+      <li><a href="/site/index.html#portfolio">&larr; Portfolio</a></li>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#cardapio">Cardápio</a></li>
       <li><a href="#galeria">Galeria</a></li>
@@ -820,6 +840,8 @@ footer{background:var(--bg2);border-top:1px solid var(--glass-border);padding:4r
 <!-- WhatsApp Float -->
 <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva" target="_blank" class="whatsapp-float" aria-label="WhatsApp">&#9742;</a>
 
+<!-- Lenis Smooth Scroll -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
 <!-- GSAP -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/ScrollTrigger.min.js"></script>
@@ -1068,6 +1090,104 @@ document.querySelectorAll('.menu-items').forEach(items => {
     scrollTrigger: { trigger: items, start: 'top 85%' }
   });
 });
+</script>
+
+<script>
+// 3D Scroll-Driven Animations
+(function() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Lenis smooth scroll
+  if (typeof Lenis !== 'undefined') {
+    const lenis = new Lenis({ duration: 1.2, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  // Navbar pill morphing
+  const nav = document.querySelector('.navbar, nav');
+  if (nav) {
+    ScrollTrigger.create({
+      start: 'top -100',
+      onUpdate: (self) => {
+        nav.classList.toggle('pill', self.scroll() > 100);
+      }
+    });
+  }
+
+  // Hero parallax
+  const hero = document.querySelector('.hero, [class*="hero"]');
+  if (hero) {
+    const heroContent = hero.querySelector('h1, .hero-content');
+    if (heroContent) {
+      gsap.to(heroContent.parentElement || heroContent, {
+        scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 1 },
+        scale: 0.85, opacity: 0, filter: 'blur(8px)', y: -60, ease: 'none'
+      });
+    }
+  }
+
+  // 3D card entries
+  document.querySelectorAll('.cards-grid, .services-grid, [class*="grid"]').forEach(function(grid) {
+    if (!grid.children.length) return;
+    gsap.set(grid, { perspective: 1200 });
+    gsap.from(grid.children, {
+      scrollTrigger: { trigger: grid, start: 'top 85%', toggleActions: 'play none none none' },
+      rotateY: 35, rotateX: 8, opacity: 0, z: -150, scale: 0.9,
+      stagger: 0.1, duration: 0.9, ease: 'power3.out', clearProps: 'all'
+    });
+  });
+
+  // 3D hover on cards
+  document.querySelectorAll('.card, .service-card, [class*="-card"]').forEach(function(card) {
+    card.style.transformStyle = 'preserve-3d';
+    card.style.transition = 'transform 0.4s ease';
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = 'perspective(800px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg) translateZ(10px)';
+    });
+    card.addEventListener('mouseleave', function() {
+      card.style.transform = '';
+    });
+  });
+
+  // Text reveal animations
+  document.querySelectorAll('h2, h3, .section-title').forEach(function(el) {
+    if (el.closest('.hero, [class*="hero"]')) return;
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 92%', toggleActions: 'play none none none' },
+      y: 40, opacity: 0, duration: 0.8, ease: 'power3.out'
+    });
+  });
+
+  // Scroll-driven counters
+  document.querySelectorAll('[data-target]').forEach(function(el) {
+    var target = parseInt(el.dataset.target);
+    if (isNaN(target)) return;
+    gsap.fromTo(el, { innerText: 0 }, {
+      innerText: target, snap: { innerText: 1 }, ease: 'none',
+      scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 40%', scrub: 1 }
+    });
+  });
+
+  // Stagger children in sections
+  document.querySelectorAll('.section, section').forEach(function(section) {
+    var children = section.querySelectorAll('.card, .service-card, .team-member, .faq-item, [class*="-card"]');
+    if (children.length < 2) return;
+    gsap.from(children, {
+      scrollTrigger: { trigger: section, start: 'top 80%', toggleActions: 'play none none none' },
+      y: 50, opacity: 0, scale: 0.95, stagger: 0.1, duration: 0.7, ease: 'power2.out', clearProps: 'all'
+    });
+  });
+
+  window.addEventListener('load', function() { ScrollTrigger.refresh(); });
+})();
 </script>
 </body>
 </html>

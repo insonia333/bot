@@ -10,7 +10,12 @@
       "parameters": {
         "path": "novo-lead",
         "httpMethod": "POST",
-        "responseMode": "onReceived"
+        "responseMode": "onReceived",
+        "authentication": "headerAuth",
+        "headerAuth": {
+          "name": "X-Webhook-Secret",
+          "value": "={{$env.WEBHOOK_SECRET}}"
+        }
       }
     },
     {
@@ -43,7 +48,8 @@
             { "name": "stage", "value": "={{$json.stage}}" },
             { "name": "score", "value": "={{$json.score}}" }
           ]
-        }
+        },
+        "onError": "continueErrorOutput"
       }
     },
     {
@@ -71,7 +77,8 @@
             { "name": "number", "value": "={{$json.remoteJid}}" },
             { "name": "text", "value": "={{$json.message}}" }
           ]
-        }
+        },
+        "onError": "continueErrorOutput"
       }
     },
     {
@@ -99,7 +106,38 @@
             { "name": "number", "value": "={{$json.remoteJid}}" },
             { "name": "text", "value": "={{$json.message}}" }
           ]
-        }
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "log-error-save-to-crm",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [700, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-send-team-notification",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 450],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-send-auto-reply",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 650],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
       }
     }
   ],
@@ -111,16 +149,31 @@
       "main": [[{ "node": "save-to-crm", "type": "main", "index": 0 }]]
     },
     "save-to-crm": {
-      "main": [[
-        { "node": "notify-team", "type": "main", "index": 0 },
-        { "node": "auto-reply-lead", "type": "main", "index": 0 }
-      ]]
+      "main": [
+        [
+          { "node": "notify-team", "type": "main", "index": 0 },
+          { "node": "auto-reply-lead", "type": "main", "index": 0 }
+        ],
+        [{ "node": "log-error-save-to-crm", "type": "main", "index": 0 }]
+      ]
     },
     "notify-team": {
       "main": [[{ "node": "send-team-notification", "type": "main", "index": 0 }]]
     },
     "auto-reply-lead": {
       "main": [[{ "node": "send-auto-reply", "type": "main", "index": 0 }]]
+    },
+    "send-team-notification": {
+      "main": [
+        [],
+        [{ "node": "log-error-send-team-notification", "type": "main", "index": 0 }]
+      ]
+    },
+    "send-auto-reply": {
+      "main": [
+        [],
+        [{ "node": "log-error-send-auto-reply", "type": "main", "index": 0 }]
+      ]
     }
   },
   "active": false,

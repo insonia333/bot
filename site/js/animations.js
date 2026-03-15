@@ -67,8 +67,8 @@ function initAnimations() {
   });
 
   // Counter animation
-  gsap.utils.toArray('[data-count]').forEach(el => {
-    const target = parseInt(el.dataset.count);
+  gsap.utils.toArray('[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
     ScrollTrigger.create({
       trigger: el,
       start: 'top 85%',
@@ -182,19 +182,6 @@ function initCustomCursor() {
 }
 
 function initMobileMenu() {
-  const toggle = document.querySelector('.menu-toggle');
-  const menu = document.querySelector('.nav-menu');
-  if (!toggle || !menu) return;
-
-  toggle.addEventListener('click', () => {
-    menu.classList.toggle('nav-menu--open');
-    toggle.classList.toggle('menu-toggle--open');
-  });
-
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menu.classList.remove('nav-menu--open');
-      toggle.classList.remove('menu-toggle--open');
-    });
-  });
+  // Mobile menu is handled by main.js (.hamburger)
+  // This function is kept as a no-op to avoid breaking the init chain
 }

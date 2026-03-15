@@ -12,7 +12,12 @@
         "path": "whatsapp-webhook",
         "httpMethod": "POST",
         "responseMode": "onReceived",
-        "responseCode": 200
+        "responseCode": 200,
+        "authentication": "headerAuth",
+        "headerAuth": {
+          "name": "X-Webhook-Secret",
+          "value": "={{$env.WEBHOOK_SECRET}}"
+        }
       }
     },
     {
@@ -166,7 +171,18 @@
         },
         "options": {
           "timeout": 10000
-        }
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "log-error-send-whatsapp",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1600, 450],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
       }
     }
   ],
@@ -210,6 +226,12 @@
     },
     "menu-principal": {
       "main": [[{ "node": "send-whatsapp", "type": "main", "index": 0 }]]
+    },
+    "send-whatsapp": {
+      "main": [
+        [],
+        [{ "node": "log-error-send-whatsapp", "type": "main", "index": 0 }]
+      ]
     }
   },
   "active": false,

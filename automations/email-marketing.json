@@ -10,7 +10,12 @@
       "parameters": {
         "path": "novo-inscrito",
         "httpMethod": "POST",
-        "responseMode": "onReceived"
+        "responseMode": "onReceived",
+        "authentication": "headerAuth",
+        "headerAuth": {
+          "name": "X-Webhook-Secret",
+          "value": "={{$env.WEBHOOK_SECRET}}"
+        }
       }
     },
     {
@@ -33,7 +38,7 @@
         "fromEmail": "contato@moomagencia.com",
         "toEmail": "={{$json.email}}",
         "subject": "Bem-vindo(a)! Seu guia de automações está aqui 🚀",
-        "text": "Olá, {{$json.name}}!\n\nObrigado por baixar nosso Guia: 7 Automações Que Todo Negócio Precisa.\n\nAqui está seu link de download:\nhttps://moomagencia.com/downloads/guia-automacoes.pdf\n\nNos próximos dias, vou compartilhar dicas exclusivas sobre como transformar seu negócio com tecnologia.\n\nFique de olho na sua caixa de entrada!\n\nAbraço,\nEquipe Moom Agency\nhttps://moomagencia.com"
+        "text": "Olá, {{$json.name}}!\n\nObrigado por baixar nosso Guia: 7 Automações Que Todo Negócio Precisa.\n\nAqui está seu link de download:\nhttps://moomagencia.com/downloads/guia-automacoes.pdf\n\nNos próximos dias, vou compartilhar dicas exclusivas sobre como transformar seu negócio com tecnologia.\n\nFique de olho na sua caixa de entrada!\n\nAbraço,\nEquipe Moom Agency\nhttps://moomagencia.com\n\n<p style=\"text-align:center;margin-top:20px;font-size:12px;color:#999;\">Para cancelar o recebimento, <a href=\"{{$env.UNSUBSCRIBE_URL}}?email={{$json.email}}\">clique aqui</a>.</p>"
       }
     },
     {
@@ -57,7 +62,7 @@
         "fromEmail": "contato@moomagencia.com",
         "toEmail": "={{$json.email}}",
         "subject": "Como uma clínica triplicou seus agendamentos em 60 dias",
-        "text": "Olá, {{$json.name}}!\n\nQuero compartilhar um case real com você.\n\nA Clínica VidaPlena estava com dificuldade para gerenciar agendamentos por telefone. Implementamos:\n\n✅ Chatbot no WhatsApp com agendamento automático\n✅ Lembretes automáticos 24h antes\n✅ CRM para acompanhar cada paciente\n\nResultado: 3x mais agendamentos e 80% menos faltas!\n\nQuer resultados assim no seu negócio?\n👉 Agende uma consultoria gratuita: https://moomagencia.com/#contato\n\nAbraço,\nEquipe Moom Agency"
+        "text": "Olá, {{$json.name}}!\n\nQuero compartilhar um case real com você.\n\nA Clínica VidaPlena estava com dificuldade para gerenciar agendamentos por telefone. Implementamos:\n\n✅ Chatbot no WhatsApp com agendamento automático\n✅ Lembretes automáticos 24h antes\n✅ CRM para acompanhar cada paciente\n\nResultado: 3x mais agendamentos e 80% menos faltas!\n\nQuer resultados assim no seu negócio?\n👉 Agende uma consultoria gratuita: https://moomagencia.com/#contato\n\nAbraço,\nEquipe Moom Agency\n\n<p style=\"text-align:center;margin-top:20px;font-size:12px;color:#999;\">Para cancelar o recebimento, <a href=\"{{$env.UNSUBSCRIBE_URL}}?email={{$json.email}}\">clique aqui</a>.</p>"
       }
     },
     {
@@ -81,7 +86,53 @@
         "fromEmail": "contato@moomagencia.com",
         "toEmail": "={{$json.email}}",
         "subject": "🎁 Oferta exclusiva: 20% OFF no plano Pro (válido por 48h)",
-        "text": "Olá, {{$json.name}}!\n\nComo você demonstrou interesse em automações para seu negócio, preparamos uma oferta exclusiva:\n\n🚀 PLANO PRO com 20% de desconto\nDe R$ 4.997 por R$ 3.997/mês\n\nInclui:\n• Site completo (até 15 páginas)\n• Chatbot WhatsApp avançado\n• CRM + Agendamento automático\n• 5 automações personalizadas\n• Marketing digital básico\n\n⏰ Oferta válida por 48 horas!\n\n👉 Garanta seu desconto: https://wa.me/5511999999999?text=Quero%20o%20plano%20Pro%20com%20desconto!\n\nAbraço,\nEquipe Moom Agency"
+        "text": "Olá, {{$json.name}}!\n\nComo você demonstrou interesse em automações para seu negócio, preparamos uma oferta exclusiva:\n\n🚀 PLANO PRO com 20% de desconto\nDe R$ 4.997 por R$ 3.997/mês\n\nInclui:\n• Site completo (até 15 páginas)\n• Chatbot WhatsApp avançado\n• CRM + Agendamento automático\n• 5 automações personalizadas\n• Marketing digital básico\n\n⏰ Oferta válida por 48 horas!\n\n👉 Garanta seu desconto: https://wa.me/5511999999999?text=Quero%20o%20plano%20Pro%20com%20desconto!\n\nAbraço,\nEquipe Moom Agency\n\n<p style=\"text-align:center;margin-top:20px;font-size:12px;color:#999;\">Para cancelar o recebimento, <a href=\"{{$env.UNSUBSCRIBE_URL}}?email={{$json.email}}\">clique aqui</a>.</p>"
+      }
+    }
+    ,
+    {
+      "id": "webhook-unsubscribe",
+      "name": "Webhook - Cancelar Inscrição",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 550],
+      "parameters": {
+        "path": "unsubscribe",
+        "httpMethod": "GET",
+        "responseMode": "lastNode",
+        "authentication": "headerAuth",
+        "headerAuth": {
+          "name": "X-Webhook-Secret",
+          "value": "={{$env.WEBHOOK_SECRET}}"
+        }
+      }
+    },
+    {
+      "id": "process-unsubscribe",
+      "name": "Processar Cancelamento",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 550],
+      "parameters": {
+        "functionCode": "const email = $input.first().json.query?.email || $input.first().json.email;\nif (!email) {\n  return [{ json: { success: false, message: 'Email não informado.' } }];\n}\nreturn [{ json: { email, unsubscribedAt: new Date().toISOString(), success: true, message: 'Inscrição cancelada com sucesso.' } }];"
+      }
+    },
+    {
+      "id": "remove-subscriber",
+      "name": "Remover Inscrito",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [700, 550],
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.CRM_API_URL}}/subscribers/unsubscribe",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "email", "value": "={{$json.email}}" },
+            { "name": "unsubscribedAt", "value": "={{$json.unsubscribedAt}}" }
+          ]
+        }
       }
     }
   ],
@@ -103,6 +154,12 @@
     },
     "wait-4-days": {
       "main": [[{ "node": "email-oferta", "type": "main", "index": 0 }]]
+    },
+    "webhook-unsubscribe": {
+      "main": [[{ "node": "process-unsubscribe", "type": "main", "index": 0 }]]
+    },
+    "process-unsubscribe": {
+      "main": [[{ "node": "remove-subscriber", "type": "main", "index": 0 }]]
     }
   },
   "active": false,

@@ -27,7 +27,8 @@
       "parameters": {
         "method": "GET",
         "url": "={{$env.CRM_API_URL}}/clients?status=active",
-        "options": { "timeout": 15000 }
+        "options": { "timeout": 15000 },
+        "onError": "continueErrorOutput"
       }
     },
     {
@@ -47,7 +48,7 @@
       "typeVersion": 1,
       "position": [920, 300],
       "parameters": {
-        "functionCode": "const client = $input.first().json;\nconst now = new Date();\nconst dueDate = new Date(now.getFullYear(), now.getMonth(), 10);\n\nconst invoice = {\n  invoiceNumber: `MOOM-${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 9999)).padStart(4, '0')}`,\n  clientName: client.name,\n  clientEmail: client.email,\n  clientPhone: client.phone,\n  plan: client.plan || 'Pro',\n  amount: client.monthlyAmount || 4997,\n  currency: 'BRL',\n  issueDate: now.toISOString().split('T')[0],\n  dueDate: dueDate.toISOString().split('T')[0],\n  status: 'pendente',\n  items: [\n    {\n      description: `Plano ${client.plan || 'Pro'} - ${now.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}`,\n      quantity: 1,\n      unitPrice: client.monthlyAmount || 4997,\n      total: client.monthlyAmount || 4997\n    }\n  ]\n};\n\nreturn [{ json: invoice }];"
+        "functionCode": "const client = $input.first().json;\nconst now = new Date();\nconst dueDate = new Date(now.getFullYear(), now.getMonth(), 10);\n\nconst invoice = {\n  invoiceNumber: 'INV-' + 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) { var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8); return v.toString(16); }),\n  clientName: client.name,\n  clientEmail: client.email,\n  clientPhone: client.phone,\n  plan: client.plan || 'Pro',\n  amount: client.monthlyAmount || 4997,\n  currency: 'BRL',\n  issueDate: now.toISOString().split('T')[0],\n  dueDate: dueDate.toISOString().split('T')[0],\n  status: 'pendente',\n  items: [\n    {\n      description: `Plano ${client.plan || 'Pro'} - ${now.toLocaleString('pt-BR', { month: 'long', year: 'numeric' })}`,\n      quantity: 1,\n      unitPrice: client.monthlyAmount || 4997,\n      total: client.monthlyAmount || 4997\n    }\n  ]\n};\n\nreturn [{ json: invoice }];"
       }
     },
     {
@@ -68,7 +69,8 @@
             { "name": "amount", "value": "={{$json.amount}}" },
             { "name": "dueDate", "value": "={{$json.dueDate}}" }
           ]
-        }
+        },
+        "onError": "continueErrorOutput"
       }
     },
     {
@@ -99,7 +101,38 @@
             { "name": "number", "value": "={{$json.clientPhone}}" },
             { "name": "text", "value": "💰 *Fatura Disponível*\n\nOlá, {{$json.clientName}}!\n\nSua fatura de {{$json.plan}} está disponível:\n\n📋 {{$json.invoiceNumber}}\n💵 R$ {{$json.amount}}\n📅 Vencimento: {{$json.dueDate}}\n\nLink para pagamento:\n{{$env.BILLING_PORTAL_URL}}/invoices/{{$json.invoiceNumber}}\n\nDúvidas? Responda aqui!" }
           ]
-        }
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "log-error-fetch-clients",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-create-invoice-api",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-notify-whatsapp",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1360, 600],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
       }
     }
   ],
@@ -108,7 +141,10 @@
       "main": [[{ "node": "fetch-clients", "type": "main", "index": 0 }]]
     },
     "fetch-clients": {
-      "main": [[{ "node": "split-clients", "type": "main", "index": 0 }]]
+      "main": [
+        [{ "node": "split-clients", "type": "main", "index": 0 }],
+        [{ "node": "log-error-fetch-clients", "type": "main", "index": 0 }]
+      ]
     },
     "split-clients": {
       "main": [[{ "node": "generate-invoice", "type": "main", "index": 0 }]]
@@ -117,10 +153,19 @@
       "main": [[{ "node": "create-invoice-api", "type": "main", "index": 0 }]]
     },
     "create-invoice-api": {
-      "main": [[
-        { "node": "send-invoice-email", "type": "main", "index": 0 },
-        { "node": "notify-whatsapp", "type": "main", "index": 0 }
-      ]]
+      "main": [
+        [
+          { "node": "send-invoice-email", "type": "main", "index": 0 },
+          { "node": "notify-whatsapp", "type": "main", "index": 0 }
+        ],
+        [{ "node": "log-error-create-invoice-api", "type": "main", "index": 0 }]
+      ]
+    },
+    "notify-whatsapp": {
+      "main": [
+        [],
+        [{ "node": "log-error-notify-whatsapp", "type": "main", "index": 0 }]
+      ]
     }
   },
   "active": false,

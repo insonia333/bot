@@ -117,9 +117,32 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData(contactForm);
       const data = Object.fromEntries(formData);
 
+      // Trim whitespace from inputs
+      const name = (data.name || '').toString().trim();
+      const email = (data.email || '').toString().trim();
+      const service = (data.service || '').toString().trim();
+      const message = (data.message || '').toString().trim();
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const emailInput = contactForm.querySelector('#email');
+      // Remove previous error
+      const existingError = contactForm.querySelector('.form-error');
+      if (existingError) existingError.remove();
+
+      if (!emailRegex.test(email)) {
+        const errorMsg = document.createElement('span');
+        errorMsg.className = 'form-error';
+        errorMsg.style.cssText = 'color:#e74c3c;font-size:0.85rem;margin-top:0.25rem;';
+        errorMsg.textContent = 'Por favor, insira um email válido.';
+        emailInput.parentNode.appendChild(errorMsg);
+        emailInput.focus();
+        return;
+      }
+
       const phone = '5511999999999';
-      const message = `Olá! Sou ${data.name}.\nEmail: ${data.email}\nServiço: ${data.service}\nMensagem: ${data.message}`;
-      const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      const whatsappMessage = `Olá! Sou ${name}.\nEmail: ${email}\nServiço: ${service}\nMensagem: ${message}`;
+      const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMessage)}`;
       window.open(whatsappURL, '_blank');
     });
   }

@@ -10,7 +10,12 @@
       "parameters": {
         "path": "agendamento",
         "httpMethod": "POST",
-        "responseMode": "onReceived"
+        "responseMode": "onReceived",
+        "authentication": "headerAuth",
+        "headerAuth": {
+          "name": "X-Webhook-Secret",
+          "value": "={{$env.WEBHOOK_SECRET}}"
+        }
       }
     },
     {
@@ -38,7 +43,8 @@
             { "name": "time", "value": "={{$json.preferredTime}}" }
           ]
         },
-        "options": { "timeout": 10000 }
+        "options": { "timeout": 10000 },
+        "onError": "continueErrorOutput"
       }
     },
     {
@@ -76,7 +82,8 @@
             { "name": "time", "value": "={{$json.preferredTime}}" },
             { "name": "service", "value": "={{$json.service}}" }
           ]
-        }
+        },
+        "onError": "continueErrorOutput"
       }
     },
     {
@@ -114,7 +121,38 @@
             { "name": "number", "value": "={{$json.remoteJid}}" },
             { "name": "text", "value": "={{$json.message}}" }
           ]
-        }
+        },
+        "onError": "continueErrorOutput"
+      }
+    },
+    {
+      "id": "log-error-check-availability",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [700, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-create-appointment",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1140, 350],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
+      }
+    },
+    {
+      "id": "log-error-send-confirmation",
+      "name": "Log Error",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [1580, 500],
+      "parameters": {
+        "functionCode": "console.error('[N8N Error]', $input.item.json); return [{json: {error: true, message: $input.item.json.message || 'Erro desconhecido'}}];"
       }
     }
   ],
@@ -126,7 +164,10 @@
       "main": [[{ "node": "check-availability", "type": "main", "index": 0 }]]
     },
     "check-availability": {
-      "main": [[{ "node": "check-available", "type": "main", "index": 0 }]]
+      "main": [
+        [{ "node": "check-available", "type": "main", "index": 0 }],
+        [{ "node": "log-error-check-availability", "type": "main", "index": 0 }]
+      ]
     },
     "check-available": {
       "main": [
@@ -135,13 +176,22 @@
       ]
     },
     "create-appointment": {
-      "main": [[{ "node": "confirm-message", "type": "main", "index": 0 }]]
+      "main": [
+        [{ "node": "confirm-message", "type": "main", "index": 0 }],
+        [{ "node": "log-error-create-appointment", "type": "main", "index": 0 }]
+      ]
     },
     "confirm-message": {
       "main": [[{ "node": "send-confirmation", "type": "main", "index": 0 }]]
     },
     "unavailable-message": {
       "main": [[{ "node": "send-confirmation", "type": "main", "index": 0 }]]
+    },
+    "send-confirmation": {
+      "main": [
+        [],
+        [{ "node": "log-error-send-confirmation", "type": "main", "index": 0 }]
+      ]
     }
   },
   "active": false,
